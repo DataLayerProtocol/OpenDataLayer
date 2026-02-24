@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/performance/web-vital.schema.json",
+  "title": "Performance Web Vital Event Data",
+  "description": "Data payload for the performance.web_vital event. Fired when a Core Web Vitals or related performance metric is measured.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "enum": ["LCP", "FID", "CLS", "INP", "FCP", "TTFB"],
+      "description": "The name of the web vital metric."
+    },
+    "value": {
+      "type": "number",
+      "description": "The measured value of the metric."
+    },
+    "rating": {
+      "type": "string",
+      "enum": ["good", "needs-improvement", "poor"],
+      "description": "The qualitative rating of the metric based on Web Vitals thresholds."
+    },
+    "delta": {
+      "type": "number",
+      "description": "The change in value since the last report of this metric."
+    },
+    "navigationType": {
+      "type": "string",
+      "description": "The type of navigation, e.g. navigate, reload, back-forward."
+    }
+  },
+  "required": ["name", "value", "rating"],
+  "additionalProperties": false
+}

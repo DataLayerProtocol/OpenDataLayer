@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/context/consent.schema.json",
+  "title": "Consent Context",
+  "description": "Captures the user's consent state for data collection and processing purposes.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["granted", "denied", "pending"],
+      "description": "The overall consent status."
+    },
+    "purposes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "description": "A map of consent purpose names to their granted/denied state (e.g. { \"analytics\": true, \"marketing\": false })."
+    },
+    "method": {
+      "type": "string",
+      "enum": ["banner", "preference_center", "api", "implicit"],
+      "description": "The method by which consent was collected."
+    },
+    "version": {
+      "type": "string",
+      "description": "The version of the consent policy the user agreed to."
+    },
+    "updatedAt": {
+      "$ref": "../core/common.schema.json#/$defs/timestamp",
+      "description": "The date and time when the consent was last updated."
+    },
+    "gpcEnabled": {
+      "type": "boolean",
+      "description": "Whether the Global Privacy Control (GPC) signal is enabled in the browser."
+    },
+    "doNotTrack": {
+      "type": "boolean",
+      "description": "Whether the Do Not Track (DNT) header is set in the browser."
+    }
+  },
+  "additionalProperties": false
+}

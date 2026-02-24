@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/error/boundary-triggered.schema.json",
+  "title": "Error Boundary Triggered Event Data",
+  "description": "Data payload for the error.boundary_triggered event. Fired when a UI error boundary catches an error in a component tree.",
+  "type": "object",
+  "properties": {
+    "componentName": {
+      "type": "string",
+      "description": "The name of the component whose error boundary was triggered."
+    },
+    "error": {
+      "type": "string",
+      "description": "The error message caught by the boundary."
+    },
+    "componentStack": {
+      "type": "string",
+      "description": "The component stack trace showing the component hierarchy."
+    },
+    "recovered": {
+      "type": "boolean",
+      "description": "Whether the error boundary was able to recover and render a fallback."
+    }
+  },
+  "required": ["componentName", "error"],
+  "additionalProperties": false
+}

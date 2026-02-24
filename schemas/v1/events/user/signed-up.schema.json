@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/user/signed-up.schema.json",
+  "title": "User Signed Up",
+  "description": "Fired when a new user completes the sign-up process.",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string",
+      "description": "Sign-up method used (e.g., email, google, github)."
+    },
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier assigned to the new user."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

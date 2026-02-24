@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/product-viewed.schema.json",
+  "title": "Product Viewed Event Data",
+  "description": "Data payload for the ecommerce.product_viewed event. Fired when a user views a product detail page or product quick-view modal.",
+  "type": "object",
+  "properties": {
+    "product": {
+      "$ref": "product.schema.json#/$defs/product",
+      "description": "The product that was viewed."
+    }
+  },
+  "required": ["product"],
+  "additionalProperties": false
+}

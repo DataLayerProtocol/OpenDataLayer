@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/product-added.schema.json",
+  "title": "Product Added Event Data",
+  "description": "Data payload for the ecommerce.product_added event. Fired when a user adds a product to their shopping cart.",
+  "type": "object",
+  "properties": {
+    "product": {
+      "$ref": "product.schema.json#/$defs/product",
+      "description": "The product that was added to the cart."
+    },
+    "cartId": {
+      "type": "string",
+      "description": "The unique identifier of the shopping cart the product was added to."
+    }
+  },
+  "required": ["product"],
+  "additionalProperties": false
+}

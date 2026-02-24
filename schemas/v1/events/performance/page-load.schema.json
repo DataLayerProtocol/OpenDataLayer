@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/performance/page-load.schema.json",
+  "title": "Performance Page Load Event Data",
+  "description": "Data payload for the performance.page_load event. Fired when page load timing metrics are captured via the Navigation Timing API.",
+  "type": "object",
+  "properties": {
+    "duration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total page load time in milliseconds."
+    },
+    "domContentLoaded": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Time to DOMContentLoaded event in milliseconds."
+    },
+    "domInteractive": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Time to DOM interactive state in milliseconds."
+    },
+    "firstByte": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Time to first byte (TTFB) in milliseconds."
+    },
+    "transferSize": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total transfer size in bytes."
+    },
+    "decodedBodySize": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Decoded body size in bytes."
+    },
+    "redirectCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of redirects before the final page was loaded."
+    }
+  },
+  "required": ["duration"],
+  "additionalProperties": false
+}

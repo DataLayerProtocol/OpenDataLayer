@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/refund.schema.json",
+  "title": "Refund Event Data",
+  "description": "Data payload for the ecommerce.refund event. Fired when a full or partial refund is issued for a transaction.",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "The unique order or transaction identifier being refunded."
+    },
+    "total": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The total monetary value of the refund."
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code for the refund (e.g. USD, EUR, GBP)."
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "product.schema.json#/$defs/product"
+      },
+      "description": "The list of products being refunded. Present for partial refunds to identify which items are affected."
+    }
+  },
+  "required": ["orderId"],
+  "additionalProperties": false
+}

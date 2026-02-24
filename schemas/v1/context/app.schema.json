@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/context/app.schema.json",
+  "title": "Application Context",
+  "description": "Metadata about the application emitting events, including name, version, environment, and platform.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The human-readable name of the application."
+    },
+    "version": {
+      "type": "string",
+      "description": "The application version string (e.g. 2.1.0, 1.0.0-beta.3)."
+    },
+    "build": {
+      "type": "string",
+      "description": "The build number or identifier (e.g. 1234, abc123f)."
+    },
+    "environment": {
+      "type": "string",
+      "enum": ["production", "staging", "development", "testing"],
+      "description": "The deployment environment the application is running in."
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["web", "ios", "android", "react-native", "flutter", "electron", "other"],
+      "description": "The platform or runtime the application is built for."
+    },
+    "namespace": {
+      "type": "string",
+      "description": "The reverse-domain namespace of the application (e.g. com.example.app)."
+    }
+  },
+  "required": ["name", "version"],
+  "additionalProperties": false
+}

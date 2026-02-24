@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/coupon-applied.schema.json",
+  "title": "Coupon Applied Event Data",
+  "description": "Data payload for the ecommerce.coupon_applied event. Fired when a user successfully applies a coupon or promo code to their cart or order.",
+  "type": "object",
+  "properties": {
+    "coupon": {
+      "type": "string",
+      "description": "The coupon or promo code that was applied."
+    },
+    "orderId": {
+      "type": "string",
+      "description": "The order or transaction identifier the coupon was applied to, if applicable."
+    },
+    "discount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The monetary discount value resulting from the coupon."
+    }
+  },
+  "required": ["coupon"],
+  "additionalProperties": false
+}

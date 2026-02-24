@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/form/started.schema.json",
+  "title": "Form Started",
+  "description": "Fired when a user begins interacting with a form.",
+  "type": "object",
+  "properties": {
+    "formId": {
+      "type": "string",
+      "description": "Unique identifier of the form."
+    },
+    "formName": {
+      "type": "string",
+      "description": "Human-readable name of the form."
+    },
+    "firstField": {
+      "type": "string",
+      "description": "Name or identifier of the first field the user interacted with."
+    }
+  },
+  "required": ["formId"],
+  "additionalProperties": false
+}

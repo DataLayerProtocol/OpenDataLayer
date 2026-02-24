@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions & Discussion
+    url: https://github.com/DataLayerProtocol/OpenDataLayer/discussions
+    about: Ask questions, share ideas, or discuss the project in GitHub Discussions.
+  - name: Protocol Specification
+    url: https://github.com/DataLayerProtocol/OpenDataLayer/tree/main/spec/v1
+    about: Read the full protocol specification before asking about protocol behavior.
+  - name: JSON Schema Reference
+    url: https://github.com/DataLayerProtocol/OpenDataLayer/tree/main/schemas/v1
+    about: Browse the JSON schemas that define the event model.

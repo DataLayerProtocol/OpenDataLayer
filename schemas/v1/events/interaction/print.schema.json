@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/interaction/print.schema.json",
+  "title": "Interaction Print Event Data",
+  "description": "Data payload for the interaction.print event. Fired when a user triggers a print action on a page.",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "The URL of the page being printed."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the page being printed."
+    }
+  },
+  "additionalProperties": false
+}

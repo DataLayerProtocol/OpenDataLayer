@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/form/error.schema.json",
+  "title": "Form Error",
+  "description": "Fired when a form encounters an error during interaction or submission.",
+  "type": "object",
+  "properties": {
+    "formId": {
+      "type": "string",
+      "description": "Unique identifier of the form."
+    },
+    "field": {
+      "type": "string",
+      "description": "Name or identifier of the field that errored."
+    },
+    "errorType": {
+      "type": "string",
+      "description": "Type of error (e.g., validation, server, network)."
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Human-readable error message."
+    }
+  },
+  "required": ["formId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/enums/payment-method.schema.json",
+  "title": "Payment Method",
+  "description": "Type of payment method used for a transaction",
+  "type": "string",
+  "enum": [
+    "credit_card",
+    "debit_card",
+    "paypal",
+    "apple_pay",
+    "google_pay",
+    "bank_transfer",
+    "crypto",
+    "gift_card",
+    "buy_now_pay_later",
+    "cash",
+    "other"
+  ]
+}

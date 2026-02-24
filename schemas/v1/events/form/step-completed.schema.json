@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/form/step-completed.schema.json",
+  "title": "Form Step Completed",
+  "description": "Fired when the user completes a step in a multi-step form.",
+  "type": "object",
+  "properties": {
+    "formId": {
+      "type": "string",
+      "description": "Unique identifier of the form."
+    },
+    "step": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The step number that was completed."
+    },
+    "stepName": {
+      "type": "string",
+      "description": "Human-readable name of the completed step."
+    },
+    "totalSteps": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Total number of steps in the form."
+    }
+  },
+  "required": ["formId", "step"],
+  "additionalProperties": false
+}

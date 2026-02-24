@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/page/leave.schema.json",
+  "title": "Page Leave Event Data",
+  "description": "Data payload for the page.leave event. Fired when a user navigates away from a page, capturing engagement metrics such as dwell time and scroll depth.",
+  "type": "object",
+  "properties": {
+    "dwellTime": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The number of seconds the user spent on the page before leaving."
+    },
+    "scrollDepth": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The maximum percentage of the page the user scrolled through (0–100)."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/media/buffer-end.schema.json",
+  "title": "Media Buffer End",
+  "description": "Fired when media playback finishes buffering.",
+  "type": "object",
+  "properties": {
+    "media": {
+      "$ref": "media-object.schema.json#/$defs/media",
+      "description": "The media item that finished buffering."
+    },
+    "position": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Playback position in seconds when buffering ended."
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Duration of the buffering period in seconds."
+    }
+  },
+  "required": ["media"],
+  "additionalProperties": false
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/interaction/share.schema.json",
+  "title": "Interaction Share Event Data",
+  "description": "Data payload for the interaction.share event. Fired when a user shares content via a social or sharing mechanism.",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string",
+      "description": "The sharing method or platform, e.g. facebook, twitter, email, copy_link."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The type of content being shared, e.g. page, product, article."
+    },
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content being shared."
+    },
+    "contentUrl": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "The URL of the content being shared."
+    }
+  },
+  "required": ["method"],
+  "additionalProperties": false
+}

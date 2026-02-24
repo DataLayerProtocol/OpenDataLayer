@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/interaction/scroll-depth.schema.json",
+  "title": "Interaction Scroll Depth Event Data",
+  "description": "Data payload for the interaction.scroll_depth event. Fired when a user scrolls past a configured depth threshold on a page.",
+  "type": "object",
+  "properties": {
+    "depth": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The scroll depth reached as a percentage of the page."
+    },
+    "direction": {
+      "type": "string",
+      "enum": ["vertical", "horizontal"],
+      "description": "The scroll direction being measured."
+    },
+    "threshold": {
+      "type": "number",
+      "description": "The configured threshold value that triggered this event, e.g. 25, 50, 75, 100."
+    }
+  },
+  "required": ["depth"],
+  "additionalProperties": false
+}

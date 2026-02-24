@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenDataLayer - Basic HTML Example</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; }
+    h1 { color: #1a1a2e; }
+    .event-log { background: #f5f5f5; padding: 1rem; border-radius: 8px; max-height: 400px; overflow-y: auto; font-family: monospace; font-size: 0.875rem; }
+    .event-entry { padding: 0.5rem; border-bottom: 1px solid #ddd; }
+    .event-name { color: #0066cc; font-weight: bold; }
+    .event-time { color: #666; font-size: 0.75rem; }
+    button { background: #0066cc; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin: 0.25rem; }
+    button:hover { background: #0052a3; }
+    .section { margin: 1.5rem 0; }
+    code { background: #e8e8e8; padding: 0.125rem 0.375rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>OpenDataLayer - Basic Example</h1>
+  <p>This page demonstrates the OpenDataLayer SDK. Open your browser console for debug output.</p>
+
+  <div class="section">
+    <h2>Track Events</h2>
+    <button onclick="trackPageView()">Page View</button>
+    <button onclick="trackProductView()">View Product</button>
+    <button onclick="trackAddToCart()">Add to Cart</button>
+    <button onclick="trackPurchase()">Purchase</button>
+    <button onclick="trackSearch()">Search</button>
+    <button onclick="trackCustom()">Custom Event</button>
+  </div>
+
+  <div class="section">
+    <h2>Context</h2>
+    <button onclick="setUserContext()">Set User Context</button>
+    <button onclick="setConsentContext()">Grant Consent</button>
+    <button onclick="showContext()">Show Current Context</button>
+  </div>
+
+  <div class="section">
+    <h2>Event Log</h2>
+    <div id="event-log" class="event-log">
+      <em>Events will appear here...</em>
+    </div>
+  </div>
+
+  <script type="module">
+    // In a real app, you'd import from @opendatalayer/sdk
+    // For this example, we'll create a minimal inline implementation
+
+    class SimpleODL {
+      constructor() {
+        this.events = [];
+        this.context = {};
+        this.listeners = [];
+      }
+
+      track(eventName, data = {}, customDimensions = {}) {
+        const event = {
+          event: eventName,
+          id: crypto.randomUUID(),
+          timestamp: new Date().toISOString(),
+          specVersion: '1.0.0',
+          context: structuredClone(this.context),
+          data,
+          customDimensions: Object.keys(customDimensions).length > 0 ? customDimensions : undefined,
+        };
+        this.events.push(event);
+        this.listeners.forEach(fn => fn(event));
+        console.debug('[ODL]', eventName, event);
+        return event;
+      }
+
+      setContext(key, value) {
+        this.context[key] = value;
+      }
+
+      on(pattern, handler) {
+        const wrapped = (event) => {
+          if (pattern === '*' || event.event === pattern ||
+              (pattern.endsWith('.*') && event.event.startsWith(pattern.slice(0, -1)))) {
+            handler(event);
+          }
+        };
+        this.listeners.push(wrapped);
+        return () => { this.listeners = this.listeners.filter(l => l !== wrapped); };
+      }
+
+      getEvents() { return this.events; }
+      getContext() { return structuredClone(this.context); }
+    }
+
+    // Initialize ODL
+    const odl = new SimpleODL();
+    window.odl = odl;
+
+    // Set initial page context
+    odl.setContext('page', {
+      url: window.location.href,
+      path: window.location.pathname,
+      title: document.title,
+      referrer: document.referrer,
+    });
+
+    odl.setContext('app', {
+      name: 'ODL Basic Example',
+      version: '1.0.0',
+      environment: 'development',
+      platform: 'web',
+    });
+
+    // Subscribe to all events and log them
+    const logEl = document.getElementById('event-log');
+    let firstEvent = true;
+
+    odl.on('*', (event) => {
+      if (firstEvent) { logEl.innerHTML = ''; firstEvent = false; }
+      const entry = document.createElement('div');
+      entry.className = 'event-entry';
+      entry.innerHTML = `
+        <span class="event-name">${event.event}</span>
+        <span class="event-time">${new Date(event.timestamp).toLocaleTimeString()}</span>
+        <pre>${JSON.stringify(event.data, null, 2)}</pre>
+      `;
+      logEl.prepend(entry);
+    });
+
+    // Expose functions to window for onclick handlers
+    window.trackPageView = () => odl.track('page.view');
+
+    window.trackProductView = () => odl.track('ecommerce.product_viewed', {
+      product: { id: 'SKU-123', name: 'Running Shoes', brand: 'SpeedRunner', category: 'Footwear/Running', price: 129.99, currency: 'USD' }
+    });
+
+    window.trackAddToCart = () => odl.track('ecommerce.product_added', {
+      product: { id: 'SKU-123', name: 'Running Shoes', price: 129.99, currency: 'USD', quantity: 1 },
+      cartId: 'cart-456'
+    });
+
+    window.trackPurchase = () => odl.track('ecommerce.purchase', {
+      orderId: 'ORD-789',
+      total: 142.49,
+      revenue: 129.99,
+      tax: 10.50,
+      shipping: 2.00,
+      currency: 'USD',
+      products: [{ id: 'SKU-123', name: 'Running Shoes', price: 129.99, currency: 'USD', quantity: 1 }]
+    });
+
+    window.trackSearch = () => odl.track('search.performed', {
+      query: 'running shoes',
+      resultCount: 42,
+      category: 'products'
+    });
+
+    window.trackCustom = () => odl.track('custom.button_click', {
+      name: 'demo_button',
+      category: 'demo',
+      label: 'Custom Event Demo',
+      value: 1,
+    });
+
+    window.setUserContext = () => {
+      odl.setContext('user', {
+        id: 'user-001',
+        isAuthenticated: true,
+        traits: { name: 'Jane Doe', plan: 'premium' }
+      });
+      odl.track('user.identified', { userId: 'user-001', traits: { name: 'Jane Doe' } });
+    };
+
+    window.setConsentContext = () => {
+      odl.setContext('consent', {
+        status: 'granted',
+        purposes: { analytics: true, marketing: true, personalization: false },
+        method: 'banner'
+      });
+      odl.track('consent.given', { purposes: { analytics: true, marketing: true, personalization: false }, method: 'banner' });
+    };
+
+    window.showContext = () => {
+      alert(JSON.stringify(odl.getContext(), null, 2));
+    };
+
+    // Auto-track page view
+    odl.track('page.view');
+  </script>
+</body>
+</html>

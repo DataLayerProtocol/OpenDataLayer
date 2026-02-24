@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/enums/content-type.schema.json",
+  "title": "Content Type",
+  "description": "Type of media content",
+  "type": "string",
+  "enum": [
+    "video",
+    "audio",
+    "livestream",
+    "podcast",
+    "article",
+    "image",
+    "document",
+    "other"
+  ]
+}

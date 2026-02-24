@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/form/submitted.schema.json",
+  "title": "Form Submitted",
+  "description": "Fired when a user submits a form.",
+  "type": "object",
+  "properties": {
+    "formId": {
+      "type": "string",
+      "description": "Unique identifier of the form."
+    },
+    "formName": {
+      "type": "string",
+      "description": "Human-readable name of the form."
+    },
+    "formType": {
+      "type": "string",
+      "description": "Type of form (e.g., contact, signup, checkout)."
+    },
+    "success": {
+      "type": "boolean",
+      "description": "Whether the form submission succeeded."
+    }
+  },
+  "required": ["formId"],
+  "additionalProperties": false
+}

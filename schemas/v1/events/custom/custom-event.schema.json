@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/custom/custom-event.schema.json",
+  "title": "Custom Event Data",
+  "description": "Schema for custom events that don't fit the standard taxonomy. Use sparingly -- prefer standard events where possible.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The custom event name."
+    },
+    "category": {
+      "type": "string",
+      "description": "An optional categorization for the custom event."
+    },
+    "label": {
+      "type": "string",
+      "description": "An optional label providing additional context."
+    },
+    "value": {
+      "type": "number",
+      "description": "An optional numeric value associated with the event."
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Arbitrary key-value pairs for any custom data that does not fit the other fields."
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": false
+}

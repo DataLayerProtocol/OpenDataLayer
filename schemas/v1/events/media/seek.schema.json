@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/media/seek.schema.json",
+  "title": "Media Seek",
+  "description": "Fired when the user seeks to a different position in the media.",
+  "type": "object",
+  "properties": {
+    "media": {
+      "$ref": "media-object.schema.json#/$defs/media",
+      "description": "The media item being seeked."
+    },
+    "fromPosition": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Playback position in seconds before the seek."
+    },
+    "toPosition": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Playback position in seconds after the seek."
+    }
+  },
+  "required": ["media", "fromPosition", "toPosition"],
+  "additionalProperties": false
+}

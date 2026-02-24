@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/interaction/element-clicked.schema.json",
+  "title": "Interaction Element Clicked Event Data",
+  "description": "Data payload for the interaction.element_clicked event. Fired when a user clicks on a tracked UI element.",
+  "type": "object",
+  "properties": {
+    "elementId": {
+      "type": "string",
+      "description": "The HTML id attribute of the clicked element."
+    },
+    "elementClass": {
+      "type": "string",
+      "description": "The CSS class(es) of the clicked element."
+    },
+    "elementTag": {
+      "type": "string",
+      "description": "The HTML tag name of the clicked element."
+    },
+    "elementText": {
+      "type": "string",
+      "description": "The visible text content of the clicked element, truncated if necessary."
+    },
+    "targetUrl": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "The destination URL if the clicked element is a link."
+    },
+    "region": {
+      "type": "string",
+      "description": "The page region where the element is located, e.g. header, sidebar, footer."
+    },
+    "component": {
+      "type": "string",
+      "description": "The name of the UI component containing the clicked element."
+    }
+  },
+  "additionalProperties": false
+}

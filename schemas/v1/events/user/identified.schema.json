@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/user/identified.schema.json",
+  "title": "User Identified",
+  "description": "Fired when an anonymous user is identified or linked to a known user identity.",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier of the identified user."
+    },
+    "traits": {
+      "type": "object",
+      "description": "User traits or properties associated with the identified user.",
+      "additionalProperties": true
+    },
+    "previousAnonymousId": {
+      "type": "string",
+      "description": "Anonymous identifier previously assigned to the user before identification."
+    }
+  },
+  "required": ["userId"],
+  "additionalProperties": false
+}

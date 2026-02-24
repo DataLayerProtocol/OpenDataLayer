@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/media/media-object.schema.json",
+  "title": "Media Object",
+  "description": "Reusable media object definition for all media events.",
+  "$defs": {
+    "media": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the media item."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the media item."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["video", "audio", "livestream", "podcast", "other"],
+          "description": "Type of media content."
+        },
+        "duration": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Total duration of the media in seconds."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri-reference",
+          "description": "URL of the media item."
+        },
+        "provider": {
+          "type": "string",
+          "description": "Media provider or platform (e.g., YouTube, Vimeo, Spotify)."
+        },
+        "author": {
+          "type": "string",
+          "description": "Author or creator of the media item."
+        },
+        "category": {
+          "type": "string",
+          "description": "Category or genre of the media item."
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Publication date and time of the media item."
+        }
+      },
+      "required": ["id", "title"],
+      "additionalProperties": true
+    }
+  }
+}

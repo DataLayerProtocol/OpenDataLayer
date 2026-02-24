@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/user/signed-in.schema.json",
+  "title": "User Signed In",
+  "description": "Fired when a user successfully signs in.",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string",
+      "description": "Sign-in method used (e.g., email, google, github, sso)."
+    },
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier of the user who signed in."
+    }
+  },
+  "required": ["method"],
+  "additionalProperties": false
+}

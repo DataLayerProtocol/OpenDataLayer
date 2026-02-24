@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/enums/environment.schema.json",
+  "title": "Environment",
+  "description": "Application deployment environment",
+  "type": "string",
+  "enum": [
+    "production",
+    "staging",
+    "development",
+    "testing"
+  ]
+}

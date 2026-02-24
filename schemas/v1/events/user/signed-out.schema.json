@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/user/signed-out.schema.json",
+  "title": "User Signed Out",
+  "description": "Fired when a user signs out of their session.",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier of the user who signed out."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

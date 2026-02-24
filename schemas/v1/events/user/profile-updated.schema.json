@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/user/profile-updated.schema.json",
+  "title": "User Profile Updated",
+  "description": "Fired when a user updates their profile information.",
+  "type": "object",
+  "properties": {
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of profile fields that were updated."
+    },
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier of the user whose profile was updated."
+    }
+  },
+  "required": ["fields"],
+  "additionalProperties": false
+}

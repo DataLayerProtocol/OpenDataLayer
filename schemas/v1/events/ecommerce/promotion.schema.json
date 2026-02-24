@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/promotion.schema.json",
+  "title": "Promotion Definition",
+  "description": "Reusable promotion object definition for ecommerce events. Referenced by event schemas that include promotion data.",
+  "$defs": {
+    "promotion": {
+      "type": "object",
+      "description": "Represents a promotional offer or creative displayed to a user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the promotion."
+        },
+        "name": {
+          "type": "string",
+          "description": "The human-readable name of the promotion."
+        },
+        "creative": {
+          "type": "string",
+          "description": "The creative or variant associated with the promotion (e.g. 'banner_v2', 'hero_image')."
+        },
+        "position": {
+          "type": "string",
+          "description": "The position or slot where the promotion was displayed (e.g. 'hero', 'sidebar_top')."
+        }
+      },
+      "required": ["id", "name"],
+      "additionalProperties": false
+    }
+  }
+}

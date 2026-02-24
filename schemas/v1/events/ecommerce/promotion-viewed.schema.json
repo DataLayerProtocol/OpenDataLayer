@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/promotion-viewed.schema.json",
+  "title": "Promotion Viewed Event Data",
+  "description": "Data payload for the ecommerce.promotion_viewed event. Fired when a promotional creative is displayed to a user (impression).",
+  "type": "object",
+  "properties": {
+    "promotion": {
+      "$ref": "promotion.schema.json#/$defs/promotion",
+      "description": "The promotion that was viewed."
+    }
+  },
+  "required": ["promotion"],
+  "additionalProperties": false
+}

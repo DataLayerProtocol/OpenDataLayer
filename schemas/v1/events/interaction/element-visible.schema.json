@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/interaction/element-visible.schema.json",
+  "title": "Interaction Element Visible Event Data",
+  "description": "Data payload for the interaction.element_visible event. Fired when a tracked element becomes visible in the viewport (impression tracking).",
+  "type": "object",
+  "properties": {
+    "elementId": {
+      "type": "string",
+      "description": "The HTML id attribute of the visible element."
+    },
+    "elementClass": {
+      "type": "string",
+      "description": "The CSS class(es) of the visible element."
+    },
+    "elementTag": {
+      "type": "string",
+      "description": "The HTML tag name of the visible element."
+    },
+    "visiblePercentage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The percentage of the element visible in the viewport."
+    },
+    "dwellTime": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The duration the element was visible in seconds."
+    },
+    "region": {
+      "type": "string",
+      "description": "The page region where the element is located, e.g. header, sidebar, footer."
+    }
+  },
+  "required": ["elementId"],
+  "additionalProperties": false
+}

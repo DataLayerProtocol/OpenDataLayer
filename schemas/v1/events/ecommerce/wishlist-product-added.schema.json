@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/wishlist-product-added.schema.json",
+  "title": "Wishlist Product Added Event Data",
+  "description": "Data payload for the ecommerce.wishlist_product_added event. Fired when a user adds a product to a wishlist or favorites list.",
+  "type": "object",
+  "properties": {
+    "product": {
+      "$ref": "product.schema.json#/$defs/product",
+      "description": "The product that was added to the wishlist."
+    },
+    "wishlistId": {
+      "type": "string",
+      "description": "The unique identifier of the wishlist."
+    },
+    "wishlistName": {
+      "type": "string",
+      "description": "The human-readable name of the wishlist (e.g. 'My Favorites', 'Gift Ideas')."
+    }
+  },
+  "required": ["product"],
+  "additionalProperties": false
+}

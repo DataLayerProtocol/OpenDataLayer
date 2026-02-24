@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/performance/resource-timing.schema.json",
+  "title": "Performance Resource Timing Event Data",
+  "description": "Data payload for the performance.resource_timing event. Fired when resource loading performance metrics are captured via the Resource Timing API.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The URL of the resource."
+    },
+    "initiatorType": {
+      "type": "string",
+      "description": "The type of element that initiated the resource fetch, e.g. script, img, css, fetch."
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The total time to load the resource in milliseconds."
+    },
+    "transferSize": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The size of the resource transfer in bytes."
+    },
+    "startTime": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The time at which the resource fetch started, relative to the page load, in milliseconds."
+    }
+  },
+  "required": ["name", "duration"],
+  "additionalProperties": false
+}

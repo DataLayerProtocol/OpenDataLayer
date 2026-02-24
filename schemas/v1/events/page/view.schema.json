@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/page/view.schema.json",
+  "title": "Page View Event Data",
+  "description": "Data payload for the page.view event. Fired when a user views a page. Page metadata is carried in context.page rather than in the data payload.",
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false
+}

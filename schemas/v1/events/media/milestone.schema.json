@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/media/milestone.schema.json",
+  "title": "Media Milestone",
+  "description": "Fired when media playback reaches a percentage milestone (e.g., 25%, 50%, 75%).",
+  "type": "object",
+  "properties": {
+    "media": {
+      "$ref": "media-object.schema.json#/$defs/media",
+      "description": "The media item that reached the milestone."
+    },
+    "milestone": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Percentage milestone reached (e.g., 25, 50, 75, 100)."
+    },
+    "position": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Playback position in seconds when the milestone was reached."
+    }
+  },
+  "required": ["media", "milestone"],
+  "additionalProperties": false
+}

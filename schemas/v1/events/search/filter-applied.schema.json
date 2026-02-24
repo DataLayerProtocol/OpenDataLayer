@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/search/filter-applied.schema.json",
+  "title": "Search Filter Applied Event Data",
+  "description": "Data payload for the search.filter_applied event. Fired when a user applies a filter to search results.",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The search query the filter is being applied to."
+    },
+    "filterName": {
+      "type": "string",
+      "description": "The name of the filter being applied."
+    },
+    "filterValue": {
+      "type": "string",
+      "description": "The value selected for the filter."
+    },
+    "filterType": {
+      "type": "string",
+      "description": "The type of filter control, e.g. range, checkbox, dropdown."
+    }
+  },
+  "required": ["filterName", "filterValue"],
+  "additionalProperties": false
+}

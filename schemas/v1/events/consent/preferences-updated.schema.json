@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/consent/preferences-updated.schema.json",
+  "title": "Consent Preferences Updated",
+  "description": "Fired when a user updates their consent preferences, capturing both current and previous state.",
+  "type": "object",
+  "properties": {
+    "purposes": {
+      "type": "object",
+      "description": "Full current state of consent purposes. Key is the purpose name, value is a boolean indicating consent status.",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "previousPurposes": {
+      "type": "object",
+      "description": "Previous state of consent purposes before the update. Key is the purpose name, value is a boolean indicating consent status.",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "method": {
+      "type": "string",
+      "enum": ["banner", "preference_center", "api"],
+      "description": "Method by which consent preferences were updated."
+    }
+  },
+  "required": ["purposes"],
+  "additionalProperties": false
+}

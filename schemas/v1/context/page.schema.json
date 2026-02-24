@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/context/page.schema.json",
+  "title": "Page Context",
+  "description": "Describes the current page being viewed, including URL components, content classification, and locale.",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "The full URL of the current page."
+    },
+    "path": {
+      "type": "string",
+      "description": "The path component of the page URL (e.g. /products/shoes)."
+    },
+    "title": {
+      "type": "string",
+      "description": "The document title of the page."
+    },
+    "referrer": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "The URL of the referring page."
+    },
+    "search": {
+      "type": "string",
+      "description": "The query string portion of the URL (e.g. ?q=shoes&color=blue)."
+    },
+    "hash": {
+      "type": "string",
+      "description": "The URL hash/fragment (e.g. #section-2)."
+    },
+    "category": {
+      "type": "string",
+      "description": "The content category or section the page belongs to."
+    },
+    "type": {
+      "type": "string",
+      "description": "The page type classification (e.g. home, product, category, article, checkout, search, landing)."
+    },
+    "language": {
+      "$ref": "../core/common.schema.json#/$defs/locale",
+      "description": "The BCP 47 locale/language of the page content."
+    },
+    "encoding": {
+      "type": "string",
+      "default": "UTF-8",
+      "description": "The character encoding of the page (defaults to UTF-8)."
+    }
+  },
+  "required": ["url", "path"],
+  "additionalProperties": false
+}

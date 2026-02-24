@@ -1,0 +1,22 @@
+{
+  "name": "@opendatalayer/types",
+  "version": "0.1.0",
+  "description": "TypeScript types for the OpenDataLayer protocol, generated from JSON schemas",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": { "import": "./dist/index.js", "types": "./dist/index.d.ts" }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "generate": "tsx ../../scripts/generate-types.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "tsx": "^4.19.0"
+  }
+}

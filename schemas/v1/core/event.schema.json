@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/core/event.schema.json",
+  "title": "Event Envelope",
+  "description": "The base event envelope for all OpenDataLayer events. Every event flowing through the protocol MUST conform to this schema. The 'data' property carries the event-specific payload, while 'context' carries ambient state.",
+  "type": "object",
+  "properties": {
+    "event": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(\\.[a-z][a-z0-9_]*)+$",
+      "description": "Dot-namespaced event name (e.g. page.viewed, product.added_to_cart, order.completed)."
+    },
+    "id": {
+      "$ref": "identifiers.schema.json#/$defs/eventId",
+      "description": "A UUID v4 that uniquely identifies this event instance."
+    },
+    "timestamp": {
+      "$ref": "common.schema.json#/$defs/timestamp",
+      "description": "ISO 8601 datetime indicating when the event occurred."
+    },
+    "context": {
+      "$ref": "context.schema.json",
+      "description": "Ambient state associated with this event (page, user, session, device, etc.)."
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Event-specific payload. The shape of this object is defined by the individual event schema referenced by the 'event' field."
+    },
+    "customDimensions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": ["string", "number", "boolean"]
+      },
+      "description": "Arbitrary key-value pairs for custom dimensions. Keys are strings; values must be strings, numbers, or booleans."
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the system or library that emitted this event (e.g. 'web-sdk', 'ios-app')."
+        },
+        "version": {
+          "type": "string",
+          "description": "The version of the emitting system or library (e.g. '1.2.0')."
+        }
+      },
+      "additionalProperties": false,
+      "description": "Metadata about the system that generated this event."
+    },
+    "specVersion": {
+      "type": "string",
+      "const": "1.0.0",
+      "description": "The version of the OpenDataLayer specification this event conforms to."
+    }
+  },
+  "required": [
+    "event",
+    "id",
+    "timestamp",
+    "specVersion"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/cart-viewed.schema.json",
+  "title": "Cart Viewed Event Data",
+  "description": "Data payload for the ecommerce.cart_viewed event. Fired when a user views their shopping cart.",
+  "type": "object",
+  "properties": {
+    "cartId": {
+      "type": "string",
+      "description": "The unique identifier of the shopping cart."
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "product.schema.json#/$defs/product"
+      },
+      "description": "The list of products currently in the cart."
+    },
+    "total": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The total monetary value of all products in the cart."
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code for the cart total (e.g. USD, EUR, GBP)."
+    }
+  },
+  "required": ["products"],
+  "additionalProperties": false
+}

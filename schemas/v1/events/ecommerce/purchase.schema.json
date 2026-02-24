@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/purchase.schema.json",
+  "title": "Purchase Event Data",
+  "description": "Data payload for the ecommerce.purchase event. Fired when a transaction is successfully completed.",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "The unique order or transaction identifier."
+    },
+    "total": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The total monetary value of the transaction including tax and shipping."
+    },
+    "revenue": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The revenue from the transaction (total minus tax and shipping)."
+    },
+    "tax": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The total tax amount for the transaction."
+    },
+    "shipping": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The total shipping cost for the transaction."
+    },
+    "discount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The total discount amount applied to the transaction."
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code for the transaction (e.g. USD, EUR, GBP)."
+    },
+    "coupon": {
+      "type": "string",
+      "description": "The coupon code applied to the transaction, if any."
+    },
+    "paymentMethod": {
+      "type": "string",
+      "description": "The payment method used for the transaction (e.g. 'credit_card', 'paypal', 'apple_pay')."
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "product.schema.json#/$defs/product"
+      },
+      "description": "The list of products included in the transaction."
+    }
+  },
+  "required": ["orderId", "total", "currency", "products"],
+  "additionalProperties": false
+}

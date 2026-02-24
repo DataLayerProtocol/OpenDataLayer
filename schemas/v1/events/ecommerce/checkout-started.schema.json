@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/checkout-started.schema.json",
+  "title": "Checkout Started Event Data",
+  "description": "Data payload for the ecommerce.checkout_started event. Fired when a user initiates the checkout process.",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "The order or transaction identifier, if available at checkout initiation."
+    },
+    "total": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The total monetary value of the checkout."
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code for the transaction (e.g. USD, EUR, GBP)."
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "product.schema.json#/$defs/product"
+      },
+      "description": "The list of products included in the checkout."
+    },
+    "coupon": {
+      "type": "string",
+      "description": "The coupon code applied to the checkout, if any."
+    }
+  },
+  "required": ["total", "currency", "products"],
+  "additionalProperties": false
+}

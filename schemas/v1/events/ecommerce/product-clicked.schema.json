@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/product-clicked.schema.json",
+  "title": "Product Clicked Event Data",
+  "description": "Data payload for the ecommerce.product_clicked event. Fired when a user clicks on a product in a list or collection, typically navigating to the product detail page.",
+  "type": "object",
+  "properties": {
+    "product": {
+      "$ref": "product.schema.json#/$defs/product",
+      "description": "The product that was clicked."
+    },
+    "listId": {
+      "type": "string",
+      "description": "The identifier of the product list the product was clicked from."
+    },
+    "listName": {
+      "type": "string",
+      "description": "The human-readable name of the product list the product was clicked from."
+    }
+  },
+  "required": ["product"],
+  "additionalProperties": false
+}

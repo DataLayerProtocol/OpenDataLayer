@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/media/pause.schema.json",
+  "title": "Media Pause",
+  "description": "Fired when media playback is paused.",
+  "type": "object",
+  "properties": {
+    "media": {
+      "$ref": "media-object.schema.json#/$defs/media",
+      "description": "The media item being paused."
+    },
+    "position": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Playback position in seconds when pause was triggered."
+    },
+    "percentComplete": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Percentage of the media that has been played."
+    }
+  },
+  "required": ["media", "position"],
+  "additionalProperties": false
+}

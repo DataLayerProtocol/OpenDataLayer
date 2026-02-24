@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/search/performed.schema.json",
+  "title": "Search Performed Event Data",
+  "description": "Data payload for the search.performed event. Fired when a user executes a search query.",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The search query string entered by the user."
+    },
+    "resultCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The total number of results returned for the query."
+    },
+    "category": {
+      "type": "string",
+      "description": "The search scope or category used to narrow results."
+    },
+    "filters": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Key-value pairs representing the filters applied to the search."
+    },
+    "sortBy": {
+      "type": "string",
+      "description": "The sort order applied to the search results."
+    },
+    "page": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The page number of results being viewed."
+    }
+  },
+  "required": ["query"],
+  "additionalProperties": false
+}

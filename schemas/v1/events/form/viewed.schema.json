@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/form/viewed.schema.json",
+  "title": "Form Viewed",
+  "description": "Fired when a form becomes visible to the user.",
+  "type": "object",
+  "properties": {
+    "formId": {
+      "type": "string",
+      "description": "Unique identifier of the form."
+    },
+    "formName": {
+      "type": "string",
+      "description": "Human-readable name of the form."
+    },
+    "formType": {
+      "type": "string",
+      "description": "Type of form (e.g., contact, signup, checkout)."
+    }
+  },
+  "required": ["formId"],
+  "additionalProperties": false
+}

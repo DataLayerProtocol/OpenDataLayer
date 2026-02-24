@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/consent/revoked.schema.json",
+  "title": "Consent Revoked",
+  "description": "Fired when a user revokes consent for one or more purposes.",
+  "type": "object",
+  "properties": {
+    "purposes": {
+      "type": "object",
+      "description": "Map of purpose names to revocation status. Key is the purpose name, value is a boolean indicating whether consent was revoked.",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "method": {
+      "type": "string",
+      "enum": ["banner", "preference_center", "api"],
+      "description": "Method by which consent was revoked."
+    }
+  },
+  "required": ["purposes"],
+  "additionalProperties": false
+}

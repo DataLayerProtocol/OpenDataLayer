@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/core/identifiers.schema.json",
+  "title": "Identifiers",
+  "description": "Standard identifier patterns used across all OpenDataLayer schemas.",
+  "$defs": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "A UUID v4 identifier (e.g. 550e8400-e29b-41d4-a716-446655440000)."
+    },
+    "hashedEmail": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "A SHA-256 hex-encoded hash of a lowercase, trimmed email address (64 characters)."
+    },
+    "anonymousId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A non-empty anonymous identifier assigned to an unidentified visitor."
+    },
+    "userId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A non-empty unique identifier for an authenticated user."
+    },
+    "sessionId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A non-empty unique identifier for a user session."
+    },
+    "deviceId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A non-empty unique identifier for a device."
+    },
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "A UUID v4 identifier uniquely identifying a single event."
+    }
+  }
+}

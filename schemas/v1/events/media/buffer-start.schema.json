@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/media/buffer-start.schema.json",
+  "title": "Media Buffer Start",
+  "description": "Fired when media playback begins buffering.",
+  "type": "object",
+  "properties": {
+    "media": {
+      "$ref": "media-object.schema.json#/$defs/media",
+      "description": "The media item that started buffering."
+    },
+    "position": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Playback position in seconds when buffering started."
+    }
+  },
+  "required": ["media"],
+  "additionalProperties": false
+}

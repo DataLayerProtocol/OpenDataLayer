@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/context/session.schema.json",
+  "title": "Session Context",
+  "description": "Describes the current browsing session, including identification, timing, and engagement metrics.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "../core/identifiers.schema.json#/$defs/sessionId",
+      "description": "A unique identifier for the current session."
+    },
+    "startedAt": {
+      "$ref": "../core/common.schema.json#/$defs/timestamp",
+      "description": "The date and time when the session started."
+    },
+    "isNew": {
+      "type": "boolean",
+      "description": "Whether this is the user's first session."
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The ordinal session number for the user (1 for first session, 2 for second, etc.)."
+    },
+    "referrer": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "The original referrer URL that initiated the session."
+    },
+    "landingPage": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "The URL of the first page viewed in the session."
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The elapsed session duration in seconds."
+    },
+    "pageViews": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of pages viewed during the session."
+    }
+  },
+  "required": ["id"],
+  "additionalProperties": false
+}

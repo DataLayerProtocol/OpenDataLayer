@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/context/campaign.schema.json",
+  "title": "Campaign Context",
+  "description": "Marketing campaign attribution data, typically derived from UTM parameters and ad platform click identifiers.",
+  "type": "object",
+  "properties": {
+    "source": {
+      "type": "string",
+      "description": "The traffic source (utm_source), e.g. google, newsletter, facebook."
+    },
+    "medium": {
+      "type": "string",
+      "description": "The marketing medium (utm_medium), e.g. cpc, email, social, organic."
+    },
+    "name": {
+      "type": "string",
+      "description": "The campaign name (utm_campaign), e.g. spring_sale, product_launch."
+    },
+    "term": {
+      "type": "string",
+      "description": "The paid search keyword (utm_term)."
+    },
+    "content": {
+      "type": "string",
+      "description": "The ad content variant (utm_content), used for A/B testing or differentiating ads."
+    },
+    "id": {
+      "type": "string",
+      "description": "A unique identifier for the campaign."
+    },
+    "clickId": {
+      "type": "string",
+      "description": "The click identifier from an ad platform (e.g. gclid, fbclid, msclkid)."
+    },
+    "clickIdType": {
+      "type": "string",
+      "enum": ["gclid", "fbclid", "msclkid", "dclid", "ttclid", "other"],
+      "description": "The type of click identifier, indicating which ad platform generated it."
+    }
+  },
+  "additionalProperties": false
+}

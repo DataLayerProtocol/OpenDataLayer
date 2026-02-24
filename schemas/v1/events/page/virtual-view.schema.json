@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/page/virtual-view.schema.json",
+  "title": "Virtual Page View Event Data",
+  "description": "Data payload for the page.virtual_view event. Fired during client-side SPA navigation when the URL changes without a full page reload.",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "The full URL of the virtual page being navigated to."
+    },
+    "path": {
+      "type": "string",
+      "description": "The path portion of the virtual page URL (e.g. /products/shoes)."
+    },
+    "title": {
+      "type": "string",
+      "description": "The document title of the virtual page."
+    },
+    "previousUrl": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "The full URL of the page the user navigated from."
+    },
+    "previousPath": {
+      "type": "string",
+      "description": "The path portion of the previous page URL."
+    }
+  },
+  "required": ["url", "path"],
+  "additionalProperties": false
+}

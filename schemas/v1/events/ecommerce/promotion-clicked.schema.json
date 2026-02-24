@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/promotion-clicked.schema.json",
+  "title": "Promotion Clicked Event Data",
+  "description": "Data payload for the ecommerce.promotion_clicked event. Fired when a user clicks on a promotional creative.",
+  "type": "object",
+  "properties": {
+    "promotion": {
+      "$ref": "promotion.schema.json#/$defs/promotion",
+      "description": "The promotion that was clicked."
+    }
+  },
+  "required": ["promotion"],
+  "additionalProperties": false
+}

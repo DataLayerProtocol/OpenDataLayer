@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/form/abandoned.schema.json",
+  "title": "Form Abandoned",
+  "description": "Fired when a user leaves a form without completing or submitting it.",
+  "type": "object",
+  "properties": {
+    "formId": {
+      "type": "string",
+      "description": "Unique identifier of the form."
+    },
+    "lastField": {
+      "type": "string",
+      "description": "Name or identifier of the last field the user interacted with."
+    },
+    "completedFields": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of fields the user completed before abandoning."
+    },
+    "totalFields": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of fields in the form."
+    },
+    "dwellTime": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Time in seconds the user spent on the form before abandoning."
+    }
+  },
+  "required": ["formId"],
+  "additionalProperties": false
+}

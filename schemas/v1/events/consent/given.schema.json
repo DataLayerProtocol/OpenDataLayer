@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/consent/given.schema.json",
+  "title": "Consent Given",
+  "description": "Fired when a user grants consent for one or more purposes.",
+  "type": "object",
+  "properties": {
+    "purposes": {
+      "type": "object",
+      "description": "Map of purpose names to consent status. Key is the purpose name, value is a boolean indicating whether consent was granted.",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "method": {
+      "type": "string",
+      "enum": ["banner", "preference_center", "api", "implicit"],
+      "description": "Method by which consent was given."
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of the consent policy or configuration."
+    }
+  },
+  "required": ["purposes"],
+  "additionalProperties": false
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/product-removed.schema.json",
+  "title": "Product Removed Event Data",
+  "description": "Data payload for the ecommerce.product_removed event. Fired when a user removes a product from their shopping cart.",
+  "type": "object",
+  "properties": {
+    "product": {
+      "$ref": "product.schema.json#/$defs/product",
+      "description": "The product that was removed from the cart."
+    },
+    "cartId": {
+      "type": "string",
+      "description": "The unique identifier of the shopping cart the product was removed from."
+    }
+  },
+  "required": ["product"],
+  "additionalProperties": false
+}

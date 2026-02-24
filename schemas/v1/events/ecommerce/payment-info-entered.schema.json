@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/payment-info-entered.schema.json",
+  "title": "Payment Info Entered Event Data",
+  "description": "Data payload for the ecommerce.payment_info_entered event. Fired when a user successfully submits their payment information during checkout.",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "The order or transaction identifier, if available."
+    },
+    "paymentMethod": {
+      "type": "string",
+      "description": "The payment method entered (e.g. 'credit_card', 'paypal', 'apple_pay')."
+    },
+    "total": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The total monetary value of the order."
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    }
+  },
+  "required": ["paymentMethod"],
+  "additionalProperties": false
+}

@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/context/user.schema.json",
+  "title": "User Context",
+  "description": "Represents user identity, authentication state, and demographic or behavioral traits.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "../core/identifiers.schema.json#/$defs/userId",
+      "description": "The internal unique identifier for the user."
+    },
+    "anonymousId": {
+      "$ref": "../core/identifiers.schema.json#/$defs/anonymousId",
+      "description": "An anonymous tracking identifier assigned before authentication."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The user's email address (plain text or hashed depending on privacy requirements)."
+    },
+    "hashedEmail": {
+      "$ref": "../core/identifiers.schema.json#/$defs/hashedEmail",
+      "description": "A SHA-256 hex-encoded hash of the user's lowercase, trimmed email address."
+    },
+    "traits": {
+      "type": "object",
+      "description": "Common user attributes and custom traits.",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "description": "The user's first/given name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The user's last/family name."
+        },
+        "name": {
+          "type": "string",
+          "description": "The user's full display name."
+        },
+        "age": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The user's age in years."
+        },
+        "gender": {
+          "type": "string",
+          "description": "The user's gender."
+        },
+        "phone": {
+          "type": "string",
+          "description": "The user's phone number."
+        },
+        "company": {
+          "type": "string",
+          "description": "The user's company or organization name."
+        },
+        "plan": {
+          "type": "string",
+          "description": "The user's subscription plan or tier."
+        },
+        "createdAt": {
+          "$ref": "../core/common.schema.json#/$defs/timestamp",
+          "description": "The date and time when the user account was created."
+        }
+      },
+      "additionalProperties": true
+    },
+    "isAuthenticated": {
+      "type": "boolean",
+      "description": "Whether the user is currently logged in."
+    },
+    "isNewUser": {
+      "type": "boolean",
+      "description": "Whether the user is new (e.g. first visit or recently registered)."
+    },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Audience segments the user belongs to."
+    }
+  },
+  "additionalProperties": false
+}

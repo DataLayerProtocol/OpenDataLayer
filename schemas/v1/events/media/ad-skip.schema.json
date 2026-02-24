@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/media/ad-skip.schema.json",
+  "title": "Media Ad Skip",
+  "description": "Fired when the user skips an advertisement.",
+  "type": "object",
+  "properties": {
+    "media": {
+      "$ref": "media-object.schema.json#/$defs/media",
+      "description": "The media item associated with the skipped advertisement."
+    },
+    "adId": {
+      "type": "string",
+      "description": "Unique identifier for the advertisement that was skipped."
+    },
+    "position": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Position in the advertisement in seconds when it was skipped."
+    }
+  },
+  "required": ["media", "adId"],
+  "additionalProperties": false
+}

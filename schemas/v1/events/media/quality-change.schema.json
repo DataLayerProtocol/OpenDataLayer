@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/media/quality-change.schema.json",
+  "title": "Media Quality Change",
+  "description": "Fired when the media playback quality changes.",
+  "type": "object",
+  "properties": {
+    "media": {
+      "$ref": "media-object.schema.json#/$defs/media",
+      "description": "The media item whose quality changed."
+    },
+    "fromQuality": {
+      "type": "string",
+      "description": "Previous quality level (e.g., 720p, 1080p)."
+    },
+    "toQuality": {
+      "type": "string",
+      "description": "New quality level (e.g., 720p, 1080p)."
+    },
+    "isAuto": {
+      "type": "boolean",
+      "description": "Whether the quality change was triggered automatically by adaptive bitrate."
+    }
+  },
+  "required": ["media", "toQuality"],
+  "additionalProperties": false
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/product.schema.json",
+  "title": "Product Definition",
+  "description": "Reusable product object definition for ecommerce events. Referenced by event schemas that include product data.",
+  "$defs": {
+    "product": {
+      "type": "object",
+      "description": "Represents a product or SKU in an ecommerce context.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique product identifier or SKU."
+        },
+        "name": {
+          "type": "string",
+          "description": "The human-readable product name."
+        },
+        "brand": {
+          "type": "string",
+          "description": "The brand or manufacturer of the product."
+        },
+        "category": {
+          "type": "string",
+          "description": "The product category, using slash-separated hierarchy (e.g. 'Apparel/Shoes/Running')."
+        },
+        "variant": {
+          "type": "string",
+          "description": "The specific variant of the product (e.g. color, size, material)."
+        },
+        "price": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The unit price of the product."
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "description": "ISO 4217 3-letter currency code for the price (e.g. USD, EUR, GBP)."
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The quantity of this product."
+        },
+        "coupon": {
+          "type": "string",
+          "description": "The coupon code applied to this product."
+        },
+        "discount": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The total discount amount applied to this product."
+        },
+        "position": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The position of the product in a list or collection (zero-indexed)."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri-reference",
+          "description": "The URL of the product detail page."
+        },
+        "imageUrl": {
+          "type": "string",
+          "format": "uri-reference",
+          "description": "The URL of the product image."
+        }
+      },
+      "required": ["id", "name", "price"],
+      "additionalProperties": true
+    }
+  }
+}

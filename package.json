@@ -1,0 +1,38 @@
+{
+  "name": "opendatalayer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Universal, open-source data layer protocol for analytics and tracking",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DataLayerProtocol/OpenDataLayer.git"
+  },
+  "workspaces": ["packages/*", "adapters/*"],
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "validate:schemas": "tsx scripts/validate-schemas.ts",
+    "generate:types": "tsx scripts/generate-types.ts",
+    "bundle:schemas": "tsx scripts/bundle-schemas.ts",
+    "generate:docs": "tsx scripts/generate-docs.ts",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "ci": "turbo run lint test build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.0",
+    "tsx": "^4.19.0",
+    "turbo": "^2.3.0",
+    "typescript": "^5.6.0",
+    "vitepress": "^1.5.0",
+    "vitest": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "npm@10.0.0"
+}

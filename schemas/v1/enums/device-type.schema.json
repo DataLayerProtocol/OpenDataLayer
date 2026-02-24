@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/enums/device-type.schema.json",
+  "title": "Device Type",
+  "description": "Type of device used to access the application",
+  "type": "string",
+  "enum": [
+    "desktop",
+    "mobile",
+    "tablet",
+    "tv",
+    "wearable",
+    "bot",
+    "other"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/error/occurred.schema.json",
+  "title": "Error Occurred Event Data",
+  "description": "Data payload for the error.occurred event. Fired when a JavaScript, network, API, or other error is detected.",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "The error message."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["javascript", "network", "api", "validation", "permission", "other"],
+      "description": "The category of error."
+    },
+    "stack": {
+      "type": "string",
+      "description": "The stack trace of the error, if available."
+    },
+    "filename": {
+      "type": "string",
+      "description": "The file in which the error originated."
+    },
+    "line": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The line number where the error occurred."
+    },
+    "column": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The column number where the error occurred."
+    },
+    "code": {
+      "type": "string",
+      "description": "An application-specific error code."
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["fatal", "error", "warning", "info"],
+      "description": "The severity level of the error."
+    },
+    "handled": {
+      "type": "boolean",
+      "description": "Whether the error was caught and handled by application code."
+    }
+  },
+  "required": ["message"],
+  "additionalProperties": false
+}

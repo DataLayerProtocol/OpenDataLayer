@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/checkout-step-completed.schema.json",
+  "title": "Checkout Step Completed Event Data",
+  "description": "Data payload for the ecommerce.checkout_step_completed event. Fired when a user completes a step in a multi-step checkout flow.",
+  "type": "object",
+  "properties": {
+    "step": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The step number in the checkout flow (1-indexed)."
+    },
+    "stepName": {
+      "type": "string",
+      "description": "The human-readable name of the checkout step (e.g. 'Shipping Address', 'Payment')."
+    },
+    "shippingMethod": {
+      "type": "string",
+      "description": "The shipping method selected during this step, if applicable (e.g. 'standard', 'express', 'overnight')."
+    },
+    "paymentMethod": {
+      "type": "string",
+      "description": "The payment method selected during this step, if applicable (e.g. 'credit_card', 'paypal', 'apple_pay')."
+    }
+  },
+  "required": ["step"],
+  "additionalProperties": false
+}

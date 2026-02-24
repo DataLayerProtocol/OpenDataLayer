@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/enums/consent-purpose.schema.json",
+  "title": "Consent Purpose",
+  "description": "Standard consent purposes for data collection and processing",
+  "type": "string",
+  "enum": [
+    "necessary",
+    "analytics",
+    "marketing",
+    "personalization",
+    "advertising",
+    "social_media",
+    "functional",
+    "performance"
+  ]
+}

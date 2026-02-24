@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/media/ad-start.schema.json",
+  "title": "Media Ad Start",
+  "description": "Fired when an advertisement begins playing within or alongside media.",
+  "type": "object",
+  "properties": {
+    "media": {
+      "$ref": "media-object.schema.json#/$defs/media",
+      "description": "The media item associated with the advertisement."
+    },
+    "adId": {
+      "type": "string",
+      "description": "Unique identifier for the advertisement."
+    },
+    "adTitle": {
+      "type": "string",
+      "description": "Title or name of the advertisement."
+    },
+    "adPosition": {
+      "type": "string",
+      "enum": ["pre-roll", "mid-roll", "post-roll"],
+      "description": "Position of the advertisement relative to the media content."
+    },
+    "adDuration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Duration of the advertisement in seconds."
+    }
+  },
+  "required": ["media", "adId"],
+  "additionalProperties": false
+}

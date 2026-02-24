@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/product-list-viewed.schema.json",
+  "title": "Product List Viewed Event Data",
+  "description": "Data payload for the ecommerce.product_list_viewed event. Fired when a user views a list of products such as a category page, search results, or recommendation carousel.",
+  "type": "object",
+  "properties": {
+    "listId": {
+      "type": "string",
+      "description": "A unique identifier for the product list."
+    },
+    "listName": {
+      "type": "string",
+      "description": "The human-readable name of the product list (e.g. 'Search Results', 'You May Also Like')."
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "product.schema.json#/$defs/product"
+      },
+      "description": "The list of products that were displayed to the user."
+    }
+  },
+  "required": ["products"],
+  "additionalProperties": false
+}

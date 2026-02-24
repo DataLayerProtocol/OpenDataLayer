@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/performance/long-task.schema.json",
+  "title": "Performance Long Task Event Data",
+  "description": "Data payload for the performance.long_task event. Fired when a long task (>50ms) is detected via the Long Tasks API.",
+  "type": "object",
+  "properties": {
+    "duration": {
+      "type": "number",
+      "minimum": 50,
+      "description": "The duration of the long task in milliseconds. Long tasks are defined as tasks exceeding 50ms."
+    },
+    "startTime": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The time at which the long task started, relative to the page load, in milliseconds."
+    },
+    "attribution": {
+      "type": "string",
+      "description": "Attribution information describing what caused the long task."
+    }
+  },
+  "required": ["duration", "startTime"],
+  "additionalProperties": false
+}

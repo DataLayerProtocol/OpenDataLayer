@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/coupon-removed.schema.json",
+  "title": "Coupon Removed Event Data",
+  "description": "Data payload for the ecommerce.coupon_removed event. Fired when a user removes a previously applied coupon or promo code.",
+  "type": "object",
+  "properties": {
+    "coupon": {
+      "type": "string",
+      "description": "The coupon or promo code that was removed."
+    },
+    "orderId": {
+      "type": "string",
+      "description": "The order or transaction identifier the coupon was removed from, if applicable."
+    }
+  },
+  "required": ["coupon"],
+  "additionalProperties": false
+}

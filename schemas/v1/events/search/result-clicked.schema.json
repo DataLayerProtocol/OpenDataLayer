@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/search/result-clicked.schema.json",
+  "title": "Search Result Clicked Event Data",
+  "description": "Data payload for the search.result_clicked event. Fired when a user clicks on a search result.",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The search query that produced the result."
+    },
+    "resultId": {
+      "type": "string",
+      "description": "The unique identifier of the clicked result."
+    },
+    "resultName": {
+      "type": "string",
+      "description": "The display name or title of the clicked result."
+    },
+    "resultType": {
+      "type": "string",
+      "description": "The type of result, e.g. product, article, page."
+    },
+    "position": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The 1-based position of the result in the search results list."
+    }
+  },
+  "required": ["query", "resultId"],
+  "additionalProperties": false
+}

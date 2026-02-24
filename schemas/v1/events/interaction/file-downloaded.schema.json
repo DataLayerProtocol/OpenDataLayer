@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/interaction/file-downloaded.schema.json",
+  "title": "Interaction File Downloaded Event Data",
+  "description": "Data payload for the interaction.file_downloaded event. Fired when a user initiates a file download.",
+  "type": "object",
+  "properties": {
+    "fileName": {
+      "type": "string",
+      "description": "The name of the downloaded file."
+    },
+    "fileExtension": {
+      "type": "string",
+      "description": "The file extension, e.g. pdf, csv, xlsx."
+    },
+    "fileSize": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The file size in bytes."
+    },
+    "fileUrl": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "The URL from which the file was downloaded."
+    },
+    "fileCategory": {
+      "type": "string",
+      "description": "The category of the file, e.g. document, image, video."
+    }
+  },
+  "required": ["fileName"],
+  "additionalProperties": false
+}
