@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/review/reported.schema.json",
+  "title": "Review Reported",
+  "description": "Fires when a user reports a review.",
+  "type": "object",
+  "properties": {
+    "reviewId": {
+      "type": "string",
+      "description": "The unique identifier of the review being reported."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["spam", "inappropriate", "fake", "offensive", "other"],
+      "description": "The reason the review is being reported."
+    }
+  },
+  "required": ["reviewId", "reason"],
+  "additionalProperties": false
+}

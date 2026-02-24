@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/automation/rule_created.schema.json",
+  "title": "Automation Rule Created",
+  "description": "Fired when a new automation rule is created.",
+  "type": "object",
+  "properties": {
+    "ruleId": {
+      "type": "string",
+      "description": "Unique identifier for the rule."
+    },
+    "ruleName": {
+      "type": "string",
+      "description": "Human-readable name of the rule."
+    },
+    "ruleType": {
+      "type": "string",
+      "enum": ["trigger", "condition", "action", "filter", "transformation"],
+      "description": "The type of automation rule."
+    },
+    "workflowId": {
+      "type": "string",
+      "description": "Unique identifier of the workflow this rule belongs to."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "The user or system that created the rule."
+    }
+  },
+  "required": ["ruleId"],
+  "additionalProperties": false
+}

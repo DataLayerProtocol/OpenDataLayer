@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/context/order.schema.json",
+  "title": "Order Context",
+  "description": "Represents the current order tracking state.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Current order identifier."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "processing", "shipped", "delivered", "returned", "cancelled"],
+      "description": "Current order status."
+    },
+    "total": {
+      "type": "number",
+      "description": "Order total amount."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 currency code."
+    },
+    "itemCount": {
+      "type": "integer",
+      "description": "Number of items in the order."
+    },
+    "placedAt": {
+      "type": "string",
+      "description": "ISO 8601 timestamp when order was placed."
+    },
+    "carrier": {
+      "type": "string",
+      "description": "Shipping carrier name."
+    },
+    "trackingNumber": {
+      "type": "string",
+      "description": "Shipment tracking number."
+    },
+    "estimatedDelivery": {
+      "type": "string",
+      "description": "ISO 8601 estimated delivery date."
+    }
+  },
+  "additionalProperties": false
+}

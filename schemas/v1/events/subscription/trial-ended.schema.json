@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/subscription/trial-ended.schema.json",
+  "title": "Subscription Trial Ended",
+  "description": "Fired when a subscription trial period ends.",
+  "type": "object",
+  "properties": {
+    "planId": {
+      "type": "string",
+      "description": "Unique identifier for the subscription plan."
+    },
+    "planName": {
+      "type": "string",
+      "description": "Human-readable name of the subscription plan."
+    },
+    "converted": {
+      "type": "boolean",
+      "description": "Whether the trial converted to a paid subscription."
+    },
+    "endReason": {
+      "type": "string",
+      "enum": ["expired", "converted", "cancelled"],
+      "description": "The reason the trial ended."
+    }
+  },
+  "required": ["planId", "converted"],
+  "additionalProperties": false
+}

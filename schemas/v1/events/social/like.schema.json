@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/social/like.schema.json",
+  "title": "Social Like",
+  "description": "Fires when a user likes a piece of content.",
+  "type": "object",
+  "properties": {
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content being liked."
+    },
+    "contentType": {
+      "type": "string",
+      "enum": ["post", "comment", "article", "product", "review", "other"],
+      "description": "The type of content being liked."
+    }
+  },
+  "required": ["contentId"],
+  "additionalProperties": false
+}

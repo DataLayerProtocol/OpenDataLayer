@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/video_call/joined.schema.json",
+  "title": "Video Call Joined",
+  "description": "Fires when a participant joins a video call.",
+  "type": "object",
+  "properties": {
+    "callId": {
+      "type": "string",
+      "description": "The unique identifier of the video call."
+    },
+    "participantId": {
+      "type": "string",
+      "description": "The unique identifier of the participant who joined."
+    },
+    "joinMethod": {
+      "type": "string",
+      "enum": ["link", "app", "phone", "browser", "dial_in"],
+      "description": "The method used by the participant to join the call."
+    },
+    "isHost": {
+      "type": "boolean",
+      "description": "Whether the participant is the host of the call."
+    },
+    "participantCount": {
+      "type": "integer",
+      "description": "The number of participants in the call after joining."
+    }
+  },
+  "required": ["callId"],
+  "additionalProperties": false
+}

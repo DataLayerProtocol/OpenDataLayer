@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/subscription/upgraded.schema.json",
+  "title": "Subscription Upgraded",
+  "description": "Fired when a subscription is upgraded to a higher-tier plan.",
+  "type": "object",
+  "properties": {
+    "subscriptionId": {
+      "type": "string",
+      "description": "Unique identifier for the subscription."
+    },
+    "previousPlanId": {
+      "type": "string",
+      "description": "Unique identifier of the previous subscription plan."
+    },
+    "previousPlanName": {
+      "type": "string",
+      "description": "Human-readable name of the previous subscription plan."
+    },
+    "newPlanId": {
+      "type": "string",
+      "description": "Unique identifier of the new subscription plan."
+    },
+    "newPlanName": {
+      "type": "string",
+      "description": "Human-readable name of the new subscription plan."
+    },
+    "previousAmount": {
+      "type": "number",
+      "description": "The monetary amount of the previous plan."
+    },
+    "newAmount": {
+      "type": "number",
+      "description": "The monetary amount of the new plan."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "prorated": {
+      "type": "boolean",
+      "description": "Whether the upgrade charge was prorated."
+    }
+  },
+  "required": ["subscriptionId", "previousPlanId", "newPlanId"],
+  "additionalProperties": false
+}

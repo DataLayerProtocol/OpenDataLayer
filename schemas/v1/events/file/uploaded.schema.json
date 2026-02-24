@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/file/uploaded.schema.json",
+  "title": "File Uploaded",
+  "description": "Fired when a file is uploaded.",
+  "type": "object",
+  "properties": {
+    "fileId": {
+      "type": "string",
+      "description": "Unique identifier for the file."
+    },
+    "fileName": {
+      "type": "string",
+      "description": "Name of the file."
+    },
+    "fileType": {
+      "type": "string",
+      "description": "Type or extension of the file."
+    },
+    "fileSize": {
+      "type": "number",
+      "description": "File size in bytes."
+    },
+    "mimeType": {
+      "type": "string",
+      "description": "MIME type of the file."
+    },
+    "source": {
+      "type": "string",
+      "enum": ["local", "camera", "cloud", "drag_drop", "api", "other"],
+      "description": "The source from which the file was uploaded."
+    },
+    "destinationFolder": {
+      "type": "string",
+      "description": "The folder or directory where the file was uploaded to."
+    }
+  },
+  "required": ["fileId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/review/updated.schema.json",
+  "title": "Review Updated",
+  "description": "Fires when a user updates an existing review.",
+  "type": "object",
+  "properties": {
+    "reviewId": {
+      "type": "string",
+      "description": "The unique identifier of the review being updated."
+    },
+    "targetId": {
+      "type": "string",
+      "description": "The unique identifier of the item being reviewed."
+    },
+    "previousRating": {
+      "type": "number",
+      "description": "The previous rating before the update."
+    },
+    "newRating": {
+      "type": "number",
+      "description": "The new rating after the update."
+    }
+  },
+  "required": ["reviewId", "newRating"],
+  "additionalProperties": false
+}

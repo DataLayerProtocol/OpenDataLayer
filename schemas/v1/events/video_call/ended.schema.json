@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/video_call/ended.schema.json",
+  "title": "Video Call Ended",
+  "description": "Fires when a video call ends.",
+  "type": "object",
+  "properties": {
+    "callId": {
+      "type": "string",
+      "description": "The unique identifier of the video call."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Total call duration in seconds."
+    },
+    "participantCount": {
+      "type": "integer",
+      "description": "The total number of participants who joined the call."
+    },
+    "maxParticipants": {
+      "type": "integer",
+      "description": "The maximum number of concurrent participants during the call."
+    },
+    "hostId": {
+      "type": "string",
+      "description": "The unique identifier of the call host."
+    }
+  },
+  "required": ["callId"],
+  "additionalProperties": false
+}

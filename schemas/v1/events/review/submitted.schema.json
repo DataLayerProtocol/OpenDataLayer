@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/review/submitted.schema.json",
+  "title": "Review Submitted",
+  "description": "Fires when a user submits a review.",
+  "type": "object",
+  "properties": {
+    "reviewId": {
+      "type": "string",
+      "description": "The unique identifier of the review."
+    },
+    "targetId": {
+      "type": "string",
+      "description": "The unique identifier of the item being reviewed."
+    },
+    "targetType": {
+      "type": "string",
+      "enum": ["product", "service", "business", "app", "course", "other"],
+      "description": "The type of item being reviewed."
+    },
+    "rating": {
+      "type": "number",
+      "description": "The rating given in the review."
+    },
+    "maxRating": {
+      "type": "number",
+      "description": "The maximum possible rating."
+    },
+    "hasText": {
+      "type": "boolean",
+      "description": "Whether the review includes text content."
+    },
+    "hasMedia": {
+      "type": "boolean",
+      "description": "Whether the review includes media attachments."
+    },
+    "isVerifiedPurchase": {
+      "type": "boolean",
+      "description": "Whether the reviewer has a verified purchase of the item."
+    }
+  },
+  "required": ["targetId", "rating"],
+  "additionalProperties": false
+}

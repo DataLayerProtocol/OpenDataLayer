@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/onboarding/step-skipped.schema.json",
+  "title": "Onboarding Step Skipped",
+  "description": "Fires when a user skips a step in an onboarding flow",
+  "type": "object",
+  "properties": {
+    "flowId": {
+      "type": "string"
+    },
+    "step": {
+      "type": "integer"
+    },
+    "stepName": {
+      "type": "string"
+    }
+  },
+  "required": ["flowId", "step"],
+  "additionalProperties": false
+}

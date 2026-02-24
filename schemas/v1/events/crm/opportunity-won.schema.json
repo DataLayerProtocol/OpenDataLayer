@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/crm/opportunity-won.schema.json",
+  "title": "CRM Opportunity Won",
+  "description": "Fires when a sales opportunity is closed as won.",
+  "type": "object",
+  "properties": {
+    "opportunityId": {
+      "type": "string",
+      "description": "Unique identifier for the opportunity."
+    },
+    "value": {
+      "type": "number",
+      "description": "Final deal value."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the deal value."
+    },
+    "timeToClose": {
+      "type": "number",
+      "description": "Time from creation to close in days."
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the product."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the product."
+          },
+          "value": {
+            "type": "number",
+            "description": "Value of the product in the deal."
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Products included in the deal."
+    }
+  },
+  "required": ["opportunityId", "value"],
+  "additionalProperties": false
+}

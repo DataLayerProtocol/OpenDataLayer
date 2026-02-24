@@ -1,8 +1,8 @@
 {
   "name": "@opendatalayer/adapter-amplitude",
   "version": "0.1.0",
-  "description": "OpenDataLayer adapter for Amplitude Analytics [PREVIEW - not yet implemented]",
-  "keywords": ["opendatalayer", "amplitude", "analytics", "preview"],
+  "description": "OpenDataLayer adapter for Amplitude Analytics SDK",
+  "keywords": ["opendatalayer", "amplitude", "analytics"],
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",

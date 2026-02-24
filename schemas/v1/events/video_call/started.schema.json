@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/video_call/started.schema.json",
+  "title": "Video Call Started",
+  "description": "Fires when a video call is started.",
+  "type": "object",
+  "properties": {
+    "callId": {
+      "type": "string",
+      "description": "The unique identifier of the video call."
+    },
+    "callType": {
+      "type": "string",
+      "enum": ["one_on_one", "group", "webinar", "broadcast"],
+      "description": "The type of video call."
+    },
+    "provider": {
+      "type": "string",
+      "enum": ["zoom", "teams", "meet", "webex", "custom", "other"],
+      "description": "The video call platform or provider."
+    },
+    "scheduledStart": {
+      "type": "string",
+      "description": "The originally scheduled start time of the call."
+    },
+    "hostId": {
+      "type": "string",
+      "description": "The unique identifier of the call host."
+    },
+    "isScheduled": {
+      "type": "boolean",
+      "description": "Whether the call was scheduled in advance."
+    }
+  },
+  "required": ["callId"],
+  "additionalProperties": false
+}

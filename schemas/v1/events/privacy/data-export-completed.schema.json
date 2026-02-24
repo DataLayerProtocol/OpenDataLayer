@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/privacy/data_export_completed.schema.json",
+  "title": "Data Export Completed",
+  "description": "Fired when a data export request has been fulfilled and the export is ready.",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the data export request."
+    },
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier for the user whose data was exported."
+    },
+    "format": {
+      "type": "string",
+      "enum": ["json", "csv", "xml"],
+      "description": "The file format of the exported data."
+    },
+    "fileSize": {
+      "type": "number",
+      "description": "Export file size in bytes."
+    },
+    "recordCount": {
+      "type": "integer",
+      "description": "The number of records included in the export."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Time to generate export in milliseconds."
+    }
+  },
+  "required": ["requestId"],
+  "additionalProperties": false
+}

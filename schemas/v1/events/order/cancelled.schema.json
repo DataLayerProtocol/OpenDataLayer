@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/order/cancelled.schema.json",
+  "title": "Order Cancelled",
+  "description": "Fired when an order is cancelled.",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "Unique identifier for the order."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["customer_request", "out_of_stock", "payment_failed", "fraud_detected", "other"],
+      "description": "The reason for cancelling the order."
+    },
+    "cancelledBy": {
+      "type": "string",
+      "enum": ["customer", "merchant", "system"],
+      "description": "The party that initiated the cancellation."
+    },
+    "refundAmount": {
+      "type": "number",
+      "description": "The monetary amount refunded due to the cancellation."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    }
+  },
+  "required": ["orderId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/gaming/level-completed.schema.json",
+  "title": "Gaming Level Completed",
+  "description": "Fires when a player completes a game level.",
+  "type": "object",
+  "properties": {
+    "levelId": {
+      "type": "string",
+      "description": "Unique identifier for the level."
+    },
+    "levelName": {
+      "type": "string",
+      "description": "Name of the level."
+    },
+    "levelNumber": {
+      "type": "integer",
+      "description": "Sequential number of the level."
+    },
+    "score": {
+      "type": "number",
+      "description": "Score achieved on the level."
+    },
+    "stars": {
+      "type": "integer",
+      "description": "Star rating earned."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Completion time in seconds."
+    },
+    "isFirstCompletion": {
+      "type": "boolean",
+      "description": "Whether this is the first time the player completed this level."
+    },
+    "isPerfect": {
+      "type": "boolean",
+      "description": "Whether the player achieved a perfect score or run."
+    }
+  },
+  "required": ["levelId"],
+  "additionalProperties": false
+}

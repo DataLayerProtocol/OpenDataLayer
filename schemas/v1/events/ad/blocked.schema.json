@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ad/blocked.schema.json",
+  "title": "Ad Blocked",
+  "description": "Fired when an ad is blocked from being displayed.",
+  "type": "object",
+  "properties": {
+    "adId": {
+      "type": "string",
+      "description": "Unique identifier for the ad."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["ad_blocker", "user_preference", "policy_violation", "malware", "irrelevant", "reported", "other"],
+      "description": "The reason the ad was blocked."
+    },
+    "adType": {
+      "type": "string",
+      "enum": ["banner", "native", "video", "interstitial", "rewarded", "popup", "other"],
+      "description": "The format or type of the ad unit."
+    },
+    "adNetwork": {
+      "type": "string",
+      "description": "The ad network or provider serving the ad."
+    },
+    "blockedBy": {
+      "type": "string",
+      "enum": ["user", "system", "browser", "extension"],
+      "description": "The entity that blocked the ad."
+    }
+  },
+  "required": ["adId"],
+  "additionalProperties": false
+}

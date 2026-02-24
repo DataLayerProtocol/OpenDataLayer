@@ -25,7 +25,23 @@
       "trailingCommas": "all"
     }
   },
+  "overrides": [
+    {
+      "include": ["**/__tests__/**", "**/*.test.ts", "**/*.spec.ts"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExplicitAny": "off",
+            "noShadowRestrictedNames": "off"
+          },
+          "style": {
+            "noNonNullAssertion": "off"
+          }
+        }
+      }
+    }
+  ],
   "files": {
-    "ignore": ["node_modules", "dist", "*.schema.json", "packages/types/src/generated"]
+    "ignore": ["node_modules", "dist", ".turbo", "*.schema.json", "packages/types/src/generated"]
   }
 }

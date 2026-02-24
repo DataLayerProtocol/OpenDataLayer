@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/support/article-viewed.schema.json",
+  "title": "Support Article Viewed",
+  "description": "Fires when a user views a help center or knowledge base article.",
+  "type": "object",
+  "properties": {
+    "articleId": {
+      "type": "string",
+      "description": "Unique identifier for the article."
+    },
+    "articleTitle": {
+      "type": "string",
+      "description": "Title of the article viewed."
+    },
+    "category": {
+      "type": "string",
+      "description": "Category or section the article belongs to."
+    },
+    "source": {
+      "type": "string",
+      "description": "How the user arrived at the article.",
+      "enum": ["search", "browse", "suggestion", "ticket"]
+    }
+  },
+  "required": ["articleId"],
+  "additionalProperties": false
+}

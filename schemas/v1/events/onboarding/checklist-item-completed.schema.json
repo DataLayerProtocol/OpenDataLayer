@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/onboarding/checklist-item-completed.schema.json",
+  "title": "Checklist Item Completed",
+  "description": "Fires when a user completes an item in an onboarding checklist",
+  "type": "object",
+  "properties": {
+    "checklistId": {
+      "type": "string"
+    },
+    "itemId": {
+      "type": "string"
+    },
+    "itemName": {
+      "type": "string"
+    },
+    "completedCount": {
+      "type": "integer"
+    },
+    "totalItems": {
+      "type": "integer"
+    }
+  },
+  "required": ["checklistId", "itemId"],
+  "additionalProperties": false
+}

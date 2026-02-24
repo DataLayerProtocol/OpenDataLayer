@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/account/deleted.schema.json",
+  "title": "Account Deleted",
+  "description": "Fired when an account is deleted.",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "Unique identifier for the account."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["customer_request", "inactivity", "terms_violation", "other"],
+      "description": "The reason for deleting the account."
+    },
+    "deletedBy": {
+      "type": "string",
+      "enum": ["customer", "admin", "system"],
+      "description": "The party that initiated the deletion."
+    },
+    "retentionDays": {
+      "type": "integer",
+      "description": "Number of days data will be retained before permanent deletion."
+    }
+  },
+  "required": ["accountId"],
+  "additionalProperties": false
+}

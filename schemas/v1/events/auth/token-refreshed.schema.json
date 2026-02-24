@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/auth/token-refreshed.schema.json",
+  "title": "Token Refreshed",
+  "description": "Fires when an authentication token is refreshed",
+  "type": "object",
+  "properties": {
+    "tokenType": {
+      "type": "string",
+      "enum": ["access", "refresh", "id"]
+    },
+    "expiresIn": {
+      "type": "integer",
+      "description": "Time until expiration in seconds"
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

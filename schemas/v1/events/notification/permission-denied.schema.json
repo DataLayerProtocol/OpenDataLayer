@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/notification/permission-denied.schema.json",
+  "title": "Notification Permission Denied",
+  "description": "Fires when a user denies notification permission",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "type": "string"
+    },
+    "isPermanent": {
+      "type": "boolean"
+    }
+  },
+  "required": ["channel"],
+  "additionalProperties": false
+}

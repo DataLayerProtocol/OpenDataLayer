@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/crm/opportunity-created.schema.json",
+  "title": "CRM Opportunity Created",
+  "description": "Fires when a new sales opportunity is created.",
+  "type": "object",
+  "properties": {
+    "opportunityId": {
+      "type": "string",
+      "description": "Unique identifier for the opportunity."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the opportunity."
+    },
+    "stage": {
+      "type": "string",
+      "description": "Current pipeline stage."
+    },
+    "value": {
+      "type": "number",
+      "description": "Estimated deal value."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the deal value."
+    },
+    "probability": {
+      "type": "number",
+      "description": "Win probability 0-100."
+    },
+    "expectedCloseDate": {
+      "type": "string",
+      "description": "Expected date the deal will close."
+    },
+    "ownerId": {
+      "type": "string",
+      "description": "Unique identifier for the opportunity owner."
+    }
+  },
+  "required": ["opportunityId"],
+  "additionalProperties": false
+}

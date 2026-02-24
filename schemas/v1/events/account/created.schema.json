@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/account/created.schema.json",
+  "title": "Account Created",
+  "description": "Fired when a new account is created.",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "Unique identifier for the account."
+    },
+    "accountName": {
+      "type": "string",
+      "description": "Human-readable name of the account."
+    },
+    "plan": {
+      "type": "string",
+      "description": "The plan associated with the account."
+    },
+    "accountType": {
+      "type": "string",
+      "enum": ["personal", "team", "enterprise"],
+      "description": "The type of account created."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Identifier of the user who created the account."
+    }
+  },
+  "required": ["accountId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/finance/withdrawal-made.schema.json",
+  "title": "Withdrawal Made",
+  "description": "Fired when a withdrawal is made from an account.",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "number",
+      "description": "The monetary amount of the withdrawal."
+    },
+    "accountId": {
+      "type": "string",
+      "description": "Identifier of the account from which the withdrawal is made."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "withdrawalMethod": {
+      "type": "string",
+      "enum": ["bank_transfer", "atm", "cash", "check", "crypto", "other"],
+      "description": "The method used for the withdrawal."
+    },
+    "transactionId": {
+      "type": "string",
+      "description": "Unique identifier for the withdrawal transaction."
+    }
+  },
+  "required": ["amount"],
+  "additionalProperties": false
+}

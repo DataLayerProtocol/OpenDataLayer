@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/crm/lead-created.schema.json",
+  "title": "CRM Lead Created",
+  "description": "Fires when a new lead is created in the CRM system.",
+  "type": "object",
+  "properties": {
+    "leadId": {
+      "type": "string",
+      "description": "Unique identifier for the lead."
+    },
+    "source": {
+      "type": "string",
+      "enum": ["organic", "paid", "referral", "social", "email", "partner", "event", "other"],
+      "description": "Source channel that generated the lead."
+    },
+    "channel": {
+      "type": "string",
+      "description": "Specific channel or sub-source."
+    },
+    "campaignId": {
+      "type": "string",
+      "description": "Unique identifier for the associated campaign."
+    },
+    "score": {
+      "type": "number",
+      "description": "Initial lead score."
+    }
+  },
+  "required": ["leadId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/integration/sync_failed.schema.json",
+  "title": "Integration Sync Failed",
+  "description": "Fired when an integration data sync fails.",
+  "type": "object",
+  "properties": {
+    "integrationId": {
+      "type": "string",
+      "description": "Unique identifier for the integration."
+    },
+    "integrationName": {
+      "type": "string",
+      "description": "Human-readable name of the integration."
+    },
+    "syncType": {
+      "type": "string",
+      "enum": ["full", "incremental", "manual", "scheduled"],
+      "description": "The type of sync operation."
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "A human-readable message describing the sync failure."
+    },
+    "errorCode": {
+      "type": "string",
+      "description": "A machine-readable error code for the sync failure."
+    },
+    "recordsProcessed": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The total number of records processed before the failure."
+    },
+    "recordsFailed": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of records that failed to sync."
+    },
+    "isRetryable": {
+      "type": "boolean",
+      "description": "Whether the failed sync can be retried."
+    }
+  },
+  "required": ["integrationId"],
+  "additionalProperties": false
+}

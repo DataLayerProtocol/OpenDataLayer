@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/video_call/recording_started.schema.json",
+  "title": "Video Call Recording Started",
+  "description": "Fires when a recording is started during a video call.",
+  "type": "object",
+  "properties": {
+    "callId": {
+      "type": "string",
+      "description": "The unique identifier of the video call."
+    },
+    "recordingId": {
+      "type": "string",
+      "description": "The unique identifier of the recording."
+    },
+    "initiatedBy": {
+      "type": "string",
+      "description": "The unique identifier of the user who initiated the recording."
+    },
+    "recordingType": {
+      "type": "string",
+      "enum": ["cloud", "local", "transcript"],
+      "description": "The type of recording being captured."
+    }
+  },
+  "required": ["callId"],
+  "additionalProperties": false
+}

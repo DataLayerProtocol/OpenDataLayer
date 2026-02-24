@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/social/unfollow.schema.json",
+  "title": "Social Unfollow",
+  "description": "Fires when a user unfollows another user.",
+  "type": "object",
+  "properties": {
+    "targetUserId": {
+      "type": "string",
+      "description": "The unique identifier of the user being unfollowed."
+    },
+    "targetUserName": {
+      "type": "string",
+      "description": "The display name of the user being unfollowed."
+    },
+    "reason": {
+      "type": "string",
+      "description": "The reason for unfollowing."
+    }
+  },
+  "required": ["targetUserId"],
+  "additionalProperties": false
+}

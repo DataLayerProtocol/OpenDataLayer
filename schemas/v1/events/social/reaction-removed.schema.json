@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/social/reaction-removed.schema.json",
+  "title": "Social Reaction Removed",
+  "description": "Fires when a user removes a reaction from a piece of content.",
+  "type": "object",
+  "properties": {
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content the reaction is being removed from."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The type of content the reaction is being removed from."
+    },
+    "reactionType": {
+      "type": "string",
+      "description": "The type of reaction removed."
+    }
+  },
+  "required": ["contentId", "reactionType"],
+  "additionalProperties": false
+}

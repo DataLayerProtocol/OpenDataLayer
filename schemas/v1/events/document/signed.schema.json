@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/document/signed.schema.json",
+  "title": "Document Signed",
+  "description": "Fired when a document is signed by a party.",
+  "type": "object",
+  "properties": {
+    "documentId": {
+      "type": "string",
+      "description": "Unique identifier for the document."
+    },
+    "documentName": {
+      "type": "string",
+      "description": "Human-readable name of the document."
+    },
+    "signerId": {
+      "type": "string",
+      "description": "Unique identifier for the signer."
+    },
+    "signerRole": {
+      "type": "string",
+      "enum": ["sender", "signer", "witness", "approver"],
+      "description": "The role of the person signing the document."
+    },
+    "signatureMethod": {
+      "type": "string",
+      "enum": ["electronic", "digital", "wet_ink", "biometric"],
+      "description": "The method used to sign the document."
+    },
+    "signatureOrder": {
+      "type": "integer",
+      "description": "The position in the signing order for this signer."
+    },
+    "allPartiesSigned": {
+      "type": "boolean",
+      "description": "Whether all required parties have signed the document."
+    }
+  },
+  "required": ["documentId"],
+  "additionalProperties": false
+}

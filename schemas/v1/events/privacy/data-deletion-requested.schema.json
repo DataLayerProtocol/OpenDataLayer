@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/privacy/data_deletion_requested.schema.json",
+  "title": "Data Deletion Requested",
+  "description": "Fired when a user requests deletion of their personal data.",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the data deletion request."
+    },
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier for the user requesting the deletion."
+    },
+    "scope": {
+      "type": "string",
+      "enum": ["full", "partial"],
+      "description": "The scope of the data deletion request."
+    },
+    "dataTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of data types to be deleted."
+    },
+    "regulation": {
+      "type": "string",
+      "enum": ["gdpr", "ccpa", "lgpd", "other"],
+      "description": "The privacy regulation under which the deletion was requested."
+    },
+    "scheduledAt": {
+      "type": "string",
+      "description": "The scheduled date and time for the deletion to be executed."
+    }
+  },
+  "required": ["requestId"],
+  "additionalProperties": false
+}

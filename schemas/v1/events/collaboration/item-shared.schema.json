@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/collaboration/item_shared.schema.json",
+  "title": "Collaboration Item Shared",
+  "description": "Fires when an item is shared with others.",
+  "type": "object",
+  "properties": {
+    "itemId": {
+      "type": "string",
+      "description": "The unique identifier of the shared item."
+    },
+    "itemType": {
+      "type": "string",
+      "enum": ["document", "file", "folder", "project", "board", "page", "other"],
+      "description": "The type of item being shared."
+    },
+    "workspaceId": {
+      "type": "string",
+      "description": "The unique identifier of the workspace the item belongs to."
+    },
+    "shareType": {
+      "type": "string",
+      "enum": ["internal", "external", "public", "link"],
+      "description": "The type of sharing applied to the item."
+    },
+    "recipientCount": {
+      "type": "integer",
+      "description": "The number of recipients the item was shared with."
+    }
+  },
+  "required": ["itemId"],
+  "additionalProperties": false
+}

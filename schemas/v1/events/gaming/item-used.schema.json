@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/gaming/item-used.schema.json",
+  "title": "Gaming Item Used",
+  "description": "Fires when a player uses an in-game item.",
+  "type": "object",
+  "properties": {
+    "itemId": {
+      "type": "string",
+      "description": "Unique identifier for the item."
+    },
+    "itemName": {
+      "type": "string",
+      "description": "Name of the item."
+    },
+    "itemType": {
+      "type": "string",
+      "description": "Type of item used."
+    },
+    "context": {
+      "type": "string",
+      "description": "Context in which the item was used."
+    },
+    "quantity": {
+      "type": "integer",
+      "description": "Number of items used."
+    }
+  },
+  "required": ["itemId"],
+  "additionalProperties": false
+}

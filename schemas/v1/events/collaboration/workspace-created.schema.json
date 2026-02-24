@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/collaboration/workspace_created.schema.json",
+  "title": "Collaboration Workspace Created",
+  "description": "Fires when a new workspace is created.",
+  "type": "object",
+  "properties": {
+    "workspaceId": {
+      "type": "string",
+      "description": "The unique identifier of the workspace."
+    },
+    "workspaceName": {
+      "type": "string",
+      "description": "The human-readable name of the workspace."
+    },
+    "workspaceType": {
+      "type": "string",
+      "enum": ["team", "project", "department", "personal", "other"],
+      "description": "The type of workspace created."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "The unique identifier of the user who created the workspace."
+    }
+  },
+  "required": ["workspaceId"],
+  "additionalProperties": false
+}

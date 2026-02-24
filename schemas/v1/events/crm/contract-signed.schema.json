@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/crm/contract-signed.schema.json",
+  "title": "CRM Contract Signed",
+  "description": "Fires when a contract is signed by the customer.",
+  "type": "object",
+  "properties": {
+    "contractId": {
+      "type": "string",
+      "description": "Unique identifier for the contract."
+    },
+    "opportunityId": {
+      "type": "string",
+      "description": "Unique identifier for the associated opportunity."
+    },
+    "value": {
+      "type": "number",
+      "description": "Signed contract value."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the contract value."
+    },
+    "signedAt": {
+      "type": "string",
+      "description": "Date and time the contract was signed."
+    },
+    "termLength": {
+      "type": "integer",
+      "description": "Contract term in months."
+    }
+  },
+  "required": ["contractId", "value"],
+  "additionalProperties": false
+}

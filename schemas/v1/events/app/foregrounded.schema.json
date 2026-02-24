@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/app/foregrounded.schema.json",
+  "title": "App Foregrounded",
+  "description": "Fired when the application is brought back to the foreground.",
+  "type": "object",
+  "properties": {
+    "backgroundDuration": {
+      "type": "number",
+      "description": "Time app was in background in seconds."
+    },
+    "screenName": {
+      "type": "string",
+      "description": "The screen the user returns to when the app is foregrounded."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

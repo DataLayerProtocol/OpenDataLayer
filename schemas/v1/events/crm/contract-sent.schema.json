@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/crm/contract-sent.schema.json",
+  "title": "CRM Contract Sent",
+  "description": "Fires when a contract is sent to a prospect for review and signature.",
+  "type": "object",
+  "properties": {
+    "contractId": {
+      "type": "string",
+      "description": "Unique identifier for the contract."
+    },
+    "opportunityId": {
+      "type": "string",
+      "description": "Unique identifier for the associated opportunity."
+    },
+    "value": {
+      "type": "number",
+      "description": "Contract value."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the contract value."
+    },
+    "expiresAt": {
+      "type": "string",
+      "description": "Date and time the contract offer expires."
+    }
+  },
+  "required": ["contractId"],
+  "additionalProperties": false
+}

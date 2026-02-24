@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/privacy/data_export_requested.schema.json",
+  "title": "Data Export Requested",
+  "description": "Fired when a user requests an export of their personal data.",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the data export request."
+    },
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier for the user requesting the export."
+    },
+    "dataTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of data types included in the export (e.g. profile, activity, purchases)."
+    },
+    "format": {
+      "type": "string",
+      "enum": ["json", "csv", "xml"],
+      "description": "The file format for the exported data."
+    },
+    "regulation": {
+      "type": "string",
+      "enum": ["gdpr", "ccpa", "lgpd", "other"],
+      "description": "The privacy regulation under which the export was requested."
+    }
+  },
+  "required": ["requestId"],
+  "additionalProperties": false
+}

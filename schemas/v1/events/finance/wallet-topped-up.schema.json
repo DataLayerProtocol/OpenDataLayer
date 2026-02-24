@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/finance/wallet-topped-up.schema.json",
+  "title": "Wallet Topped Up",
+  "description": "Fired when a wallet is topped up with funds.",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "number",
+      "description": "The monetary amount added to the wallet."
+    },
+    "walletId": {
+      "type": "string",
+      "description": "Unique identifier for the wallet."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "topUpMethod": {
+      "type": "string",
+      "enum": ["bank_transfer", "card", "cash", "crypto", "reward", "other"],
+      "description": "The method used to top up the wallet."
+    },
+    "balance": {
+      "type": "number",
+      "description": "Wallet balance after top-up."
+    }
+  },
+  "required": ["amount"],
+  "additionalProperties": false
+}

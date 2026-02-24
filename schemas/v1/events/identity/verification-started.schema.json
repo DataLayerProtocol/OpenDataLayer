@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/identity/verification_started.schema.json",
+  "title": "Identity Verification Started",
+  "description": "Fired when an identity verification process is initiated.",
+  "type": "object",
+  "properties": {
+    "verificationId": {
+      "type": "string",
+      "description": "Unique identifier for the verification request."
+    },
+    "verificationType": {
+      "type": "string",
+      "enum": ["kyc", "kyb", "age", "address", "phone", "email", "document", "biometric", "other"],
+      "description": "The type of identity verification being performed."
+    },
+    "provider": {
+      "type": "string",
+      "description": "The verification service provider."
+    },
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier for the user undergoing verification."
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["basic", "standard", "enhanced"],
+      "description": "The verification tier or level being requested."
+    }
+  },
+  "required": ["verificationId"],
+  "additionalProperties": false
+}

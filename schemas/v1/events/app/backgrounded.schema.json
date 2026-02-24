@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/app/backgrounded.schema.json",
+  "title": "App Backgrounded",
+  "description": "Fired when the application is sent to the background.",
+  "type": "object",
+  "properties": {
+    "sessionDuration": {
+      "type": "number",
+      "description": "Time app was in foreground in seconds."
+    },
+    "screenName": {
+      "type": "string",
+      "description": "The screen the user was on when the app was backgrounded."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

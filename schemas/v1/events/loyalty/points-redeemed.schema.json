@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/loyalty/points_redeemed.schema.json",
+  "title": "Loyalty Points Redeemed",
+  "description": "Fires when a user redeems loyalty points.",
+  "type": "object",
+  "properties": {
+    "points": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of points redeemed."
+    },
+    "programId": {
+      "type": "string",
+      "description": "The unique identifier of the loyalty program."
+    },
+    "rewardType": {
+      "type": "string",
+      "enum": ["discount", "product", "gift_card", "experience", "shipping", "other"],
+      "description": "The type of reward redeemed."
+    },
+    "rewardName": {
+      "type": "string",
+      "description": "The name of the reward redeemed."
+    },
+    "rewardValue": {
+      "type": "number",
+      "description": "The monetary value of the reward."
+    },
+    "orderId": {
+      "type": "string",
+      "description": "The unique identifier of the associated order."
+    },
+    "balance": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total points balance after redemption."
+    }
+  },
+  "required": ["points"],
+  "additionalProperties": false
+}

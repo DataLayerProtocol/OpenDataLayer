@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/app/installed.schema.json",
+  "title": "App Installed",
+  "description": "Fired when a user installs the application.",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "The version of the app that was installed."
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["ios", "android", "web", "desktop"],
+      "description": "The platform the app was installed on."
+    },
+    "source": {
+      "type": "string",
+      "enum": ["app_store", "play_store", "direct", "referral", "ad"],
+      "description": "The source of the installation."
+    },
+    "campaignId": {
+      "type": "string",
+      "description": "The campaign identifier that led to the install, if any."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

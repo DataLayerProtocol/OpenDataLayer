@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/marketplace/offer-rejected.schema.json",
+  "title": "Marketplace Offer Rejected",
+  "description": "Fires when a seller rejects an offer on a marketplace listing.",
+  "type": "object",
+  "properties": {
+    "offerId": {
+      "type": "string",
+      "description": "Unique identifier for the offer."
+    },
+    "listingId": {
+      "type": "string",
+      "description": "Unique identifier for the listing."
+    },
+    "reason": {
+      "type": "string",
+      "description": "Reason the offer was rejected."
+    }
+  },
+  "required": ["offerId", "listingId"],
+  "additionalProperties": false
+}

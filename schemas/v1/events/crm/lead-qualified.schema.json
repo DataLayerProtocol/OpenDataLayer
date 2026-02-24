@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/crm/lead-qualified.schema.json",
+  "title": "CRM Lead Qualified",
+  "description": "Fires when a lead is qualified and meets the criteria for further engagement.",
+  "type": "object",
+  "properties": {
+    "leadId": {
+      "type": "string",
+      "description": "Unique identifier for the lead."
+    },
+    "qualificationType": {
+      "type": "string",
+      "enum": ["mql", "sql", "pql", "manual"],
+      "description": "Type of qualification applied."
+    },
+    "score": {
+      "type": "number",
+      "description": "Lead score at time of qualification."
+    },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of criteria that were met for qualification."
+    }
+  },
+  "required": ["leadId"],
+  "additionalProperties": false
+}

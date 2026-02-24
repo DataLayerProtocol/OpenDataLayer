@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/app/screen-viewed.schema.json",
+  "title": "App Screen Viewed",
+  "description": "Fired when a user views a screen in the application.",
+  "type": "object",
+  "properties": {
+    "screenName": {
+      "type": "string",
+      "description": "The name of the screen that was viewed."
+    },
+    "screenClass": {
+      "type": "string",
+      "description": "The class or component name of the screen."
+    },
+    "previousScreenName": {
+      "type": "string",
+      "description": "The name of the previous screen."
+    },
+    "previousScreenClass": {
+      "type": "string",
+      "description": "The class or component name of the previous screen."
+    }
+  },
+  "required": ["screenName"],
+  "additionalProperties": false
+}

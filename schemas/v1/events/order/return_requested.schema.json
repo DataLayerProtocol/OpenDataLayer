@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/order/return_requested.schema.json",
+  "title": "Order Return Requested",
+  "description": "Fired when a return is requested for an order.",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "Unique identifier for the order."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["defective", "wrong_item", "not_as_described", "changed_mind", "too_late", "other"],
+      "description": "The reason for requesting the return."
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the product."
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of the product."
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "The quantity of this product being returned."
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "The list of products being returned."
+    },
+    "returnMethod": {
+      "type": "string",
+      "enum": ["mail", "in_store", "pickup"],
+      "description": "The method used to return the products."
+    },
+    "comments": {
+      "type": "string",
+      "description": "Additional comments provided by the customer about the return."
+    }
+  },
+  "required": ["orderId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/content/archived.schema.json",
+  "title": "Content Archived",
+  "description": "Fires when a piece of content is archived.",
+  "type": "object",
+  "properties": {
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content archived."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The type of content archived."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the content."
+    },
+    "reason": {
+      "type": "string",
+      "description": "The reason the content was archived."
+    }
+  },
+  "required": ["contentId"],
+  "additionalProperties": false
+}

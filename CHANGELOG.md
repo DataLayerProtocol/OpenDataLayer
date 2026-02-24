@@ -29,10 +29,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `@opendatalayer/adapter-gtm` -- Google Tag Manager / GA4 adapter (stable)
 - `@opendatalayer/adapter-segment` -- Segment analytics.js adapter (stable)
 - `@opendatalayer/adapter-webhook` -- Generic webhook adapter with batch + real-time modes (stable)
-- `@opendatalayer/adapter-adobe` -- Adobe Analytics / AEP adapter (preview)
-- `@opendatalayer/adapter-amplitude` -- Amplitude adapter (preview)
-- `@opendatalayer/adapter-piwik` -- Piwik PRO / Matomo adapter (preview)
-- `@opendatalayer/adapter-tealium` -- Tealium iQ adapter (preview)
+- `@opendatalayer/adapter-adobe` -- Adobe Analytics (AppMeasurement) / AEP Web SDK adapter with product string building, eVar/prop mapping, and XDM commerce support
+- `@opendatalayer/adapter-amplitude` -- Amplitude adapter with identify, revenue per product, group analytics, and auto user properties
+- `@opendatalayer/adapter-piwik` -- Piwik PRO / Matomo adapter with ecommerce tracking, site search, custom dimensions, and userId management
+- `@opendatalayer/adapter-tealium` -- Tealium iQ adapter with UDO auto-population, flat key-value conversion, and parallel product array convention
 
 #### JSON Schemas
 - 50+ JSON Schema (Draft 2020-12) definitions for event envelope, context objects, event-specific data payloads, and enums

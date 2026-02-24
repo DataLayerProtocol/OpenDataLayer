@@ -39,9 +39,9 @@ export class MiddlewarePipeline {
 
     const next = (): void => {
       if (index < fns.length) {
-        const fn = fns[index]!;
+        const fn = fns[index];
         index++;
-        fn(event, next);
+        if (fn) fn(event, next);
       } else {
         finalHandler(event);
       }

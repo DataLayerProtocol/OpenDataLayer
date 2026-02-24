@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/gaming/challenge-started.schema.json",
+  "title": "Gaming Challenge Started",
+  "description": "Fires when a player starts a challenge.",
+  "type": "object",
+  "properties": {
+    "challengeId": {
+      "type": "string",
+      "description": "Unique identifier for the challenge."
+    },
+    "challengeName": {
+      "type": "string",
+      "description": "Name of the challenge."
+    },
+    "challengeType": {
+      "type": "string",
+      "enum": ["daily", "weekly", "seasonal", "special", "pvp", "pve"],
+      "description": "Type of challenge."
+    },
+    "difficulty": {
+      "type": "string",
+      "description": "Difficulty setting of the challenge."
+    }
+  },
+  "required": ["challengeId"],
+  "additionalProperties": false
+}

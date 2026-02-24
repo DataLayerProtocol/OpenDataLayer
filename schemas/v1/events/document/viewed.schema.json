@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/document/viewed.schema.json",
+  "title": "Document Viewed",
+  "description": "Fired when a document is viewed by a user.",
+  "type": "object",
+  "properties": {
+    "documentId": {
+      "type": "string",
+      "description": "Unique identifier for the document."
+    },
+    "documentName": {
+      "type": "string",
+      "description": "Human-readable name of the document."
+    },
+    "viewerId": {
+      "type": "string",
+      "description": "Unique identifier for the user who viewed the document."
+    },
+    "viewDuration": {
+      "type": "number",
+      "description": "Time spent viewing in seconds."
+    },
+    "pagesViewed": {
+      "type": "integer",
+      "description": "The number of pages viewed by the user."
+    },
+    "totalPages": {
+      "type": "integer",
+      "description": "The total number of pages in the document."
+    }
+  },
+  "required": ["documentId"],
+  "additionalProperties": false
+}

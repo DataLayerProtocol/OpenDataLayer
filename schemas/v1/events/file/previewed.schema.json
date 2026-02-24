@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/file/previewed.schema.json",
+  "title": "File Previewed",
+  "description": "Fired when a file is previewed.",
+  "type": "object",
+  "properties": {
+    "fileId": {
+      "type": "string",
+      "description": "Unique identifier for the file."
+    },
+    "fileName": {
+      "type": "string",
+      "description": "Name of the file."
+    },
+    "fileType": {
+      "type": "string",
+      "description": "Type or extension of the file."
+    },
+    "previewType": {
+      "type": "string",
+      "enum": ["thumbnail", "full", "inline", "modal"],
+      "description": "The type of preview displayed."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Time spent previewing in seconds."
+    }
+  },
+  "required": ["fileId"],
+  "additionalProperties": false
+}

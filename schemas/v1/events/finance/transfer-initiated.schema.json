@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/finance/transfer-initiated.schema.json",
+  "title": "Transfer Initiated",
+  "description": "Fired when a financial transfer is initiated.",
+  "type": "object",
+  "properties": {
+    "transferId": {
+      "type": "string",
+      "description": "Unique identifier for the transfer."
+    },
+    "amount": {
+      "type": "number",
+      "description": "The monetary amount of the transfer."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "fromAccountId": {
+      "type": "string",
+      "description": "Identifier of the source account."
+    },
+    "toAccountId": {
+      "type": "string",
+      "description": "Identifier of the destination account."
+    },
+    "transferType": {
+      "type": "string",
+      "enum": ["internal", "external", "p2p", "wire", "ach", "instant"],
+      "description": "The type of transfer."
+    },
+    "provider": {
+      "type": "string",
+      "description": "The provider or service facilitating the transfer."
+    }
+  },
+  "required": ["transferId", "amount"],
+  "additionalProperties": false
+}

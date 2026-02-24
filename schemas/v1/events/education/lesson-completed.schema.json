@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/education/lesson-completed.schema.json",
+  "title": "Education Lesson Completed",
+  "description": "Fires when a user completes a lesson within a course.",
+  "type": "object",
+  "properties": {
+    "lessonId": {
+      "type": "string",
+      "description": "Unique identifier for the lesson."
+    },
+    "lessonName": {
+      "type": "string",
+      "description": "Name of the lesson."
+    },
+    "courseId": {
+      "type": "string",
+      "description": "Unique identifier for the parent course."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Time spent in minutes."
+    },
+    "score": {
+      "type": "number",
+      "description": "Score achieved in the lesson."
+    },
+    "passed": {
+      "type": "boolean",
+      "description": "Whether the user passed the lesson."
+    }
+  },
+  "required": ["lessonId"],
+  "additionalProperties": false
+}

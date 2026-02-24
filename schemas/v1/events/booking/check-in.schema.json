@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/booking/check_in.schema.json",
+  "title": "Booking Check In",
+  "description": "Fired when a guest checks in to a reservation.",
+  "type": "object",
+  "properties": {
+    "reservationId": {
+      "type": "string",
+      "description": "Unique identifier for the reservation."
+    },
+    "checkInMethod": {
+      "type": "string",
+      "enum": ["online", "kiosk", "front_desk", "app", "auto"],
+      "description": "The method used to check in."
+    },
+    "earlyCheckIn": {
+      "type": "boolean",
+      "description": "Whether the guest checked in before the standard check-in time."
+    },
+    "confirmationCode": {
+      "type": "string",
+      "description": "Confirmation code for the reservation."
+    }
+  },
+  "required": ["reservationId"],
+  "additionalProperties": false
+}

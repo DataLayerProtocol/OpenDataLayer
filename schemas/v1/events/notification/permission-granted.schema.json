@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/notification/permission-granted.schema.json",
+  "title": "Notification Permission Granted",
+  "description": "Fires when a user grants notification permission",
+  "type": "object",
+  "properties": {
+    "channel": {
+      "type": "string"
+    }
+  },
+  "required": ["channel"],
+  "additionalProperties": false
+}

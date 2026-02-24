@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/finance/balance-checked.schema.json",
+  "title": "Balance Checked",
+  "description": "Fired when a user checks their account balance.",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "Identifier of the account whose balance was checked."
+    },
+    "accountType": {
+      "type": "string",
+      "enum": ["checking", "savings", "wallet", "credit", "investment", "crypto", "other"],
+      "description": "The type of account."
+    }
+  },
+  "additionalProperties": false
+}

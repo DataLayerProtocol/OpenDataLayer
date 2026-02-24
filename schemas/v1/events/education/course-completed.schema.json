@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/education/course-completed.schema.json",
+  "title": "Education Course Completed",
+  "description": "Fires when a user completes all required lessons in a course.",
+  "type": "object",
+  "properties": {
+    "courseId": {
+      "type": "string",
+      "description": "Unique identifier for the course."
+    },
+    "courseName": {
+      "type": "string",
+      "description": "Name of the course."
+    },
+    "completionTime": {
+      "type": "number",
+      "description": "Time to complete in minutes."
+    },
+    "lessonsCompleted": {
+      "type": "integer",
+      "description": "Number of lessons completed."
+    },
+    "finalScore": {
+      "type": "number",
+      "description": "Final score achieved in the course."
+    },
+    "certificateEarned": {
+      "type": "boolean",
+      "description": "Whether a certificate was earned upon completion."
+    }
+  },
+  "required": ["courseId"],
+  "additionalProperties": false
+}

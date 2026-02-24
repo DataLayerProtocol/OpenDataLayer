@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ad/impression.schema.json",
+  "title": "Ad Impression",
+  "description": "Fired when an ad is displayed and viewable to the user.",
+  "type": "object",
+  "properties": {
+    "adId": {
+      "type": "string",
+      "description": "Unique identifier for the ad."
+    },
+    "adName": {
+      "type": "string",
+      "description": "Human-readable name of the ad."
+    },
+    "adType": {
+      "type": "string",
+      "enum": ["banner", "native", "video", "interstitial", "rewarded", "popup", "other"],
+      "description": "The format or type of the ad unit."
+    },
+    "placement": {
+      "type": "string",
+      "description": "The placement location or slot where the ad was displayed."
+    },
+    "campaignId": {
+      "type": "string",
+      "description": "Unique identifier for the advertising campaign."
+    },
+    "creativeId": {
+      "type": "string",
+      "description": "Unique identifier for the ad creative."
+    },
+    "adSize": {
+      "type": "string",
+      "description": "The dimensions of the ad unit (e.g. '300x250', '728x90')."
+    },
+    "adNetwork": {
+      "type": "string",
+      "description": "The ad network or provider serving the ad."
+    },
+    "viewableTime": {
+      "type": "number",
+      "description": "Time the ad was viewable in milliseconds."
+    },
+    "viewablePercent": {
+      "type": "number",
+      "description": "Percentage of ad visible in viewport."
+    }
+  },
+  "required": ["adId"],
+  "additionalProperties": false
+}

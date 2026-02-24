@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/support/chat-ended.schema.json",
+  "title": "Support Chat Ended",
+  "description": "Fires when a support chat session ends, whether closed by the user, agent, or system.",
+  "type": "object",
+  "properties": {
+    "chatId": {
+      "type": "string",
+      "description": "Unique identifier for the chat session."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Chat duration in seconds."
+    },
+    "messageCount": {
+      "type": "integer",
+      "description": "Total number of messages exchanged during the chat."
+    },
+    "resolved": {
+      "type": "boolean",
+      "description": "Whether the user's issue was resolved during the chat."
+    },
+    "endedBy": {
+      "type": "string",
+      "description": "Who ended the chat session.",
+      "enum": ["user", "agent", "system"]
+    }
+  },
+  "required": ["chatId"],
+  "additionalProperties": false
+}

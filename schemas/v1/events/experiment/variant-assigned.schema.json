@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/experiment/variant-assigned.schema.json",
+  "title": "Experiment Variant Assigned",
+  "description": "Fired when a user is assigned to an experiment variant.",
+  "type": "object",
+  "properties": {
+    "experimentId": {
+      "type": "string",
+      "description": "Unique identifier for the experiment."
+    },
+    "experimentName": {
+      "type": "string",
+      "description": "Human-readable name of the experiment."
+    },
+    "variantId": {
+      "type": "string",
+      "description": "Unique identifier for the assigned variant."
+    },
+    "variantName": {
+      "type": "string",
+      "description": "Human-readable name of the assigned variant."
+    },
+    "assignmentMethod": {
+      "type": "string",
+      "enum": ["random", "targeted", "override"],
+      "description": "The method used to assign the variant."
+    }
+  },
+  "required": ["experimentId", "variantId"],
+  "additionalProperties": false
+}

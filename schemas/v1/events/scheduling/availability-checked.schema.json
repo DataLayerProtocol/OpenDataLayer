@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/scheduling/availability-checked.schema.json",
+  "title": "Scheduling Availability Checked",
+  "description": "Fires when a user checks available appointment slots for a provider or service.",
+  "type": "object",
+  "properties": {
+    "providerId": {
+      "type": "string",
+      "description": "Identifier of the service provider."
+    },
+    "providerType": {
+      "type": "string",
+      "description": "Type or specialty of the provider."
+    },
+    "dateRange": {
+      "type": "string",
+      "description": "Date range queried for availability."
+    },
+    "slotsAvailable": {
+      "type": "integer",
+      "description": "Number of available time slots found."
+    },
+    "slotsViewed": {
+      "type": "integer",
+      "description": "Number of available time slots the user viewed."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

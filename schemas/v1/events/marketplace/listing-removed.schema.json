@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/marketplace/listing-removed.schema.json",
+  "title": "Marketplace Listing Removed",
+  "description": "Fires when a marketplace listing is removed or taken down.",
+  "type": "object",
+  "properties": {
+    "listingId": {
+      "type": "string",
+      "description": "Unique identifier for the listing."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["sold", "expired", "user", "policy", "other"],
+      "description": "Reason the listing was removed."
+    }
+  },
+  "required": ["listingId"],
+  "additionalProperties": false
+}

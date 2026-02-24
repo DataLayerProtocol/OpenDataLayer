@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/content/created.schema.json",
+  "title": "Content Created",
+  "description": "Fires when a new piece of content is created.",
+  "type": "object",
+  "properties": {
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content created."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The type of content created."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the content."
+    },
+    "author": {
+      "type": "string",
+      "description": "The author of the content."
+    },
+    "category": {
+      "type": "string",
+      "description": "The category of the content."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "published"],
+      "description": "The initial status of the content."
+    }
+  },
+  "required": ["contentId"],
+  "additionalProperties": false
+}

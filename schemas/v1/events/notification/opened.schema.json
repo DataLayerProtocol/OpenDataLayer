@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/notification/opened.schema.json",
+  "title": "Notification Opened",
+  "description": "Fires when a user opens a notification",
+  "type": "object",
+  "properties": {
+    "notificationId": {
+      "type": "string"
+    },
+    "channel": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "campaignId": {
+      "type": "string"
+    },
+    "timeSinceSent": {
+      "type": "number",
+      "description": "Time since sent in seconds"
+    }
+  },
+  "required": ["notificationId", "channel"],
+  "additionalProperties": false
+}

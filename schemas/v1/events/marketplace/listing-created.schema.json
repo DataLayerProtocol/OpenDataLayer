@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/marketplace/listing-created.schema.json",
+  "title": "Marketplace Listing Created",
+  "description": "Fires when a new marketplace listing is created by a seller.",
+  "type": "object",
+  "properties": {
+    "listingId": {
+      "type": "string",
+      "description": "Unique identifier for the listing."
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the listing."
+    },
+    "category": {
+      "type": "string",
+      "description": "Category the listing belongs to."
+    },
+    "price": {
+      "type": "number",
+      "description": "Listed price of the item."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the price."
+    },
+    "sellerId": {
+      "type": "string",
+      "description": "Unique identifier for the seller."
+    },
+    "condition": {
+      "type": "string",
+      "enum": ["new", "used", "refurbished", "other"],
+      "description": "Condition of the listed item."
+    }
+  },
+  "required": ["listingId"],
+  "additionalProperties": false
+}

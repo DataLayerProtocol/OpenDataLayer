@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/referral/invite-sent.schema.json",
+  "title": "Referral Invite Sent",
+  "description": "Fires when a user sends a referral invite.",
+  "type": "object",
+  "properties": {
+    "referralId": {
+      "type": "string",
+      "description": "The unique identifier of the referral."
+    },
+    "method": {
+      "type": "string",
+      "description": "The method used to send the invite."
+    },
+    "programId": {
+      "type": "string",
+      "description": "The unique identifier of the referral program."
+    }
+  },
+  "required": ["referralId", "method"],
+  "additionalProperties": false
+}

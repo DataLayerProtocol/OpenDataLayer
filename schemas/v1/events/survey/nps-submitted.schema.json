@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/survey/nps_submitted.schema.json",
+  "title": "Survey NPS Submitted",
+  "description": "Fires when a user submits an NPS (Net Promoter Score) response.",
+  "type": "object",
+  "properties": {
+    "surveyId": {
+      "type": "string",
+      "description": "The unique identifier of the survey."
+    },
+    "score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "description": "NPS score from 0 to 10."
+    },
+    "comment": {
+      "type": "string",
+      "description": "The optional comment provided with the NPS score."
+    },
+    "category": {
+      "type": "string",
+      "enum": ["promoter", "passive", "detractor"],
+      "description": "The NPS category based on the score."
+    },
+    "touchpoint": {
+      "type": "string",
+      "enum": ["product", "support", "onboarding", "checkout", "general", "other"],
+      "description": "The touchpoint associated with the NPS survey."
+    }
+  },
+  "required": ["surveyId", "score"],
+  "additionalProperties": false
+}

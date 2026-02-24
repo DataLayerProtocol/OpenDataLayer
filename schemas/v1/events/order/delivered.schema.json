@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/order/delivered.schema.json",
+  "title": "Order Delivered",
+  "description": "Fired when an order is delivered.",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "Unique identifier for the order."
+    },
+    "deliveredAt": {
+      "type": "string",
+      "description": "ISO 8601 datetime when the order was delivered."
+    },
+    "signedBy": {
+      "type": "string",
+      "description": "The name of the person who signed for the delivery."
+    },
+    "deliveryMethod": {
+      "type": "string",
+      "enum": ["standard", "express", "same_day", "pickup", "locker"],
+      "description": "The method used for delivery."
+    },
+    "deliveryDuration": {
+      "type": "number",
+      "description": "Time from order to delivery in hours."
+    }
+  },
+  "required": ["orderId"],
+  "additionalProperties": false
+}

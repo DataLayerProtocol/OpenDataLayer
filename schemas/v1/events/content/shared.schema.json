@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/content/shared.schema.json",
+  "title": "Content Shared",
+  "description": "Fires when a user shares a piece of content.",
+  "type": "object",
+  "properties": {
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content shared."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The type of content shared."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the content."
+    },
+    "method": {
+      "type": "string",
+      "enum": ["email", "social", "copy_link", "embed", "messaging"],
+      "description": "The method used to share the content."
+    },
+    "destination": {
+      "type": "string",
+      "description": "The destination where the content was shared."
+    }
+  },
+  "required": ["contentId"],
+  "additionalProperties": false
+}

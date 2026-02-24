@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ad/clicked.schema.json",
+  "title": "Ad Clicked",
+  "description": "Fired when a user clicks on an ad.",
+  "type": "object",
+  "properties": {
+    "adId": {
+      "type": "string",
+      "description": "Unique identifier for the ad."
+    },
+    "adName": {
+      "type": "string",
+      "description": "Human-readable name of the ad."
+    },
+    "adType": {
+      "type": "string",
+      "enum": ["banner", "native", "video", "interstitial", "rewarded", "popup", "other"],
+      "description": "The format or type of the ad unit."
+    },
+    "placement": {
+      "type": "string",
+      "description": "The placement location or slot where the ad was displayed."
+    },
+    "campaignId": {
+      "type": "string",
+      "description": "Unique identifier for the advertising campaign."
+    },
+    "creativeId": {
+      "type": "string",
+      "description": "Unique identifier for the ad creative."
+    },
+    "destinationUrl": {
+      "type": "string",
+      "description": "The URL the user is directed to after clicking the ad."
+    },
+    "adNetwork": {
+      "type": "string",
+      "description": "The ad network or provider serving the ad."
+    }
+  },
+  "required": ["adId"],
+  "additionalProperties": false
+}

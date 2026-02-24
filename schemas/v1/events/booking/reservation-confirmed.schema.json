@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/booking/reservation_confirmed.schema.json",
+  "title": "Booking Reservation Confirmed",
+  "description": "Fired when a reservation is confirmed.",
+  "type": "object",
+  "properties": {
+    "reservationId": {
+      "type": "string",
+      "description": "Unique identifier for the reservation."
+    },
+    "confirmationCode": {
+      "type": "string",
+      "description": "Confirmation code for the reservation."
+    },
+    "bookingType": {
+      "type": "string",
+      "enum": ["hotel", "flight", "restaurant", "rental_car", "activity", "event", "other"],
+      "description": "The type of booking."
+    },
+    "total": {
+      "type": "number",
+      "description": "Total cost of the reservation."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the total amount."
+    }
+  },
+  "required": ["reservationId"],
+  "additionalProperties": false
+}

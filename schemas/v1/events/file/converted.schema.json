@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/file/converted.schema.json",
+  "title": "File Converted",
+  "description": "Fired when a file is converted from one format to another.",
+  "type": "object",
+  "properties": {
+    "fileId": {
+      "type": "string",
+      "description": "Unique identifier for the file."
+    },
+    "fileName": {
+      "type": "string",
+      "description": "Name of the file."
+    },
+    "sourceFormat": {
+      "type": "string",
+      "description": "The original format of the file."
+    },
+    "targetFormat": {
+      "type": "string",
+      "description": "The format the file was converted to."
+    },
+    "fileSize": {
+      "type": "number",
+      "description": "Output file size in bytes."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Conversion time in milliseconds."
+    }
+  },
+  "required": ["fileId"],
+  "additionalProperties": false
+}

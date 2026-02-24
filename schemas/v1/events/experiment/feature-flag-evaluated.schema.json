@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/experiment/feature-flag-evaluated.schema.json",
+  "title": "Feature Flag Evaluated",
+  "description": "Fired when a feature flag is evaluated for a user.",
+  "type": "object",
+  "properties": {
+    "flagKey": {
+      "type": "string",
+      "description": "The unique key identifying the feature flag."
+    },
+    "flagValue": {
+      "description": "The evaluated value of the feature flag."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the feature flag is enabled."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["match", "default", "error", "override"],
+      "description": "The reason for the evaluated flag value."
+    }
+  },
+  "required": ["flagKey", "enabled"],
+  "additionalProperties": false
+}

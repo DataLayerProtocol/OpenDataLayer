@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/account/settings_updated.schema.json",
+  "title": "Account Settings Updated",
+  "description": "Fired when account settings are updated.",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "Unique identifier for the account."
+    },
+    "updatedFields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The list of settings fields that were updated."
+    },
+    "category": {
+      "type": "string",
+      "enum": ["billing", "security", "notifications", "preferences", "branding", "other"],
+      "description": "The category of settings that were updated."
+    }
+  },
+  "required": ["accountId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/notification/dismissed.schema.json",
+  "title": "Notification Dismissed",
+  "description": "Fires when a user dismisses a notification",
+  "type": "object",
+  "properties": {
+    "notificationId": {
+      "type": "string"
+    },
+    "channel": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["user", "timeout", "replaced"]
+    }
+  },
+  "required": ["notificationId", "channel"],
+  "additionalProperties": false
+}

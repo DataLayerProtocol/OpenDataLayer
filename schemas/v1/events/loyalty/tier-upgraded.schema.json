@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/loyalty/tier_upgraded.schema.json",
+  "title": "Loyalty Tier Upgraded",
+  "description": "Fires when a user is upgraded to a higher loyalty tier.",
+  "type": "object",
+  "properties": {
+    "programId": {
+      "type": "string",
+      "description": "The unique identifier of the loyalty program."
+    },
+    "previousTier": {
+      "type": "string",
+      "description": "The tier the user was in before the upgrade."
+    },
+    "newTier": {
+      "type": "string",
+      "description": "The tier the user was upgraded to."
+    },
+    "memberId": {
+      "type": "string",
+      "description": "The unique identifier of the loyalty member."
+    },
+    "qualifyingPoints": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of qualifying points that triggered the upgrade."
+    },
+    "qualifyingSpend": {
+      "type": "number",
+      "description": "The qualifying spend amount that triggered the upgrade."
+    }
+  },
+  "required": ["programId", "previousTier", "newTier"],
+  "additionalProperties": false
+}

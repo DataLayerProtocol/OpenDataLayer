@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/integration/connected.schema.json",
+  "title": "Integration Connected",
+  "description": "Fired when an integration is connected to the platform.",
+  "type": "object",
+  "properties": {
+    "integrationId": {
+      "type": "string",
+      "description": "Unique identifier for the integration."
+    },
+    "integrationName": {
+      "type": "string",
+      "description": "Human-readable name of the integration."
+    },
+    "provider": {
+      "type": "string",
+      "description": "The third-party provider of the integration."
+    },
+    "category": {
+      "type": "string",
+      "enum": ["crm", "marketing", "analytics", "payment", "communication", "storage", "productivity", "other"],
+      "description": "The category of the integration."
+    },
+    "connectedBy": {
+      "type": "string",
+      "enum": ["user", "admin", "api", "oauth"],
+      "description": "The method or actor that initiated the connection."
+    },
+    "scopes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The permission scopes granted to the integration."
+    }
+  },
+  "required": ["integrationId"],
+  "additionalProperties": false
+}

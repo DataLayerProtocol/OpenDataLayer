@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/support/article-helpful.schema.json",
+  "title": "Support Article Helpful",
+  "description": "Fires when a user indicates whether a help center article was helpful or not.",
+  "type": "object",
+  "properties": {
+    "articleId": {
+      "type": "string",
+      "description": "Unique identifier for the article."
+    },
+    "isHelpful": {
+      "type": "boolean",
+      "description": "Whether the user found the article helpful."
+    },
+    "feedbackText": {
+      "type": "string",
+      "description": "Optional text feedback provided by the user."
+    }
+  },
+  "required": ["articleId", "isHelpful"],
+  "additionalProperties": false
+}

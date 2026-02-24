@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/communication/email-sent.schema.json",
+  "title": "Communication Email Sent",
+  "description": "Fires when an email is sent to one or more recipients.",
+  "type": "object",
+  "properties": {
+    "emailId": {
+      "type": "string",
+      "description": "Unique identifier for the email."
+    },
+    "templateId": {
+      "type": "string",
+      "description": "Identifier of the email template used."
+    },
+    "templateName": {
+      "type": "string",
+      "description": "Name of the email template used."
+    },
+    "campaignId": {
+      "type": "string",
+      "description": "Identifier of the associated email campaign."
+    },
+    "subject": {
+      "type": "string",
+      "description": "Subject line of the email."
+    },
+    "recipientCount": {
+      "type": "integer",
+      "description": "Number of recipients the email was sent to."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

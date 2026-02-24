@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/automation/action_executed.schema.json",
+  "title": "Automation Action Executed",
+  "description": "Fired when an automation action is executed within a workflow.",
+  "type": "object",
+  "properties": {
+    "actionId": {
+      "type": "string",
+      "description": "Unique identifier for the action."
+    },
+    "actionType": {
+      "type": "string",
+      "enum": ["send_email", "send_notification", "update_record", "create_record", "webhook", "delay", "condition", "api_call", "other"],
+      "description": "The type of action executed."
+    },
+    "workflowId": {
+      "type": "string",
+      "description": "Unique identifier of the workflow this action belongs to."
+    },
+    "executionId": {
+      "type": "string",
+      "description": "Unique identifier for this specific workflow execution."
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Action execution time in milliseconds."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["success", "failed", "skipped"],
+      "description": "The execution status of the action."
+    }
+  },
+  "required": ["actionId"],
+  "additionalProperties": false
+}

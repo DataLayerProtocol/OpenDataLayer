@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/booking/reservation_modified.schema.json",
+  "title": "Booking Reservation Modified",
+  "description": "Fired when an existing reservation is modified.",
+  "type": "object",
+  "properties": {
+    "reservationId": {
+      "type": "string",
+      "description": "Unique identifier for the reservation."
+    },
+    "modifiedFields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of fields that were modified."
+    },
+    "bookingType": {
+      "type": "string",
+      "enum": ["hotel", "flight", "restaurant", "rental_car", "activity", "event", "other"],
+      "description": "The type of booking."
+    },
+    "priceDifference": {
+      "type": "number",
+      "description": "Price change from modification, positive for increase."
+    }
+  },
+  "required": ["reservationId"],
+  "additionalProperties": false
+}

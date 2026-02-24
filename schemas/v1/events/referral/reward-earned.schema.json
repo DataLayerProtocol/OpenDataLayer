@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/referral/reward-earned.schema.json",
+  "title": "Referral Reward Earned",
+  "description": "Fires when a user earns a reward from a referral.",
+  "type": "object",
+  "properties": {
+    "referralId": {
+      "type": "string",
+      "description": "The unique identifier of the referral."
+    },
+    "rewardType": {
+      "type": "string",
+      "enum": ["credit", "discount", "cash", "points", "free_month", "other"],
+      "description": "The type of reward earned."
+    },
+    "rewardValue": {
+      "type": "number",
+      "description": "The monetary or point value of the reward."
+    },
+    "currency": {
+      "type": "string",
+      "description": "The currency of the reward value."
+    },
+    "programId": {
+      "type": "string",
+      "description": "The unique identifier of the referral program."
+    }
+  },
+  "required": ["referralId", "rewardType"],
+  "additionalProperties": false
+}

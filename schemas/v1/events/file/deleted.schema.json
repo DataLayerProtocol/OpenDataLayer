@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/file/deleted.schema.json",
+  "title": "File Deleted",
+  "description": "Fired when a file is deleted.",
+  "type": "object",
+  "properties": {
+    "fileId": {
+      "type": "string",
+      "description": "Unique identifier for the file."
+    },
+    "fileName": {
+      "type": "string",
+      "description": "Name of the file."
+    },
+    "fileType": {
+      "type": "string",
+      "description": "Type or extension of the file."
+    },
+    "fileSize": {
+      "type": "number",
+      "description": "File size in bytes."
+    },
+    "deletedBy": {
+      "type": "string",
+      "enum": ["user", "system", "admin", "retention_policy"],
+      "description": "The entity that initiated the deletion."
+    },
+    "permanent": {
+      "type": "boolean",
+      "description": "Whether the deletion is permanent or recoverable."
+    }
+  },
+  "required": ["fileId"],
+  "additionalProperties": false
+}

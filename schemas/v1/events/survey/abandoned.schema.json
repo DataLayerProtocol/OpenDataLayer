@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/survey/abandoned.schema.json",
+  "title": "Survey Abandoned",
+  "description": "Fires when a user abandons a survey before completing it.",
+  "type": "object",
+  "properties": {
+    "surveyId": {
+      "type": "string",
+      "description": "The unique identifier of the survey."
+    },
+    "surveyName": {
+      "type": "string",
+      "description": "The name of the survey."
+    },
+    "lastQuestionIndex": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The index of the last question viewed before abandoning."
+    },
+    "questionsAnswered": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of questions answered before abandoning."
+    },
+    "totalQuestions": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The total number of questions in the survey."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Time spent before abandoning in seconds."
+    }
+  },
+  "required": ["surveyId"],
+  "additionalProperties": false
+}

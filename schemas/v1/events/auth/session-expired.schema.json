@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/auth/session-expired.schema.json",
+  "title": "Session Expired",
+  "description": "Fires when a user session expires",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "type": "string",
+      "enum": ["timeout", "revoked", "password_change", "forced"]
+    },
+    "sessionDuration": {
+      "type": "number",
+      "description": "Session duration in seconds"
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/subscription/downgraded.schema.json",
+  "title": "Subscription Downgraded",
+  "description": "Fired when a subscription is downgraded to a lower-tier plan.",
+  "type": "object",
+  "properties": {
+    "subscriptionId": {
+      "type": "string",
+      "description": "Unique identifier for the subscription."
+    },
+    "previousPlanId": {
+      "type": "string",
+      "description": "Unique identifier of the previous subscription plan."
+    },
+    "previousPlanName": {
+      "type": "string",
+      "description": "Human-readable name of the previous subscription plan."
+    },
+    "newPlanId": {
+      "type": "string",
+      "description": "Unique identifier of the new subscription plan."
+    },
+    "newPlanName": {
+      "type": "string",
+      "description": "Human-readable name of the new subscription plan."
+    },
+    "previousAmount": {
+      "type": "number",
+      "description": "The monetary amount of the previous plan."
+    },
+    "newAmount": {
+      "type": "number",
+      "description": "The monetary amount of the new plan."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "effectiveDate": {
+      "type": "string",
+      "description": "ISO 8601 date or datetime when the downgrade takes effect."
+    }
+  },
+  "required": ["subscriptionId", "previousPlanId", "newPlanId"],
+  "additionalProperties": false
+}

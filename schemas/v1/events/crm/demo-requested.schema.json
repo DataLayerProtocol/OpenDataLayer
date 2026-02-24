@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/crm/demo-requested.schema.json",
+  "title": "CRM Demo Requested",
+  "description": "Fires when a prospect requests a product demo.",
+  "type": "object",
+  "properties": {
+    "demoId": {
+      "type": "string",
+      "description": "Unique identifier for the demo request."
+    },
+    "leadId": {
+      "type": "string",
+      "description": "Unique identifier for the associated lead."
+    },
+    "product": {
+      "type": "string",
+      "description": "Product the demo is requested for."
+    },
+    "preferredDate": {
+      "type": "string",
+      "description": "Preferred date and time for the demo."
+    },
+    "companySize": {
+      "type": "string",
+      "enum": ["1-10", "11-50", "51-200", "201-1000", "1000+"],
+      "description": "Size of the requesting company."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

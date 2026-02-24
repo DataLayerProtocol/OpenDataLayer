@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/document/sent.schema.json",
+  "title": "Document Sent",
+  "description": "Fired when a document is sent to one or more recipients.",
+  "type": "object",
+  "properties": {
+    "documentId": {
+      "type": "string",
+      "description": "Unique identifier for the document."
+    },
+    "documentName": {
+      "type": "string",
+      "description": "Human-readable name of the document."
+    },
+    "recipientCount": {
+      "type": "integer",
+      "description": "The number of recipients the document was sent to."
+    },
+    "sendMethod": {
+      "type": "string",
+      "enum": ["email", "link", "api", "in_app"],
+      "description": "The method used to send the document."
+    },
+    "expiresAt": {
+      "type": "string",
+      "description": "The expiration date or time for the sent document."
+    }
+  },
+  "required": ["documentId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/privacy/consent_record_created.schema.json",
+  "title": "Consent Record Created",
+  "description": "Fired when a new consent record is created for a user.",
+  "type": "object",
+  "properties": {
+    "consentId": {
+      "type": "string",
+      "description": "Unique identifier for the consent record."
+    },
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier for the user associated with the consent record."
+    },
+    "purposes": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Map of purpose names to consent status."
+    },
+    "regulation": {
+      "type": "string",
+      "enum": ["gdpr", "ccpa", "lgpd", "other"],
+      "description": "The privacy regulation under which the consent was recorded."
+    },
+    "source": {
+      "type": "string",
+      "enum": ["banner", "preference_center", "api", "registration", "checkout"],
+      "description": "The source through which the consent was collected."
+    },
+    "ipAddress": {
+      "type": "string",
+      "description": "The IP address of the user at the time of consent."
+    },
+    "userAgent": {
+      "type": "string",
+      "description": "The user agent string of the browser or client at the time of consent."
+    }
+  },
+  "required": ["consentId"],
+  "additionalProperties": false
+}

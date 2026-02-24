@@ -1,8 +1,8 @@
 {
   "name": "@opendatalayer/adapter-adobe",
   "version": "0.1.0",
-  "description": "OpenDataLayer adapter for Adobe Analytics / Adobe Experience Platform [PREVIEW - not yet implemented]",
-  "keywords": ["opendatalayer", "adobe", "analytics", "preview"],
+  "description": "OpenDataLayer adapter for Adobe Analytics (AppMeasurement) and Adobe Experience Platform Web SDK",
+  "keywords": ["opendatalayer", "adobe", "analytics", "aep", "appmeasurement"],
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",

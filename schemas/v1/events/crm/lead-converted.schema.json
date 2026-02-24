@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/crm/lead-converted.schema.json",
+  "title": "CRM Lead Converted",
+  "description": "Fires when a lead is converted to an opportunity, customer, or account.",
+  "type": "object",
+  "properties": {
+    "leadId": {
+      "type": "string",
+      "description": "Unique identifier for the lead."
+    },
+    "convertedTo": {
+      "type": "string",
+      "enum": ["opportunity", "customer", "account"],
+      "description": "Entity type the lead was converted to."
+    },
+    "conversionValue": {
+      "type": "number",
+      "description": "Estimated value of the conversion."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the conversion value."
+    },
+    "timeToConvert": {
+      "type": "number",
+      "description": "Time from creation to conversion in hours."
+    }
+  },
+  "required": ["leadId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/booking/search_initiated.schema.json",
+  "title": "Booking Search Initiated",
+  "description": "Fired when a user initiates a booking search.",
+  "type": "object",
+  "properties": {
+    "bookingType": {
+      "type": "string",
+      "enum": ["hotel", "flight", "restaurant", "rental_car", "activity", "event", "other"],
+      "description": "The type of booking being searched for."
+    },
+    "destination": {
+      "type": "string",
+      "description": "The destination or location being searched."
+    },
+    "checkIn": {
+      "type": "string",
+      "description": "The desired check-in date or start date."
+    },
+    "checkOut": {
+      "type": "string",
+      "description": "The desired check-out date or end date."
+    },
+    "guests": {
+      "type": "integer",
+      "description": "The number of guests."
+    },
+    "rooms": {
+      "type": "integer",
+      "description": "The number of rooms requested."
+    },
+    "resultCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The total number of results returned for the search."
+    }
+  },
+  "additionalProperties": false
+}

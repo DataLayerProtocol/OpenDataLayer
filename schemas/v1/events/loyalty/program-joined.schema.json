@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/loyalty/program_joined.schema.json",
+  "title": "Loyalty Program Joined",
+  "description": "Fires when a user joins a loyalty program.",
+  "type": "object",
+  "properties": {
+    "programId": {
+      "type": "string",
+      "description": "The unique identifier of the loyalty program."
+    },
+    "programName": {
+      "type": "string",
+      "description": "The name of the loyalty program."
+    },
+    "tier": {
+      "type": "string",
+      "description": "The initial tier assigned to the member."
+    },
+    "memberId": {
+      "type": "string",
+      "description": "The unique identifier of the loyalty member."
+    },
+    "joinMethod": {
+      "type": "string",
+      "enum": ["signup", "purchase", "referral", "promotion", "auto"],
+      "description": "The method by which the user joined the program."
+    }
+  },
+  "required": ["programId"],
+  "additionalProperties": false
+}

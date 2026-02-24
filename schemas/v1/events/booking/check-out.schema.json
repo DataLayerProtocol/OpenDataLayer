@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/booking/check_out.schema.json",
+  "title": "Booking Check Out",
+  "description": "Fired when a guest checks out of a reservation.",
+  "type": "object",
+  "properties": {
+    "reservationId": {
+      "type": "string",
+      "description": "Unique identifier for the reservation."
+    },
+    "checkOutMethod": {
+      "type": "string",
+      "enum": ["online", "kiosk", "front_desk", "app", "express"],
+      "description": "The method used to check out."
+    },
+    "lateCheckOut": {
+      "type": "boolean",
+      "description": "Whether the guest checked out after the standard check-out time."
+    },
+    "finalTotal": {
+      "type": "number",
+      "description": "The final total amount for the stay."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the total amount."
+    },
+    "stayDuration": {
+      "type": "number",
+      "description": "Duration of stay in nights."
+    }
+  },
+  "required": ["reservationId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/scheduling/appointment-booked.schema.json",
+  "title": "Scheduling Appointment Booked",
+  "description": "Fires when a user books a new appointment or reservation.",
+  "type": "object",
+  "properties": {
+    "appointmentId": {
+      "type": "string",
+      "description": "Unique identifier for the appointment."
+    },
+    "appointmentType": {
+      "type": "string",
+      "description": "Type or category of the appointment."
+    },
+    "providerId": {
+      "type": "string",
+      "description": "Identifier of the service provider."
+    },
+    "providerName": {
+      "type": "string",
+      "description": "Name of the service provider."
+    },
+    "startTime": {
+      "type": "string",
+      "description": "Scheduled start time of the appointment."
+    },
+    "endTime": {
+      "type": "string",
+      "description": "Scheduled end time of the appointment."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in minutes."
+    },
+    "location": {
+      "type": "string",
+      "description": "Location or venue of the appointment."
+    },
+    "isVirtual": {
+      "type": "boolean",
+      "description": "Whether the appointment is virtual or remote."
+    }
+  },
+  "required": ["appointmentId", "startTime"],
+  "additionalProperties": false
+}

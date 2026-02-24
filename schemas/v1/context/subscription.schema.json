@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/context/subscription.schema.json",
+  "title": "Subscription Context",
+  "description": "Represents the user's current subscription state.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The subscription identifier."
+    },
+    "planId": {
+      "type": "string",
+      "description": "The current plan identifier."
+    },
+    "planName": {
+      "type": "string",
+      "description": "The current plan name."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "trialing", "past_due", "cancelled", "paused", "expired"],
+      "description": "Current subscription status."
+    },
+    "interval": {
+      "type": "string",
+      "enum": ["monthly", "yearly", "weekly", "custom"],
+      "description": "Billing interval."
+    },
+    "amount": {
+      "type": "number",
+      "description": "Subscription amount per interval."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 currency code."
+    },
+    "startedAt": {
+      "type": "string",
+      "description": "When the subscription started (ISO 8601)."
+    },
+    "currentPeriodEnd": {
+      "type": "string",
+      "description": "When the current billing period ends (ISO 8601)."
+    },
+    "trialEnd": {
+      "type": "string",
+      "description": "When the trial period ends, if applicable (ISO 8601)."
+    },
+    "cancelAt": {
+      "type": "string",
+      "description": "When the subscription is scheduled to cancel, if applicable (ISO 8601)."
+    },
+    "renewalCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of times the subscription has renewed."
+    }
+  },
+  "additionalProperties": false
+}

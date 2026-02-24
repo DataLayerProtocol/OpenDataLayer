@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/content/rated.schema.json",
+  "title": "Content Rated",
+  "description": "Fires when a user rates a piece of content.",
+  "type": "object",
+  "properties": {
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content rated."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The type of content rated."
+    },
+    "rating": {
+      "type": "number",
+      "description": "Rating value."
+    },
+    "maxRating": {
+      "type": "number",
+      "description": "Maximum possible rating."
+    },
+    "ratingType": {
+      "type": "string",
+      "enum": ["stars", "thumbs", "numeric", "emoji"],
+      "description": "The type of rating system used."
+    }
+  },
+  "required": ["contentId", "rating"],
+  "additionalProperties": false
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/document/created.schema.json",
+  "title": "Document Created",
+  "description": "Fired when a new document is created.",
+  "type": "object",
+  "properties": {
+    "documentId": {
+      "type": "string",
+      "description": "Unique identifier for the document."
+    },
+    "documentName": {
+      "type": "string",
+      "description": "Human-readable name of the document."
+    },
+    "documentType": {
+      "type": "string",
+      "enum": ["contract", "proposal", "invoice", "agreement", "nda", "sow", "report", "other"],
+      "description": "The type or category of the document."
+    },
+    "templateId": {
+      "type": "string",
+      "description": "Unique identifier for the template used to create the document, if any."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Identifier for the user who created the document."
+    }
+  },
+  "required": ["documentId"],
+  "additionalProperties": false
+}

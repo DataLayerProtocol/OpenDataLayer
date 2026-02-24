@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/education/course-started.schema.json",
+  "title": "Education Course Started",
+  "description": "Fires when a user starts a course for the first time.",
+  "type": "object",
+  "properties": {
+    "courseId": {
+      "type": "string",
+      "description": "Unique identifier for the course."
+    },
+    "courseName": {
+      "type": "string",
+      "description": "Name of the course."
+    },
+    "totalLessons": {
+      "type": "integer",
+      "description": "Total number of lessons in the course."
+    },
+    "totalDuration": {
+      "type": "number",
+      "description": "Total course duration in minutes."
+    }
+  },
+  "required": ["courseId"],
+  "additionalProperties": false
+}

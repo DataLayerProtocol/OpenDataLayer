@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/survey/started.schema.json",
+  "title": "Survey Started",
+  "description": "Fires when a user starts a survey.",
+  "type": "object",
+  "properties": {
+    "surveyId": {
+      "type": "string",
+      "description": "The unique identifier of the survey."
+    },
+    "surveyName": {
+      "type": "string",
+      "description": "The name of the survey."
+    },
+    "surveyType": {
+      "type": "string",
+      "enum": ["nps", "csat", "ces", "feedback", "poll", "research", "other"],
+      "description": "The type of survey."
+    },
+    "totalQuestions": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The total number of questions in the survey."
+    },
+    "trigger": {
+      "type": "string",
+      "enum": ["in_app", "email", "post_purchase", "post_support", "scheduled", "manual"],
+      "description": "The trigger that initiated the survey."
+    }
+  },
+  "required": ["surveyId"],
+  "additionalProperties": false
+}

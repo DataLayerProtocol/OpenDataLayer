@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/marketplace/listing-updated.schema.json",
+  "title": "Marketplace Listing Updated",
+  "description": "Fires when an existing marketplace listing is updated.",
+  "type": "object",
+  "properties": {
+    "listingId": {
+      "type": "string",
+      "description": "Unique identifier for the listing."
+    },
+    "updatedFields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of field names that were updated."
+    },
+    "previousPrice": {
+      "type": "number",
+      "description": "Price before the update."
+    },
+    "newPrice": {
+      "type": "number",
+      "description": "Price after the update."
+    }
+  },
+  "required": ["listingId"],
+  "additionalProperties": false
+}

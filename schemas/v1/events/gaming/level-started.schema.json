@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/gaming/level-started.schema.json",
+  "title": "Gaming Level Started",
+  "description": "Fires when a player starts a game level.",
+  "type": "object",
+  "properties": {
+    "levelId": {
+      "type": "string",
+      "description": "Unique identifier for the level."
+    },
+    "levelName": {
+      "type": "string",
+      "description": "Name of the level."
+    },
+    "levelNumber": {
+      "type": "integer",
+      "description": "Sequential number of the level."
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["easy", "medium", "hard", "expert"],
+      "description": "Difficulty setting of the level."
+    },
+    "attempts": {
+      "type": "integer",
+      "description": "Number of previous attempts at this level."
+    }
+  },
+  "required": ["levelId"],
+  "additionalProperties": false
+}

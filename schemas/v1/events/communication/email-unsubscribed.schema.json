@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/communication/email-unsubscribed.schema.json",
+  "title": "Communication Email Unsubscribed",
+  "description": "Fires when a recipient unsubscribes from an email list or campaign.",
+  "type": "object",
+  "properties": {
+    "emailId": {
+      "type": "string",
+      "description": "Unique identifier for the email that triggered the unsubscribe."
+    },
+    "listId": {
+      "type": "string",
+      "description": "Identifier of the mailing list unsubscribed from."
+    },
+    "listName": {
+      "type": "string",
+      "description": "Name of the mailing list unsubscribed from."
+    },
+    "reason": {
+      "type": "string",
+      "description": "Reason provided by the user for unsubscribing."
+    },
+    "campaignId": {
+      "type": "string",
+      "description": "Identifier of the associated email campaign."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

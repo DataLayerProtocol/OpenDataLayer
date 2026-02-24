@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/content/viewed.schema.json",
+  "title": "Content Viewed",
+  "description": "Fires when a user views a piece of content.",
+  "type": "object",
+  "properties": {
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content viewed."
+    },
+    "contentType": {
+      "type": "string",
+      "enum": ["article", "blog", "page", "documentation", "video", "podcast", "other"],
+      "description": "The type of content viewed."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the content."
+    },
+    "author": {
+      "type": "string",
+      "description": "The author of the content."
+    },
+    "category": {
+      "type": "string",
+      "description": "The category of the content."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the content."
+    },
+    "wordCount": {
+      "type": "integer",
+      "description": "The word count of the content."
+    },
+    "readTime": {
+      "type": "number",
+      "description": "Estimated read time in seconds."
+    }
+  },
+  "required": ["contentId"],
+  "additionalProperties": false
+}

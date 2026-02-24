@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/scheduling/appointment-rescheduled.schema.json",
+  "title": "Scheduling Appointment Rescheduled",
+  "description": "Fires when a scheduled appointment is moved to a different time.",
+  "type": "object",
+  "properties": {
+    "appointmentId": {
+      "type": "string",
+      "description": "Unique identifier for the appointment."
+    },
+    "previousStartTime": {
+      "type": "string",
+      "description": "Original start time before rescheduling."
+    },
+    "newStartTime": {
+      "type": "string",
+      "description": "New start time after rescheduling."
+    },
+    "rescheduledBy": {
+      "type": "string",
+      "description": "Who initiated the reschedule.",
+      "enum": ["user", "provider", "system"]
+    }
+  },
+  "required": ["appointmentId", "newStartTime"],
+  "additionalProperties": false
+}

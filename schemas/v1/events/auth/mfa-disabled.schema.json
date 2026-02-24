@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/auth/mfa-disabled.schema.json",
+  "title": "MFA Disabled",
+  "description": "Fires when a user disables multi-factor authentication",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    }
+  },
+  "required": ["method"],
+  "additionalProperties": false
+}

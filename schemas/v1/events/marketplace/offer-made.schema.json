@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/marketplace/offer-made.schema.json",
+  "title": "Marketplace Offer Made",
+  "description": "Fires when a buyer makes an offer on a marketplace listing.",
+  "type": "object",
+  "properties": {
+    "offerId": {
+      "type": "string",
+      "description": "Unique identifier for the offer."
+    },
+    "listingId": {
+      "type": "string",
+      "description": "Unique identifier for the listing."
+    },
+    "amount": {
+      "type": "number",
+      "description": "Offer amount."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the offer amount."
+    },
+    "message": {
+      "type": "string",
+      "description": "Optional message from the buyer."
+    },
+    "expiresAt": {
+      "type": "string",
+      "description": "Expiration date and time of the offer."
+    }
+  },
+  "required": ["offerId", "listingId", "amount"],
+  "additionalProperties": false
+}

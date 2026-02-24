@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/notification/sent.schema.json",
+  "title": "Notification Sent",
+  "description": "Fires when a notification is sent to a user",
+  "type": "object",
+  "properties": {
+    "notificationId": {
+      "type": "string"
+    },
+    "channel": {
+      "type": "string",
+      "enum": ["push", "in_app", "email", "sms", "webhook"]
+    },
+    "title": {
+      "type": "string"
+    },
+    "campaignId": {
+      "type": "string"
+    }
+  },
+  "required": ["notificationId", "channel"],
+  "additionalProperties": false
+}

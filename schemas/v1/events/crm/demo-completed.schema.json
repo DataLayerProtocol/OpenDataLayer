@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/crm/demo-completed.schema.json",
+  "title": "CRM Demo Completed",
+  "description": "Fires when a product demo is completed.",
+  "type": "object",
+  "properties": {
+    "demoId": {
+      "type": "string",
+      "description": "Unique identifier for the demo."
+    },
+    "leadId": {
+      "type": "string",
+      "description": "Unique identifier for the associated lead."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Actual duration in minutes."
+    },
+    "attendeeCount": {
+      "type": "integer",
+      "description": "Number of attendees in the demo."
+    },
+    "outcome": {
+      "type": "string",
+      "enum": ["interested", "not_interested", "follow_up", "deal_created"],
+      "description": "Outcome of the demo."
+    },
+    "followUpDate": {
+      "type": "string",
+      "description": "Date for follow-up after the demo."
+    }
+  },
+  "required": ["demoId"],
+  "additionalProperties": false
+}

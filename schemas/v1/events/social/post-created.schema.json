@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/social/post-created.schema.json",
+  "title": "Social Post Created",
+  "description": "Fires when a user creates a new post.",
+  "type": "object",
+  "properties": {
+    "postId": {
+      "type": "string",
+      "description": "The unique identifier of the newly created post."
+    },
+    "postType": {
+      "type": "string",
+      "enum": ["text", "image", "video", "link", "poll", "story"],
+      "description": "The type of post created."
+    },
+    "hasMedia": {
+      "type": "boolean",
+      "description": "Whether the post contains media attachments."
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["public", "private", "followers", "group"],
+      "description": "The visibility setting of the post."
+    }
+  },
+  "required": ["postId"],
+  "additionalProperties": false
+}

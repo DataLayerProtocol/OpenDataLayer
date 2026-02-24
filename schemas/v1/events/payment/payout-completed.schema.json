@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/payment/payout-completed.schema.json",
+  "title": "Payout Completed",
+  "description": "Fired when a payout is successfully completed.",
+  "type": "object",
+  "properties": {
+    "payoutId": {
+      "type": "string",
+      "description": "Unique identifier for the payout."
+    },
+    "amount": {
+      "type": "number",
+      "description": "The monetary amount of the payout."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "destination": {
+      "type": "string",
+      "description": "The destination account or identifier for the payout."
+    },
+    "completedAt": {
+      "type": "string",
+      "description": "ISO 8601 datetime when the payout was completed."
+    }
+  },
+  "required": ["payoutId", "amount"],
+  "additionalProperties": false
+}

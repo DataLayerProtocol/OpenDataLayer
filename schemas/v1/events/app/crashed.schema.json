@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/app/crashed.schema.json",
+  "title": "App Crashed",
+  "description": "Fired when the application crashes.",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "The crash error message."
+    },
+    "stackTrace": {
+      "type": "string",
+      "description": "The stack trace of the crash, if available."
+    },
+    "screenName": {
+      "type": "string",
+      "description": "The screen the user was on when the crash occurred."
+    },
+    "isFatal": {
+      "type": "boolean",
+      "description": "Whether the crash was fatal."
+    },
+    "appVersion": {
+      "type": "string",
+      "description": "The version of the app at the time of the crash."
+    },
+    "osVersion": {
+      "type": "string",
+      "description": "The operating system version at the time of the crash."
+    }
+  },
+  "required": ["message"],
+  "additionalProperties": false
+}

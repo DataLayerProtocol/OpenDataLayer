@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/gaming/score-posted.schema.json",
+  "title": "Gaming Score Posted",
+  "description": "Fires when a player posts a score to a leaderboard.",
+  "type": "object",
+  "properties": {
+    "score": {
+      "type": "number",
+      "description": "Score value posted."
+    },
+    "leaderboardId": {
+      "type": "string",
+      "description": "Unique identifier for the leaderboard."
+    },
+    "leaderboardName": {
+      "type": "string",
+      "description": "Name of the leaderboard."
+    },
+    "rank": {
+      "type": "integer",
+      "description": "Player's rank on the leaderboard."
+    },
+    "levelId": {
+      "type": "string",
+      "description": "Unique identifier for the level the score was achieved on."
+    },
+    "isPersonalBest": {
+      "type": "boolean",
+      "description": "Whether this score is a new personal best."
+    }
+  },
+  "required": ["score"],
+  "additionalProperties": false
+}

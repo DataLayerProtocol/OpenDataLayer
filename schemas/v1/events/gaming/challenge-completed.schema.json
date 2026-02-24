@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/gaming/challenge-completed.schema.json",
+  "title": "Gaming Challenge Completed",
+  "description": "Fires when a player completes a challenge.",
+  "type": "object",
+  "properties": {
+    "challengeId": {
+      "type": "string",
+      "description": "Unique identifier for the challenge."
+    },
+    "challengeName": {
+      "type": "string",
+      "description": "Name of the challenge."
+    },
+    "challengeType": {
+      "type": "string",
+      "description": "Type of challenge."
+    },
+    "score": {
+      "type": "number",
+      "description": "Score achieved in the challenge."
+    },
+    "reward": {
+      "type": "string",
+      "description": "Reward earned for completing the challenge."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Time to complete in seconds."
+    },
+    "isFirstCompletion": {
+      "type": "boolean",
+      "description": "Whether this is the first time the player completed this challenge."
+    }
+  },
+  "required": ["challengeId"],
+  "additionalProperties": false
+}

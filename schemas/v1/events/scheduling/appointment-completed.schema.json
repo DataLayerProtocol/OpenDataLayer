@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/scheduling/appointment-completed.schema.json",
+  "title": "Scheduling Appointment Completed",
+  "description": "Fires when a scheduled appointment is completed.",
+  "type": "object",
+  "properties": {
+    "appointmentId": {
+      "type": "string",
+      "description": "Unique identifier for the appointment."
+    },
+    "appointmentType": {
+      "type": "string",
+      "description": "Type or category of the appointment."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Actual duration of the appointment in minutes."
+    },
+    "providerId": {
+      "type": "string",
+      "description": "Identifier of the service provider."
+    },
+    "noShow": {
+      "type": "boolean",
+      "description": "Whether the user did not show up for the appointment."
+    }
+  },
+  "required": ["appointmentId"],
+  "additionalProperties": false
+}

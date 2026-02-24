@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/payment/method-removed.schema.json",
+  "title": "Payment Method Removed",
+  "description": "Fired when a user removes a payment method.",
+  "type": "object",
+  "properties": {
+    "methodType": {
+      "type": "string",
+      "description": "The type of payment method removed."
+    },
+    "last4": {
+      "type": "string",
+      "description": "The last four digits or characters of the payment method identifier."
+    }
+  },
+  "required": ["methodType"],
+  "additionalProperties": false
+}

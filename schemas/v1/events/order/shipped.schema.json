@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/order/shipped.schema.json",
+  "title": "Order Shipped",
+  "description": "Fired when an order is shipped.",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "Unique identifier for the order."
+    },
+    "carrier": {
+      "type": "string",
+      "description": "The name of the shipping carrier (e.g. UPS, FedEx, USPS)."
+    },
+    "trackingNumber": {
+      "type": "string",
+      "description": "The tracking number for the shipment."
+    },
+    "trackingUrl": {
+      "type": "string",
+      "description": "A URL to track the shipment."
+    },
+    "estimatedDelivery": {
+      "type": "string",
+      "description": "ISO 8601 date or datetime for the estimated delivery."
+    },
+    "shipmentId": {
+      "type": "string",
+      "description": "Unique identifier for the shipment."
+    }
+  },
+  "required": ["orderId"],
+  "additionalProperties": false
+}

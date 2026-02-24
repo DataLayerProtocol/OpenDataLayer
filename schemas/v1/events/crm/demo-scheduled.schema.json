@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/crm/demo-scheduled.schema.json",
+  "title": "CRM Demo Scheduled",
+  "description": "Fires when a product demo is scheduled with a prospect.",
+  "type": "object",
+  "properties": {
+    "demoId": {
+      "type": "string",
+      "description": "Unique identifier for the demo."
+    },
+    "leadId": {
+      "type": "string",
+      "description": "Unique identifier for the associated lead."
+    },
+    "scheduledAt": {
+      "type": "string",
+      "description": "Scheduled date and time of the demo."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Scheduled duration in minutes."
+    },
+    "product": {
+      "type": "string",
+      "description": "Product being demonstrated."
+    },
+    "presenterId": {
+      "type": "string",
+      "description": "Unique identifier for the presenter."
+    }
+  },
+  "required": ["demoId", "scheduledAt"],
+  "additionalProperties": false
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/subscription/cancelled.schema.json",
+  "title": "Subscription Cancelled",
+  "description": "Fired when a subscription is cancelled.",
+  "type": "object",
+  "properties": {
+    "subscriptionId": {
+      "type": "string",
+      "description": "Unique identifier for the subscription."
+    },
+    "planId": {
+      "type": "string",
+      "description": "Unique identifier for the subscription plan."
+    },
+    "planName": {
+      "type": "string",
+      "description": "Human-readable name of the subscription plan."
+    },
+    "reason": {
+      "type": "string",
+      "description": "The reason for cancellation."
+    },
+    "feedback": {
+      "type": "string",
+      "description": "Additional feedback provided by the user about the cancellation."
+    },
+    "effectiveDate": {
+      "type": "string",
+      "description": "ISO 8601 date or datetime when the cancellation takes effect."
+    },
+    "willExpireAt": {
+      "type": "string",
+      "description": "ISO 8601 date or datetime when the subscription access will expire."
+    }
+  },
+  "required": ["subscriptionId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/referral/link-shared.schema.json",
+  "title": "Referral Link Shared",
+  "description": "Fires when a user shares a referral link.",
+  "type": "object",
+  "properties": {
+    "referralId": {
+      "type": "string",
+      "description": "The unique identifier of the referral."
+    },
+    "method": {
+      "type": "string",
+      "enum": ["email", "social", "copy_link", "sms", "messaging"],
+      "description": "The method used to share the referral link."
+    },
+    "channel": {
+      "type": "string",
+      "description": "The specific channel or platform where the link was shared."
+    }
+  },
+  "required": ["referralId"],
+  "additionalProperties": false
+}

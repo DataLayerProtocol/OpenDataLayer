@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/automation/workflow_completed.schema.json",
+  "title": "Automation Workflow Completed",
+  "description": "Fired when an automation workflow completes execution.",
+  "type": "object",
+  "properties": {
+    "workflowId": {
+      "type": "string",
+      "description": "Unique identifier for the workflow."
+    },
+    "workflowName": {
+      "type": "string",
+      "description": "Human-readable name of the workflow."
+    },
+    "executionId": {
+      "type": "string",
+      "description": "Unique identifier for this specific workflow execution."
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Workflow execution time in milliseconds."
+    },
+    "stepsCompleted": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of workflow steps that were completed."
+    },
+    "totalSteps": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The total number of steps in the workflow."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["success", "partial", "skipped"],
+      "description": "The completion status of the workflow."
+    }
+  },
+  "required": ["workflowId"],
+  "additionalProperties": false
+}

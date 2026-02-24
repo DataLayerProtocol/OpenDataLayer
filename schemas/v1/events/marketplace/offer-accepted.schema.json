@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/marketplace/offer-accepted.schema.json",
+  "title": "Marketplace Offer Accepted",
+  "description": "Fires when a seller accepts an offer on a marketplace listing.",
+  "type": "object",
+  "properties": {
+    "offerId": {
+      "type": "string",
+      "description": "Unique identifier for the offer."
+    },
+    "listingId": {
+      "type": "string",
+      "description": "Unique identifier for the listing."
+    },
+    "amount": {
+      "type": "number",
+      "description": "Accepted offer amount."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the offer amount."
+    }
+  },
+  "required": ["offerId", "listingId", "amount"],
+  "additionalProperties": false
+}

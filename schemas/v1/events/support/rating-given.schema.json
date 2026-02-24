@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/support/rating-given.schema.json",
+  "title": "Support Rating Given",
+  "description": "Fires when a user gives a rating to an agent, interaction, article, or resolution.",
+  "type": "object",
+  "properties": {
+    "targetId": {
+      "type": "string",
+      "description": "Unique identifier of the item being rated."
+    },
+    "targetType": {
+      "type": "string",
+      "description": "Type of entity being rated.",
+      "enum": ["agent", "interaction", "article", "resolution"]
+    },
+    "rating": {
+      "type": "number",
+      "description": "Numeric rating given by the user."
+    },
+    "maxRating": {
+      "type": "number",
+      "description": "Maximum possible rating on the scale."
+    }
+  },
+  "required": ["targetId", "targetType", "rating"],
+  "additionalProperties": false
+}

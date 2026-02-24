@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/file/version_created.schema.json",
+  "title": "File Version Created",
+  "description": "Fired when a new version of a file is created.",
+  "type": "object",
+  "properties": {
+    "fileId": {
+      "type": "string",
+      "description": "Unique identifier for the file."
+    },
+    "fileName": {
+      "type": "string",
+      "description": "Name of the file."
+    },
+    "versionNumber": {
+      "type": "integer",
+      "description": "The version number of the new file version."
+    },
+    "versionId": {
+      "type": "string",
+      "description": "Unique identifier for the new version."
+    },
+    "previousVersionId": {
+      "type": "string",
+      "description": "Unique identifier for the previous version."
+    },
+    "changeDescription": {
+      "type": "string",
+      "description": "Description of the changes made in this version."
+    },
+    "fileSize": {
+      "type": "number",
+      "description": "File size in bytes."
+    }
+  },
+  "required": ["fileId"],
+  "additionalProperties": false
+}

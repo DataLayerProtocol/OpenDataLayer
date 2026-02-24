@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/app/opened.schema.json",
+  "title": "App Opened",
+  "description": "Fired when a user opens the application.",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "The version of the app that was opened."
+    },
+    "isFirstOpen": {
+      "type": "boolean",
+      "description": "Whether this is the first time the user has opened the app."
+    },
+    "openedFrom": {
+      "type": "string",
+      "enum": ["direct", "push_notification", "deep_link", "widget", "shortcut"],
+      "description": "How the app was opened."
+    },
+    "referringUrl": {
+      "type": "string",
+      "description": "The URL that referred the user to open the app, if any."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

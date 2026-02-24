@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/education/lesson-started.schema.json",
+  "title": "Education Lesson Started",
+  "description": "Fires when a user starts a lesson within a course.",
+  "type": "object",
+  "properties": {
+    "lessonId": {
+      "type": "string",
+      "description": "Unique identifier for the lesson."
+    },
+    "lessonName": {
+      "type": "string",
+      "description": "Name of the lesson."
+    },
+    "courseId": {
+      "type": "string",
+      "description": "Unique identifier for the parent course."
+    },
+    "lessonNumber": {
+      "type": "integer",
+      "description": "Sequential number of the lesson within the course."
+    },
+    "lessonType": {
+      "type": "string",
+      "enum": ["video", "text", "interactive", "quiz", "assignment", "live"],
+      "description": "Type of lesson content."
+    }
+  },
+  "required": ["lessonId"],
+  "additionalProperties": false
+}

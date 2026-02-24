@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/review/deleted.schema.json",
+  "title": "Review Deleted",
+  "description": "Fires when a review is deleted.",
+  "type": "object",
+  "properties": {
+    "reviewId": {
+      "type": "string",
+      "description": "The unique identifier of the deleted review."
+    },
+    "targetId": {
+      "type": "string",
+      "description": "The unique identifier of the item that was reviewed."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["user", "moderation", "policy"],
+      "description": "The reason the review was deleted."
+    }
+  },
+  "required": ["reviewId"],
+  "additionalProperties": false
+}

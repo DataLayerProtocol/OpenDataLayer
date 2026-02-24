@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/finance/transfer-completed.schema.json",
+  "title": "Transfer Completed",
+  "description": "Fired when a financial transfer is successfully completed.",
+  "type": "object",
+  "properties": {
+    "transferId": {
+      "type": "string",
+      "description": "Unique identifier for the transfer."
+    },
+    "amount": {
+      "type": "number",
+      "description": "The monetary amount of the transfer."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "fromAccountId": {
+      "type": "string",
+      "description": "Identifier of the source account."
+    },
+    "toAccountId": {
+      "type": "string",
+      "description": "Identifier of the destination account."
+    },
+    "transferType": {
+      "type": "string",
+      "enum": ["internal", "external", "p2p", "wire", "ach", "instant"],
+      "description": "The type of transfer."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Time to complete transfer in seconds."
+    },
+    "fee": {
+      "type": "number",
+      "description": "The fee charged for the transfer."
+    }
+  },
+  "required": ["transferId", "amount"],
+  "additionalProperties": false
+}

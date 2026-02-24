@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/integration/sync_started.schema.json",
+  "title": "Integration Sync Started",
+  "description": "Fired when an integration data sync begins.",
+  "type": "object",
+  "properties": {
+    "integrationId": {
+      "type": "string",
+      "description": "Unique identifier for the integration."
+    },
+    "integrationName": {
+      "type": "string",
+      "description": "Human-readable name of the integration."
+    },
+    "syncType": {
+      "type": "string",
+      "enum": ["full", "incremental", "manual", "scheduled"],
+      "description": "The type of sync operation."
+    },
+    "direction": {
+      "type": "string",
+      "enum": ["inbound", "outbound", "bidirectional"],
+      "description": "The direction of data flow for the sync."
+    },
+    "dataType": {
+      "type": "string",
+      "description": "The type of data being synced."
+    }
+  },
+  "required": ["integrationId"],
+  "additionalProperties": false
+}

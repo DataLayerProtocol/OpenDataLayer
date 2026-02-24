@@ -1,8 +1,8 @@
 {
   "name": "@opendatalayer/adapter-tealium",
   "version": "0.1.0",
-  "description": "OpenDataLayer adapter for Tealium iQ / EventStream [PREVIEW - not yet implemented]",
-  "keywords": ["opendatalayer", "tealium", "analytics", "preview"],
+  "description": "OpenDataLayer adapter for Tealium iQ and EventStream",
+  "keywords": ["opendatalayer", "tealium", "analytics", "eventstream"],
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",

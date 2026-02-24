@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/feature/limit_reached.schema.json",
+  "title": "Feature Limit Reached",
+  "description": "Fired when a user reaches the usage limit for a feature.",
+  "type": "object",
+  "properties": {
+    "featureName": {
+      "type": "string",
+      "description": "Human-readable name of the feature whose limit was reached."
+    },
+    "featureId": {
+      "type": "string",
+      "description": "Unique identifier for the feature."
+    },
+    "limitType": {
+      "type": "string",
+      "enum": ["usage", "storage", "seats", "api_calls", "bandwidth", "other"],
+      "description": "The type of limit that was reached."
+    },
+    "currentUsage": {
+      "type": "number",
+      "description": "The current usage value at the time the limit was reached."
+    },
+    "limit": {
+      "type": "number",
+      "description": "The maximum allowed value for the limit."
+    },
+    "unit": {
+      "type": "string",
+      "description": "The unit of measurement for the usage and limit values."
+    },
+    "percentUsed": {
+      "type": "number",
+      "description": "The percentage of the limit that has been consumed."
+    }
+  },
+  "required": ["featureName"],
+  "additionalProperties": false
+}

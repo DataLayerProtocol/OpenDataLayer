@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ad/revenue_earned.schema.json",
+  "title": "Ad Revenue Earned",
+  "description": "Fired when ad revenue is recorded for a served ad impression.",
+  "type": "object",
+  "properties": {
+    "adId": {
+      "type": "string",
+      "description": "Unique identifier for the ad."
+    },
+    "revenue": {
+      "type": "number",
+      "description": "The revenue amount earned from the ad."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code for the revenue (e.g. USD, EUR, GBP)."
+    },
+    "adType": {
+      "type": "string",
+      "enum": ["banner", "native", "video", "interstitial", "rewarded", "popup", "other"],
+      "description": "The format or type of the ad unit."
+    },
+    "adNetwork": {
+      "type": "string",
+      "description": "The ad network or provider serving the ad."
+    },
+    "placement": {
+      "type": "string",
+      "description": "The placement location or slot where the ad was displayed."
+    },
+    "ecpm": {
+      "type": "number",
+      "description": "Effective cost per mille (thousand impressions)."
+    }
+  },
+  "required": ["adId"],
+  "additionalProperties": false
+}

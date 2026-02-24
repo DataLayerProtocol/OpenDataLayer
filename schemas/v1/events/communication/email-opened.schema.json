@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/communication/email-opened.schema.json",
+  "title": "Communication Email Opened",
+  "description": "Fires when a recipient opens an email.",
+  "type": "object",
+  "properties": {
+    "emailId": {
+      "type": "string",
+      "description": "Unique identifier for the email."
+    },
+    "templateId": {
+      "type": "string",
+      "description": "Identifier of the email template used."
+    },
+    "campaignId": {
+      "type": "string",
+      "description": "Identifier of the associated email campaign."
+    },
+    "timeSinceSent": {
+      "type": "number",
+      "description": "Time since sent in seconds."
+    }
+  },
+  "required": ["emailId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/feature/used.schema.json",
+  "title": "Feature Used",
+  "description": "Fired when a user uses a product feature.",
+  "type": "object",
+  "properties": {
+    "featureName": {
+      "type": "string",
+      "description": "Human-readable name of the feature."
+    },
+    "featureId": {
+      "type": "string",
+      "description": "Unique identifier for the feature."
+    },
+    "module": {
+      "type": "string",
+      "description": "The product module or area the feature belongs to."
+    },
+    "action": {
+      "type": "string",
+      "description": "The specific action performed within the feature."
+    },
+    "usageCount": {
+      "type": "integer",
+      "description": "Cumulative usage count for this feature."
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Additional key-value pairs providing context about the feature usage."
+    }
+  },
+  "required": ["featureName"],
+  "additionalProperties": false
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/social/unlike.schema.json",
+  "title": "Social Unlike",
+  "description": "Fires when a user removes a like from a piece of content.",
+  "type": "object",
+  "properties": {
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content being unliked."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The type of content being unliked."
+    }
+  },
+  "required": ["contentId"],
+  "additionalProperties": false
+}

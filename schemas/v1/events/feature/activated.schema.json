@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/feature/activated.schema.json",
+  "title": "Feature Activated",
+  "description": "Fired when a feature is activated for a user or account.",
+  "type": "object",
+  "properties": {
+    "featureName": {
+      "type": "string",
+      "description": "Human-readable name of the feature."
+    },
+    "featureId": {
+      "type": "string",
+      "description": "Unique identifier for the feature."
+    },
+    "method": {
+      "type": "string",
+      "enum": ["self_service", "admin", "api", "upgrade", "trial"],
+      "description": "The method by which the feature was activated."
+    },
+    "plan": {
+      "type": "string",
+      "description": "The subscription plan associated with the feature activation."
+    }
+  },
+  "required": ["featureName"],
+  "additionalProperties": false
+}

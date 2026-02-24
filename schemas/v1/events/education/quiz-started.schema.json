@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/education/quiz-started.schema.json",
+  "title": "Education Quiz Started",
+  "description": "Fires when a user starts a quiz.",
+  "type": "object",
+  "properties": {
+    "quizId": {
+      "type": "string",
+      "description": "Unique identifier for the quiz."
+    },
+    "quizName": {
+      "type": "string",
+      "description": "Name of the quiz."
+    },
+    "courseId": {
+      "type": "string",
+      "description": "Unique identifier for the parent course."
+    },
+    "lessonId": {
+      "type": "string",
+      "description": "Unique identifier for the parent lesson."
+    },
+    "questionCount": {
+      "type": "integer",
+      "description": "Total number of questions in the quiz."
+    },
+    "timeLimit": {
+      "type": "number",
+      "description": "Time limit in seconds."
+    },
+    "attemptNumber": {
+      "type": "integer",
+      "description": "Which attempt number this is for the user."
+    }
+  },
+  "required": ["quizId"],
+  "additionalProperties": false
+}

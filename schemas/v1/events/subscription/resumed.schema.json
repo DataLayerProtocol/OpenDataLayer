@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/subscription/resumed.schema.json",
+  "title": "Subscription Resumed",
+  "description": "Fired when a previously paused subscription is resumed.",
+  "type": "object",
+  "properties": {
+    "subscriptionId": {
+      "type": "string",
+      "description": "Unique identifier for the subscription."
+    },
+    "planId": {
+      "type": "string",
+      "description": "Unique identifier for the subscription plan."
+    },
+    "pauseDuration": {
+      "type": "number",
+      "description": "Duration of pause in days."
+    }
+  },
+  "required": ["subscriptionId"],
+  "additionalProperties": false
+}

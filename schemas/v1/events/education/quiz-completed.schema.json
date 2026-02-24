@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/education/quiz-completed.schema.json",
+  "title": "Education Quiz Completed",
+  "description": "Fires when a user completes a quiz and results are available.",
+  "type": "object",
+  "properties": {
+    "quizId": {
+      "type": "string",
+      "description": "Unique identifier for the quiz."
+    },
+    "quizName": {
+      "type": "string",
+      "description": "Name of the quiz."
+    },
+    "courseId": {
+      "type": "string",
+      "description": "Unique identifier for the parent course."
+    },
+    "score": {
+      "type": "number",
+      "description": "Score achieved on the quiz."
+    },
+    "maxScore": {
+      "type": "number",
+      "description": "Maximum possible score."
+    },
+    "passed": {
+      "type": "boolean",
+      "description": "Whether the user passed the quiz."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Time taken in seconds."
+    },
+    "correctAnswers": {
+      "type": "integer",
+      "description": "Number of correct answers."
+    },
+    "totalQuestions": {
+      "type": "integer",
+      "description": "Total number of questions."
+    }
+  },
+  "required": ["quizId", "score"],
+  "additionalProperties": false
+}

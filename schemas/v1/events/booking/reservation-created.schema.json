@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/booking/reservation_created.schema.json",
+  "title": "Booking Reservation Created",
+  "description": "Fired when a new reservation is created.",
+  "type": "object",
+  "properties": {
+    "reservationId": {
+      "type": "string",
+      "description": "Unique identifier for the reservation."
+    },
+    "bookingType": {
+      "type": "string",
+      "enum": ["hotel", "flight", "restaurant", "rental_car", "activity", "event", "other"],
+      "description": "The type of booking."
+    },
+    "propertyName": {
+      "type": "string",
+      "description": "Name of the property or venue being booked."
+    },
+    "checkIn": {
+      "type": "string",
+      "description": "The check-in date or start date."
+    },
+    "checkOut": {
+      "type": "string",
+      "description": "The check-out date or end date."
+    },
+    "guests": {
+      "type": "integer",
+      "description": "The number of guests."
+    },
+    "rooms": {
+      "type": "integer",
+      "description": "The number of rooms booked."
+    },
+    "total": {
+      "type": "number",
+      "description": "Total cost of the reservation."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the total amount."
+    }
+  },
+  "required": ["reservationId"],
+  "additionalProperties": false
+}

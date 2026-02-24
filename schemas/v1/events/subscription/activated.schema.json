@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/subscription/activated.schema.json",
+  "title": "Subscription Activated",
+  "description": "Fired when a subscription becomes active.",
+  "type": "object",
+  "properties": {
+    "subscriptionId": {
+      "type": "string",
+      "description": "Unique identifier for the subscription."
+    },
+    "planId": {
+      "type": "string",
+      "description": "Unique identifier for the subscription plan."
+    },
+    "planName": {
+      "type": "string",
+      "description": "Human-readable name of the subscription plan."
+    },
+    "amount": {
+      "type": "number",
+      "description": "The monetary amount charged per billing interval."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "interval": {
+      "type": "string",
+      "description": "Billing interval for the subscription (e.g. monthly, yearly)."
+    }
+  },
+  "required": ["subscriptionId", "planId"],
+  "additionalProperties": false
+}

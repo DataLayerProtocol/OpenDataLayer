@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/integration/disconnected.schema.json",
+  "title": "Integration Disconnected",
+  "description": "Fired when an integration is disconnected from the platform.",
+  "type": "object",
+  "properties": {
+    "integrationId": {
+      "type": "string",
+      "description": "Unique identifier for the integration."
+    },
+    "integrationName": {
+      "type": "string",
+      "description": "Human-readable name of the integration."
+    },
+    "provider": {
+      "type": "string",
+      "description": "The third-party provider of the integration."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["user_request", "token_expired", "error", "admin_action", "provider_revoked", "other"],
+      "description": "The reason the integration was disconnected."
+    },
+    "disconnectedBy": {
+      "type": "string",
+      "enum": ["user", "admin", "system", "provider"],
+      "description": "The actor that initiated the disconnection."
+    }
+  },
+  "required": ["integrationId"],
+  "additionalProperties": false
+}

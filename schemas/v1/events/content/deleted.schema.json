@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/content/deleted.schema.json",
+  "title": "Content Deleted",
+  "description": "Fires when a piece of content is deleted.",
+  "type": "object",
+  "properties": {
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content deleted."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The type of content deleted."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the content."
+    },
+    "reason": {
+      "type": "string",
+      "description": "The reason the content was deleted."
+    }
+  },
+  "required": ["contentId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/collaboration/member_removed.schema.json",
+  "title": "Collaboration Member Removed",
+  "description": "Fires when a member is removed from a workspace.",
+  "type": "object",
+  "properties": {
+    "workspaceId": {
+      "type": "string",
+      "description": "The unique identifier of the workspace the member was removed from."
+    },
+    "memberId": {
+      "type": "string",
+      "description": "The unique identifier of the removed member."
+    },
+    "role": {
+      "type": "string",
+      "enum": ["owner", "admin", "editor", "viewer", "commenter", "guest"],
+      "description": "The role the member held before removal."
+    },
+    "removedBy": {
+      "type": "string",
+      "enum": ["admin", "self", "system"],
+      "description": "The actor that initiated the removal."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["offboarding", "access_review", "request", "inactivity", "other"],
+      "description": "The reason for the member's removal."
+    }
+  },
+  "required": ["workspaceId"],
+  "additionalProperties": false
+}

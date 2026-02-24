@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/account/reactivated.schema.json",
+  "title": "Account Reactivated",
+  "description": "Fired when a previously inactive account is reactivated.",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "Unique identifier for the account."
+    },
+    "previousStatus": {
+      "type": "string",
+      "enum": ["suspended", "cancelled", "expired"],
+      "description": "The status the account was in before reactivation."
+    },
+    "reactivatedBy": {
+      "type": "string",
+      "enum": ["customer", "admin", "system"],
+      "description": "The party that initiated the reactivation."
+    }
+  },
+  "required": ["accountId"],
+  "additionalProperties": false
+}

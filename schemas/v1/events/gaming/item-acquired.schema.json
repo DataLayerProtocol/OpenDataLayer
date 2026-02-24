@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/gaming/item-acquired.schema.json",
+  "title": "Gaming Item Acquired",
+  "description": "Fires when a player acquires an in-game item.",
+  "type": "object",
+  "properties": {
+    "itemId": {
+      "type": "string",
+      "description": "Unique identifier for the item."
+    },
+    "itemName": {
+      "type": "string",
+      "description": "Name of the item."
+    },
+    "itemType": {
+      "type": "string",
+      "enum": ["weapon", "armor", "consumable", "cosmetic", "currency", "material", "other"],
+      "description": "Type of item acquired."
+    },
+    "rarity": {
+      "type": "string",
+      "description": "Rarity tier of the item."
+    },
+    "source": {
+      "type": "string",
+      "enum": ["purchase", "drop", "reward", "craft", "trade", "gift"],
+      "description": "How the item was acquired."
+    },
+    "quantity": {
+      "type": "integer",
+      "description": "Number of items acquired."
+    },
+    "virtualCurrencyCost": {
+      "type": "number",
+      "description": "Cost in virtual currency."
+    },
+    "realCurrencyCost": {
+      "type": "number",
+      "description": "Cost in real currency."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for real currency cost."
+    }
+  },
+  "required": ["itemId"],
+  "additionalProperties": false
+}

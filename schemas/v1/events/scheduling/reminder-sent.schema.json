@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/scheduling/reminder-sent.schema.json",
+  "title": "Scheduling Reminder Sent",
+  "description": "Fires when a reminder notification is sent to a user about an upcoming appointment.",
+  "type": "object",
+  "properties": {
+    "appointmentId": {
+      "type": "string",
+      "description": "Unique identifier for the appointment."
+    },
+    "channel": {
+      "type": "string",
+      "description": "Channel through which the reminder was sent.",
+      "enum": ["email", "sms", "push", "in_app"]
+    },
+    "reminderType": {
+      "type": "string",
+      "description": "Predefined reminder interval.",
+      "enum": ["1_day", "1_hour", "15_min", "custom"]
+    },
+    "timeBefore": {
+      "type": "number",
+      "description": "Minutes before appointment."
+    }
+  },
+  "required": ["appointmentId"],
+  "additionalProperties": false
+}

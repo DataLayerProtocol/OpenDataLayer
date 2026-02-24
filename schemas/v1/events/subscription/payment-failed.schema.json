@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/subscription/payment-failed.schema.json",
+  "title": "Subscription Payment Failed",
+  "description": "Fired when a subscription payment attempt fails.",
+  "type": "object",
+  "properties": {
+    "subscriptionId": {
+      "type": "string",
+      "description": "Unique identifier for the subscription."
+    },
+    "planId": {
+      "type": "string",
+      "description": "Unique identifier for the subscription plan."
+    },
+    "amount": {
+      "type": "number",
+      "description": "The monetary amount of the failed payment."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "failureReason": {
+      "type": "string",
+      "description": "The reason the payment failed."
+    },
+    "retryDate": {
+      "type": "string",
+      "description": "ISO 8601 date or datetime when the next payment retry is scheduled."
+    },
+    "attemptCount": {
+      "type": "integer",
+      "description": "The number of payment attempts made including this failure."
+    }
+  },
+  "required": ["subscriptionId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/social/follow.schema.json",
+  "title": "Social Follow",
+  "description": "Fires when a user follows another user.",
+  "type": "object",
+  "properties": {
+    "targetUserId": {
+      "type": "string",
+      "description": "The unique identifier of the user being followed."
+    },
+    "targetUserName": {
+      "type": "string",
+      "description": "The display name of the user being followed."
+    },
+    "source": {
+      "type": "string",
+      "enum": ["profile", "suggestion", "search", "content"],
+      "description": "The source from which the follow action was initiated."
+    }
+  },
+  "required": ["targetUserId"],
+  "additionalProperties": false
+}

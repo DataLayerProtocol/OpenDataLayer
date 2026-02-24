@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/experiment/exposure.schema.json",
+  "title": "Experiment Exposure",
+  "description": "Fired when a user is exposed to an experiment variant.",
+  "type": "object",
+  "properties": {
+    "experimentId": {
+      "type": "string",
+      "description": "Unique identifier for the experiment."
+    },
+    "experimentName": {
+      "type": "string",
+      "description": "Human-readable name of the experiment."
+    },
+    "variantId": {
+      "type": "string",
+      "description": "Unique identifier for the variant the user was exposed to."
+    },
+    "variantName": {
+      "type": "string",
+      "description": "Human-readable name of the variant."
+    },
+    "isControl": {
+      "type": "boolean",
+      "description": "Whether the variant is the control group."
+    }
+  },
+  "required": ["experimentId", "variantId"],
+  "additionalProperties": false
+}

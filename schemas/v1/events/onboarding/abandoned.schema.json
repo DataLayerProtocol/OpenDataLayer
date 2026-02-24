@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/onboarding/abandoned.schema.json",
+  "title": "Onboarding Abandoned",
+  "description": "Fires when a user abandons an onboarding flow before completion",
+  "type": "object",
+  "properties": {
+    "flowId": {
+      "type": "string"
+    },
+    "lastStep": {
+      "type": "integer"
+    },
+    "lastStepName": {
+      "type": "string"
+    },
+    "stepsCompleted": {
+      "type": "integer"
+    },
+    "duration": {
+      "type": "number"
+    }
+  },
+  "required": ["flowId"],
+  "additionalProperties": false
+}

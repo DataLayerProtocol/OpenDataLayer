@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/order/returned.schema.json",
+  "title": "Order Returned",
+  "description": "Fired when an order return is completed.",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "Unique identifier for the order."
+    },
+    "refundAmount": {
+      "type": "number",
+      "description": "The monetary amount refunded for the return."
+    },
+    "refundMethod": {
+      "type": "string",
+      "enum": ["original_payment", "store_credit", "exchange"],
+      "description": "The method used to issue the refund."
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the product."
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of the product."
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "The quantity of this product returned."
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "The list of products that were returned."
+    },
+    "returnId": {
+      "type": "string",
+      "description": "Unique identifier for the return."
+    }
+  },
+  "required": ["orderId"],
+  "additionalProperties": false
+}

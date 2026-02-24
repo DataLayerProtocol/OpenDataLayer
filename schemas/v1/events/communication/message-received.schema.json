@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/communication/message-received.schema.json",
+  "title": "Communication Message Received",
+  "description": "Fires when a user receives a message through a communication channel.",
+  "type": "object",
+  "properties": {
+    "messageId": {
+      "type": "string",
+      "description": "Unique identifier for the message."
+    },
+    "channel": {
+      "type": "string",
+      "description": "Communication channel through which the message was received."
+    },
+    "conversationId": {
+      "type": "string",
+      "description": "Identifier for the conversation thread."
+    },
+    "senderId": {
+      "type": "string",
+      "description": "Identifier of the message sender."
+    }
+  },
+  "required": ["channel"],
+  "additionalProperties": false
+}

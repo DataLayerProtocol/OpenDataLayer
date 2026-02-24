@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/communication/message-sent.schema.json",
+  "title": "Communication Message Sent",
+  "description": "Fires when a user sends a message through a chat, messaging, or in-app channel.",
+  "type": "object",
+  "properties": {
+    "messageId": {
+      "type": "string",
+      "description": "Unique identifier for the message."
+    },
+    "channel": {
+      "type": "string",
+      "description": "Communication channel used to send the message.",
+      "enum": ["chat", "messaging", "in_app"]
+    },
+    "conversationId": {
+      "type": "string",
+      "description": "Identifier for the conversation thread."
+    },
+    "hasAttachment": {
+      "type": "boolean",
+      "description": "Whether the message includes a file attachment."
+    },
+    "hasMedia": {
+      "type": "boolean",
+      "description": "Whether the message includes media such as images or videos."
+    }
+  },
+  "required": ["channel"],
+  "additionalProperties": false
+}

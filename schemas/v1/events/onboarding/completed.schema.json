@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/onboarding/completed.schema.json",
+  "title": "Onboarding Completed",
+  "description": "Fires when a user completes an entire onboarding flow",
+  "type": "object",
+  "properties": {
+    "flowId": {
+      "type": "string"
+    },
+    "flowName": {
+      "type": "string"
+    },
+    "totalDuration": {
+      "type": "number",
+      "description": "Total time to complete in milliseconds"
+    },
+    "stepsCompleted": {
+      "type": "integer"
+    },
+    "stepsSkipped": {
+      "type": "integer"
+    }
+  },
+  "required": ["flowId"],
+  "additionalProperties": false
+}

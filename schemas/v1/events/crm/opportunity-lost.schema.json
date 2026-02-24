@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/crm/opportunity-lost.schema.json",
+  "title": "CRM Opportunity Lost",
+  "description": "Fires when a sales opportunity is closed as lost.",
+  "type": "object",
+  "properties": {
+    "opportunityId": {
+      "type": "string",
+      "description": "Unique identifier for the opportunity."
+    },
+    "value": {
+      "type": "number",
+      "description": "Deal value at time of loss."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the deal value."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["price", "competitor", "timing", "no_budget", "no_need", "no_response", "other"],
+      "description": "Reason the opportunity was lost."
+    },
+    "competitor": {
+      "type": "string",
+      "description": "Name or identifier of the competitor that won."
+    },
+    "timeToLose": {
+      "type": "number",
+      "description": "Time from creation to loss in days."
+    }
+  },
+  "required": ["opportunityId"],
+  "additionalProperties": false
+}

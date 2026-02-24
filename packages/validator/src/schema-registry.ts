@@ -25,7 +25,7 @@ export class SchemaRegistry {
 
     for (const entry of entries) {
       const fullPath = join(currentDir, entry);
-      let stat;
+      let stat: ReturnType<typeof statSync> | undefined;
       try {
         stat = statSync(fullPath);
       } catch {
@@ -92,7 +92,7 @@ export class SchemaRegistry {
     // The namespace is everything except the last part (e.g., "ecommerce")
     // The action is the last part (e.g., "purchase", "product_added")
     const namespace = parts.slice(0, -1).join('/');
-    const action = parts[parts.length - 1]!;
+    const action = parts[parts.length - 1] ?? '';
 
     // Build candidate suffixes to search for
     const kebabAction = action.replace(/_/g, '-');

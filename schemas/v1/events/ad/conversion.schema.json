@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ad/conversion.schema.json",
+  "title": "Ad Conversion",
+  "description": "Fired when a user completes a desired action attributed to an ad.",
+  "type": "object",
+  "properties": {
+    "adId": {
+      "type": "string",
+      "description": "Unique identifier for the ad."
+    },
+    "conversionType": {
+      "type": "string",
+      "enum": ["signup", "purchase", "lead", "install", "add_to_cart", "other"],
+      "description": "The type of conversion action completed."
+    },
+    "conversionValue": {
+      "type": "number",
+      "description": "The monetary value of the conversion."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code for the conversion value (e.g. USD, EUR, GBP)."
+    },
+    "campaignId": {
+      "type": "string",
+      "description": "Unique identifier for the advertising campaign."
+    },
+    "creativeId": {
+      "type": "string",
+      "description": "Unique identifier for the ad creative."
+    },
+    "attributionModel": {
+      "type": "string",
+      "enum": ["last_click", "first_click", "linear", "time_decay", "position_based", "other"],
+      "description": "The attribution model used to credit the conversion to the ad."
+    }
+  },
+  "required": ["adId"],
+  "additionalProperties": false
+}

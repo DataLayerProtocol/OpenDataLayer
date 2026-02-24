@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/content/published.schema.json",
+  "title": "Content Published",
+  "description": "Fires when a piece of content is published.",
+  "type": "object",
+  "properties": {
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content published."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The type of content published."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the content."
+    },
+    "author": {
+      "type": "string",
+      "description": "The author of the content."
+    },
+    "category": {
+      "type": "string",
+      "description": "The category of the content."
+    },
+    "publishedAt": {
+      "type": "string",
+      "description": "The timestamp when the content was published."
+    }
+  },
+  "required": ["contentId"],
+  "additionalProperties": false
+}

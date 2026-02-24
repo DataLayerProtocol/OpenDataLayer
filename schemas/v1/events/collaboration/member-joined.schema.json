@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/collaboration/member_joined.schema.json",
+  "title": "Collaboration Member Joined",
+  "description": "Fires when a member joins a workspace.",
+  "type": "object",
+  "properties": {
+    "workspaceId": {
+      "type": "string",
+      "description": "The unique identifier of the workspace the member joined."
+    },
+    "memberId": {
+      "type": "string",
+      "description": "The unique identifier of the member who joined."
+    },
+    "role": {
+      "type": "string",
+      "enum": ["owner", "admin", "editor", "viewer", "commenter", "guest"],
+      "description": "The role assigned to the member upon joining."
+    },
+    "joinMethod": {
+      "type": "string",
+      "enum": ["invite", "link", "sso", "auto"],
+      "description": "The method used by the member to join the workspace."
+    }
+  },
+  "required": ["workspaceId"],
+  "additionalProperties": false
+}

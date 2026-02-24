@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/survey/completed.schema.json",
+  "title": "Survey Completed",
+  "description": "Fires when a user completes a survey.",
+  "type": "object",
+  "properties": {
+    "surveyId": {
+      "type": "string",
+      "description": "The unique identifier of the survey."
+    },
+    "surveyName": {
+      "type": "string",
+      "description": "The name of the survey."
+    },
+    "surveyType": {
+      "type": "string",
+      "enum": ["nps", "csat", "ces", "feedback", "poll", "research", "other"],
+      "description": "The type of survey."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Time to complete the survey in seconds."
+    },
+    "questionsAnswered": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of questions answered."
+    },
+    "totalQuestions": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The total number of questions in the survey."
+    }
+  },
+  "required": ["surveyId"],
+  "additionalProperties": false
+}

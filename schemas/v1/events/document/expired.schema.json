@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/document/expired.schema.json",
+  "title": "Document Expired",
+  "description": "Fired when a document reaches its expiration date or is otherwise invalidated.",
+  "type": "object",
+  "properties": {
+    "documentId": {
+      "type": "string",
+      "description": "Unique identifier for the document."
+    },
+    "documentName": {
+      "type": "string",
+      "description": "Human-readable name of the document."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["time_limit", "unsigned", "revoked", "superseded"],
+      "description": "The reason the document expired."
+    },
+    "originalDeadline": {
+      "type": "string",
+      "description": "The original deadline or expiration date for the document."
+    }
+  },
+  "required": ["documentId"],
+  "additionalProperties": false
+}

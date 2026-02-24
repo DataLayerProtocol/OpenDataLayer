@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/onboarding/tour-completed.schema.json",
+  "title": "Tour Completed",
+  "description": "Fires when a user completes a guided product tour",
+  "type": "object",
+  "properties": {
+    "tourId": {
+      "type": "string"
+    },
+    "tourName": {
+      "type": "string"
+    },
+    "stepsViewed": {
+      "type": "integer"
+    },
+    "totalSteps": {
+      "type": "integer"
+    }
+  },
+  "required": ["tourId"],
+  "additionalProperties": false
+}

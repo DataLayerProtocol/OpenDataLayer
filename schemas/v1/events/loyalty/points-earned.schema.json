@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/loyalty/points_earned.schema.json",
+  "title": "Loyalty Points Earned",
+  "description": "Fires when a user earns loyalty points.",
+  "type": "object",
+  "properties": {
+    "points": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of points earned."
+    },
+    "programId": {
+      "type": "string",
+      "description": "The unique identifier of the loyalty program."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["purchase", "referral", "review", "engagement", "promotion", "birthday", "signup", "other"],
+      "description": "The reason the points were earned."
+    },
+    "orderId": {
+      "type": "string",
+      "description": "The unique identifier of the associated order."
+    },
+    "balance": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total points balance after earning."
+    }
+  },
+  "required": ["points"],
+  "additionalProperties": false
+}

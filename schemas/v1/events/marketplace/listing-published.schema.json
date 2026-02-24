@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/marketplace/listing-published.schema.json",
+  "title": "Marketplace Listing Published",
+  "description": "Fires when a marketplace listing is published and made visible to buyers.",
+  "type": "object",
+  "properties": {
+    "listingId": {
+      "type": "string",
+      "description": "Unique identifier for the listing."
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the listing."
+    },
+    "category": {
+      "type": "string",
+      "description": "Category the listing belongs to."
+    },
+    "price": {
+      "type": "number",
+      "description": "Published price of the item."
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the price."
+    }
+  },
+  "required": ["listingId"],
+  "additionalProperties": false
+}

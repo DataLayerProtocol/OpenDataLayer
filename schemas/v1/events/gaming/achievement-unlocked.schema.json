@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/gaming/achievement-unlocked.schema.json",
+  "title": "Gaming Achievement Unlocked",
+  "description": "Fires when a player unlocks an achievement.",
+  "type": "object",
+  "properties": {
+    "achievementId": {
+      "type": "string",
+      "description": "Unique identifier for the achievement."
+    },
+    "achievementName": {
+      "type": "string",
+      "description": "Name of the achievement."
+    },
+    "category": {
+      "type": "string",
+      "description": "Category the achievement belongs to."
+    },
+    "points": {
+      "type": "number",
+      "description": "Point value of the achievement."
+    },
+    "rarity": {
+      "type": "string",
+      "enum": ["common", "uncommon", "rare", "epic", "legendary"],
+      "description": "Rarity tier of the achievement."
+    },
+    "isSecret": {
+      "type": "boolean",
+      "description": "Whether the achievement was hidden before being unlocked."
+    }
+  },
+  "required": ["achievementId"],
+  "additionalProperties": false
+}

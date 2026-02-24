@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/notification/delivered.schema.json",
+  "title": "Notification Delivered",
+  "description": "Fires when a notification is successfully delivered to a user",
+  "type": "object",
+  "properties": {
+    "notificationId": {
+      "type": "string"
+    },
+    "channel": {
+      "type": "string"
+    },
+    "deliveredAt": {
+      "type": "string"
+    }
+  },
+  "required": ["notificationId", "channel"],
+  "additionalProperties": false
+}

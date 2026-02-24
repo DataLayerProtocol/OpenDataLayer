@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/feature/deactivated.schema.json",
+  "title": "Feature Deactivated",
+  "description": "Fired when a feature is deactivated for a user or account.",
+  "type": "object",
+  "properties": {
+    "featureName": {
+      "type": "string",
+      "description": "Human-readable name of the feature."
+    },
+    "featureId": {
+      "type": "string",
+      "description": "Unique identifier for the feature."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["downgrade", "manual", "expired", "limit_reached", "admin"],
+      "description": "The reason the feature was deactivated."
+    },
+    "plan": {
+      "type": "string",
+      "description": "The subscription plan associated with the feature deactivation."
+    }
+  },
+  "required": ["featureName"],
+  "additionalProperties": false
+}

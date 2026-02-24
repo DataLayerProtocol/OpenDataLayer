@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/auth/mfa-completed.schema.json",
+  "title": "MFA Completed",
+  "description": "Fires when a user completes a multi-factor authentication challenge",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string"
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "challengeType": {
+      "type": "string"
+    }
+  },
+  "required": ["method", "success"],
+  "additionalProperties": false
+}

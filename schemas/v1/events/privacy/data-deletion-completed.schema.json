@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/privacy/data_deletion_completed.schema.json",
+  "title": "Data Deletion Completed",
+  "description": "Fired when a data deletion request has been fully executed.",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the data deletion request."
+    },
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier for the user whose data was deleted."
+    },
+    "scope": {
+      "type": "string",
+      "enum": ["full", "partial"],
+      "description": "The scope of the data deletion that was performed."
+    },
+    "recordsDeleted": {
+      "type": "integer",
+      "description": "The number of records that were deleted."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Time to complete deletion in milliseconds."
+    }
+  },
+  "required": ["requestId"],
+  "additionalProperties": false
+}

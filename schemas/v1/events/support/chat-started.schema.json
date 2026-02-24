@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/support/chat-started.schema.json",
+  "title": "Support Chat Started",
+  "description": "Fires when a support chat session is initiated by a user or proactively by the system.",
+  "type": "object",
+  "properties": {
+    "chatId": {
+      "type": "string",
+      "description": "Unique identifier for the chat session."
+    },
+    "channel": {
+      "type": "string",
+      "description": "Type of chat channel used.",
+      "enum": ["live_chat", "chatbot", "messaging"]
+    },
+    "topic": {
+      "type": "string",
+      "description": "Topic or reason for the chat session."
+    },
+    "isProactive": {
+      "type": "boolean",
+      "description": "Whether the chat was proactively initiated by the system or agent."
+    }
+  },
+  "required": ["chatId"],
+  "additionalProperties": false
+}

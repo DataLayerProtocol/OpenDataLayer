@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/communication/email-clicked.schema.json",
+  "title": "Communication Email Clicked",
+  "description": "Fires when a recipient clicks a link within an email.",
+  "type": "object",
+  "properties": {
+    "emailId": {
+      "type": "string",
+      "description": "Unique identifier for the email."
+    },
+    "linkUrl": {
+      "type": "string",
+      "description": "URL of the link that was clicked."
+    },
+    "linkId": {
+      "type": "string",
+      "description": "Identifier of the specific link within the email."
+    },
+    "campaignId": {
+      "type": "string",
+      "description": "Identifier of the associated email campaign."
+    }
+  },
+  "required": ["emailId"],
+  "additionalProperties": false
+}

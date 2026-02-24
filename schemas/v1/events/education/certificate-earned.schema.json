@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/education/certificate-earned.schema.json",
+  "title": "Education Certificate Earned",
+  "description": "Fires when a user earns a certificate upon completing a course.",
+  "type": "object",
+  "properties": {
+    "certificateId": {
+      "type": "string",
+      "description": "Unique identifier for the certificate."
+    },
+    "courseId": {
+      "type": "string",
+      "description": "Unique identifier for the course."
+    },
+    "courseName": {
+      "type": "string",
+      "description": "Name of the course."
+    },
+    "issuedAt": {
+      "type": "string",
+      "description": "Date and time the certificate was issued."
+    },
+    "expiresAt": {
+      "type": "string",
+      "description": "Date and time the certificate expires."
+    },
+    "credentialUrl": {
+      "type": "string",
+      "description": "URL to verify or view the credential."
+    }
+  },
+  "required": ["certificateId", "courseId"],
+  "additionalProperties": false
+}

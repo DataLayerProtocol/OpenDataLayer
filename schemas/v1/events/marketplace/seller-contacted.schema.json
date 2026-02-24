@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/marketplace/seller-contacted.schema.json",
+  "title": "Marketplace Seller Contacted",
+  "description": "Fires when a buyer contacts a seller about a marketplace listing.",
+  "type": "object",
+  "properties": {
+    "listingId": {
+      "type": "string",
+      "description": "Unique identifier for the listing."
+    },
+    "sellerId": {
+      "type": "string",
+      "description": "Unique identifier for the seller."
+    },
+    "method": {
+      "type": "string",
+      "enum": ["message", "email", "phone", "chat"],
+      "description": "Contact method used."
+    },
+    "subject": {
+      "type": "string",
+      "description": "Subject or topic of the contact."
+    }
+  },
+  "required": ["listingId"],
+  "additionalProperties": false
+}

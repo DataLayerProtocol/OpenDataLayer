@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/referral/link-created.schema.json",
+  "title": "Referral Link Created",
+  "description": "Fires when a user creates a referral link.",
+  "type": "object",
+  "properties": {
+    "referralId": {
+      "type": "string",
+      "description": "The unique identifier of the referral."
+    },
+    "programId": {
+      "type": "string",
+      "description": "The unique identifier of the referral program."
+    },
+    "programName": {
+      "type": "string",
+      "description": "The name of the referral program."
+    },
+    "channel": {
+      "type": "string",
+      "description": "The channel through which the referral link was created."
+    }
+  },
+  "required": ["referralId"],
+  "additionalProperties": false
+}

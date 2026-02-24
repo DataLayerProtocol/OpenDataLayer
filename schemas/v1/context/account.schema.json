@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/context/account.schema.json",
+  "title": "Account Context",
+  "description": "Represents the organization/account context for B2B scenarios.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The account/organization identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "The account/organization name."
+    },
+    "plan": {
+      "type": "string",
+      "description": "The account's subscription plan or tier."
+    },
+    "industry": {
+      "type": "string",
+      "description": "The account's industry vertical."
+    },
+    "employeeCount": {
+      "type": "string",
+      "enum": ["1-10", "11-50", "51-200", "201-1000", "1001-5000", "5000+"],
+      "description": "Company size range."
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "When the account was created (ISO 8601)."
+    },
+    "mrr": {
+      "type": "number",
+      "description": "Monthly recurring revenue for this account."
+    },
+    "domain": {
+      "type": "string",
+      "description": "The account's primary domain."
+    }
+  },
+  "additionalProperties": false
+}

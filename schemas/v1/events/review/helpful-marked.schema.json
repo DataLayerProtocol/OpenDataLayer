@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/review/helpful-marked.schema.json",
+  "title": "Review Helpful Marked",
+  "description": "Fires when a user marks a review as helpful or not helpful.",
+  "type": "object",
+  "properties": {
+    "reviewId": {
+      "type": "string",
+      "description": "The unique identifier of the review being marked."
+    },
+    "targetId": {
+      "type": "string",
+      "description": "The unique identifier of the item that was reviewed."
+    },
+    "isHelpful": {
+      "type": "boolean",
+      "description": "Whether the review was marked as helpful."
+    }
+  },
+  "required": ["reviewId", "isHelpful"],
+  "additionalProperties": false
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/integration/sync_completed.schema.json",
+  "title": "Integration Sync Completed",
+  "description": "Fired when an integration data sync completes successfully.",
+  "type": "object",
+  "properties": {
+    "integrationId": {
+      "type": "string",
+      "description": "Unique identifier for the integration."
+    },
+    "integrationName": {
+      "type": "string",
+      "description": "Human-readable name of the integration."
+    },
+    "syncType": {
+      "type": "string",
+      "enum": ["full", "incremental", "manual", "scheduled"],
+      "description": "The type of sync operation."
+    },
+    "direction": {
+      "type": "string",
+      "enum": ["inbound", "outbound", "bidirectional"],
+      "description": "The direction of data flow for the sync."
+    },
+    "recordsProcessed": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The total number of records processed during the sync."
+    },
+    "recordsCreated": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of new records created during the sync."
+    },
+    "recordsUpdated": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of existing records updated during the sync."
+    },
+    "recordsFailed": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of records that failed to sync."
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Sync duration in milliseconds."
+    }
+  },
+  "required": ["integrationId"],
+  "additionalProperties": false
+}

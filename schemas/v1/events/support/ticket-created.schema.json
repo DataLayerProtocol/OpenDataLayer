@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/support/ticket-created.schema.json",
+  "title": "Support Ticket Created",
+  "description": "Fires when a new support ticket is created by a user or on behalf of a user.",
+  "type": "object",
+  "properties": {
+    "ticketId": {
+      "type": "string",
+      "description": "Unique identifier for the support ticket."
+    },
+    "subject": {
+      "type": "string",
+      "description": "Subject line or title of the support ticket."
+    },
+    "category": {
+      "type": "string",
+      "description": "Category or topic of the support ticket."
+    },
+    "priority": {
+      "type": "string",
+      "description": "Priority level assigned to the ticket.",
+      "enum": ["low", "medium", "high", "urgent"]
+    },
+    "channel": {
+      "type": "string",
+      "description": "Channel through which the ticket was submitted.",
+      "enum": ["web", "email", "phone", "chat", "social"]
+    }
+  },
+  "required": ["ticketId"],
+  "additionalProperties": false
+}

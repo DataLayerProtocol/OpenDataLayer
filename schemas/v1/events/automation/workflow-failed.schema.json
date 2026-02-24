@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/automation/workflow_failed.schema.json",
+  "title": "Automation Workflow Failed",
+  "description": "Fired when an automation workflow fails during execution.",
+  "type": "object",
+  "properties": {
+    "workflowId": {
+      "type": "string",
+      "description": "Unique identifier for the workflow."
+    },
+    "workflowName": {
+      "type": "string",
+      "description": "Human-readable name of the workflow."
+    },
+    "executionId": {
+      "type": "string",
+      "description": "Unique identifier for this specific workflow execution."
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "A human-readable message describing the workflow failure."
+    },
+    "failedStep": {
+      "type": "string",
+      "description": "The identifier or name of the step where the workflow failed."
+    },
+    "stepsCompleted": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of workflow steps completed before the failure."
+    },
+    "totalSteps": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The total number of steps in the workflow."
+    },
+    "isRetryable": {
+      "type": "boolean",
+      "description": "Whether the failed workflow execution can be retried."
+    }
+  },
+  "required": ["workflowId"],
+  "additionalProperties": false
+}

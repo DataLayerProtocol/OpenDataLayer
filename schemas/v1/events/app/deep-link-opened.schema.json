@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/app/deep-link-opened.schema.json",
+  "title": "App Deep Link Opened",
+  "description": "Fired when the application is opened via a deep link.",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "description": "The deep link URL that was opened."
+    },
+    "source": {
+      "type": "string",
+      "description": "The source that generated the deep link."
+    },
+    "campaignId": {
+      "type": "string",
+      "description": "The campaign identifier associated with the deep link, if any."
+    },
+    "isDeferred": {
+      "type": "boolean",
+      "description": "Whether the deep link was deferred (i.e. the app was not installed at the time of click)."
+    },
+    "matchType": {
+      "type": "string",
+      "enum": ["exact", "fingerprint", "default"],
+      "description": "The method used to match the deep link to the user."
+    }
+  },
+  "required": ["url"],
+  "additionalProperties": false
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/communication/email-bounced.schema.json",
+  "title": "Communication Email Bounced",
+  "description": "Fires when an email fails to deliver and bounces back.",
+  "type": "object",
+  "properties": {
+    "emailId": {
+      "type": "string",
+      "description": "Unique identifier for the email."
+    },
+    "bounceType": {
+      "type": "string",
+      "description": "Type of email bounce.",
+      "enum": ["hard", "soft", "block"]
+    },
+    "reason": {
+      "type": "string",
+      "description": "Reason or error message for the bounce."
+    }
+  },
+  "required": ["emailId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/identity/document_approved.schema.json",
+  "title": "Identity Document Approved",
+  "description": "Fired when a submitted document is approved during identity verification.",
+  "type": "object",
+  "properties": {
+    "verificationId": {
+      "type": "string",
+      "description": "Unique identifier for the verification request."
+    },
+    "documentType": {
+      "type": "string",
+      "enum": ["passport", "drivers_license", "national_id", "utility_bill", "bank_statement", "tax_return", "selfie", "other"],
+      "description": "The type of document that was approved."
+    },
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier for the user whose document was approved."
+    },
+    "confidenceScore": {
+      "type": "number",
+      "description": "Confidence score of document verification from 0 to 1."
+    }
+  },
+  "required": ["verificationId"],
+  "additionalProperties": false
+}

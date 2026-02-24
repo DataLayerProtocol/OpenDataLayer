@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/account/team_member_added.schema.json",
+  "title": "Account Team Member Added",
+  "description": "Fired when a new team member is added to an account.",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "Unique identifier for the account."
+    },
+    "memberId": {
+      "type": "string",
+      "description": "Unique identifier for the new team member."
+    },
+    "role": {
+      "type": "string",
+      "enum": ["owner", "admin", "member", "viewer", "billing"],
+      "description": "The role assigned to the new team member."
+    },
+    "inviteMethod": {
+      "type": "string",
+      "enum": ["email", "link", "sso", "api"],
+      "description": "The method used to invite the team member."
+    }
+  },
+  "required": ["accountId"],
+  "additionalProperties": false
+}

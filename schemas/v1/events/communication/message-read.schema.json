@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/communication/message-read.schema.json",
+  "title": "Communication Message Read",
+  "description": "Fires when a user reads or views a received message.",
+  "type": "object",
+  "properties": {
+    "messageId": {
+      "type": "string",
+      "description": "Unique identifier for the message."
+    },
+    "channel": {
+      "type": "string",
+      "description": "Communication channel of the message."
+    },
+    "conversationId": {
+      "type": "string",
+      "description": "Identifier for the conversation thread."
+    },
+    "timeSinceSent": {
+      "type": "number",
+      "description": "Time since message was sent in seconds."
+    }
+  },
+  "required": ["messageId"],
+  "additionalProperties": false
+}

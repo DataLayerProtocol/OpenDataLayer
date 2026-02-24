@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/subscription/created.schema.json",
+  "title": "Subscription Created",
+  "description": "Fired when a new subscription is created.",
+  "type": "object",
+  "properties": {
+    "planId": {
+      "type": "string",
+      "description": "Unique identifier for the subscription plan."
+    },
+    "planName": {
+      "type": "string",
+      "description": "Human-readable name of the subscription plan."
+    },
+    "interval": {
+      "type": "string",
+      "enum": ["monthly", "yearly", "weekly", "custom"],
+      "description": "Billing interval for the subscription."
+    },
+    "amount": {
+      "type": "number",
+      "description": "The monetary amount charged per billing interval."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "trialDays": {
+      "type": "integer",
+      "description": "Number of trial days included with the subscription, if any."
+    }
+  },
+  "required": ["planId"],
+  "additionalProperties": false
+}

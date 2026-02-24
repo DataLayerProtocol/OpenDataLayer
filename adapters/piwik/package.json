@@ -1,8 +1,8 @@
 {
   "name": "@opendatalayer/adapter-piwik",
   "version": "0.1.0",
-  "description": "OpenDataLayer adapter for Piwik PRO / Matomo [PREVIEW - not yet implemented]",
-  "keywords": ["opendatalayer", "piwik", "matomo", "analytics", "preview"],
+  "description": "OpenDataLayer adapter for Piwik PRO and Matomo analytics",
+  "keywords": ["opendatalayer", "piwik", "matomo", "analytics"],
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/support/feedback-submitted.schema.json",
+  "title": "Support Feedback Submitted",
+  "description": "Fires when a user submits feedback such as a CSAT survey, NPS rating, or general feedback.",
+  "type": "object",
+  "properties": {
+    "feedbackId": {
+      "type": "string",
+      "description": "Unique identifier for the feedback submission."
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of feedback being submitted.",
+      "enum": ["csat", "nps", "ces", "general", "bug_report", "feature_request"]
+    },
+    "score": {
+      "type": "number",
+      "description": "Numeric score given by the user."
+    },
+    "maxScore": {
+      "type": "number",
+      "description": "Maximum possible score for the feedback scale."
+    },
+    "hasComment": {
+      "type": "boolean",
+      "description": "Whether the user included a written comment with the feedback."
+    },
+    "channel": {
+      "type": "string",
+      "description": "Channel through which the feedback was submitted."
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}

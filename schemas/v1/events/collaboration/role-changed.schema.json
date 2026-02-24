@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/collaboration/role_changed.schema.json",
+  "title": "Collaboration Role Changed",
+  "description": "Fires when a member's role is changed within a workspace.",
+  "type": "object",
+  "properties": {
+    "workspaceId": {
+      "type": "string",
+      "description": "The unique identifier of the workspace where the role change occurred."
+    },
+    "previousRole": {
+      "type": "string",
+      "description": "The role the member held before the change."
+    },
+    "newRole": {
+      "type": "string",
+      "description": "The role assigned to the member after the change."
+    },
+    "memberId": {
+      "type": "string",
+      "description": "The unique identifier of the member whose role was changed."
+    },
+    "changedBy": {
+      "type": "string",
+      "description": "The unique identifier of the user who initiated the role change."
+    }
+  },
+  "required": ["workspaceId", "previousRole", "newRole"],
+  "additionalProperties": false
+}

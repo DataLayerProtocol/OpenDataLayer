@@ -49,7 +49,7 @@ function parseArgs(argv: string[]): CliOptions {
 
   let i = 0;
   while (i < args.length) {
-    const arg = args[i]!;
+    const arg = args[i] ?? '';
 
     if (arg === '--help' || arg === '-h') {
       options.help = true;
@@ -103,7 +103,7 @@ function parseArgs(argv: string[]): CliOptions {
  */
 function collectJsonFiles(filePath: string): string[] {
   const resolved = resolve(filePath);
-  let stat;
+  let stat: ReturnType<typeof statSync> | undefined;
   try {
     stat = statSync(resolved);
   } catch {

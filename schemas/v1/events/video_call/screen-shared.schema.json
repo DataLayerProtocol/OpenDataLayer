@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/video_call/screen_shared.schema.json",
+  "title": "Video Call Screen Shared",
+  "description": "Fires when a participant shares their screen during a video call.",
+  "type": "object",
+  "properties": {
+    "callId": {
+      "type": "string",
+      "description": "The unique identifier of the video call."
+    },
+    "participantId": {
+      "type": "string",
+      "description": "The unique identifier of the participant sharing their screen."
+    },
+    "shareType": {
+      "type": "string",
+      "enum": ["screen", "window", "tab", "application"],
+      "description": "The type of screen sharing being used."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration of screen share in seconds."
+    }
+  },
+  "required": ["callId"],
+  "additionalProperties": false
+}

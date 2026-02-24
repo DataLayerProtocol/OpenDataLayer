@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/finance/deposit-made.schema.json",
+  "title": "Deposit Made",
+  "description": "Fired when a deposit is made into an account.",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "number",
+      "description": "The monetary amount of the deposit."
+    },
+    "accountId": {
+      "type": "string",
+      "description": "Identifier of the account receiving the deposit."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "depositMethod": {
+      "type": "string",
+      "enum": ["bank_transfer", "card", "cash", "check", "crypto", "other"],
+      "description": "The method used for the deposit."
+    },
+    "transactionId": {
+      "type": "string",
+      "description": "Unique identifier for the deposit transaction."
+    }
+  },
+  "required": ["amount"],
+  "additionalProperties": false
+}

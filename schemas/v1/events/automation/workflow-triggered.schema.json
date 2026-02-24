@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/automation/workflow_triggered.schema.json",
+  "title": "Automation Workflow Triggered",
+  "description": "Fired when an automation workflow is triggered.",
+  "type": "object",
+  "properties": {
+    "workflowId": {
+      "type": "string",
+      "description": "Unique identifier for the workflow."
+    },
+    "workflowName": {
+      "type": "string",
+      "description": "Human-readable name of the workflow."
+    },
+    "trigger": {
+      "type": "string",
+      "enum": ["event", "schedule", "manual", "webhook", "condition", "api"],
+      "description": "The type of trigger that initiated the workflow."
+    },
+    "triggeredBy": {
+      "type": "string",
+      "description": "The user or system that triggered the workflow."
+    },
+    "executionId": {
+      "type": "string",
+      "description": "Unique identifier for this specific workflow execution."
+    }
+  },
+  "required": ["workflowId"],
+  "additionalProperties": false
+}

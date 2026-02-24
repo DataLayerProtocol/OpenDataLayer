@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/context/cart.schema.json",
+  "title": "Cart Context",
+  "description": "Represents the user's current shopping cart state.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The cart identifier."
+    },
+    "itemCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of items in the cart."
+    },
+    "total": {
+      "type": "number",
+      "description": "Cart total value."
+    },
+    "subtotal": {
+      "type": "number",
+      "description": "Cart subtotal before tax and shipping."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 currency code."
+    },
+    "coupon": {
+      "type": "string",
+      "description": "Applied coupon code, if any."
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "When the cart was created (ISO 8601)."
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "When the cart was last updated (ISO 8601)."
+    }
+  },
+  "additionalProperties": false
+}

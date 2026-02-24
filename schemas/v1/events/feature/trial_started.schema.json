@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/feature/trial_started.schema.json",
+  "title": "Feature Trial Started",
+  "description": "Fired when a user begins a trial period for a feature.",
+  "type": "object",
+  "properties": {
+    "featureName": {
+      "type": "string",
+      "description": "Human-readable name of the feature being trialed."
+    },
+    "featureId": {
+      "type": "string",
+      "description": "Unique identifier for the feature."
+    },
+    "trialDays": {
+      "type": "integer",
+      "description": "The number of days in the trial period."
+    },
+    "trialEnd": {
+      "type": "string",
+      "description": "The date and time when the trial period ends."
+    },
+    "plan": {
+      "type": "string",
+      "description": "The subscription plan associated with the feature trial."
+    }
+  },
+  "required": ["featureName"],
+  "additionalProperties": false
+}

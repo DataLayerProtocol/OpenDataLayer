@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/support/ticket-updated.schema.json",
+  "title": "Support Ticket Updated",
+  "description": "Fires when an existing support ticket is updated, such as a status change or reassignment.",
+  "type": "object",
+  "properties": {
+    "ticketId": {
+      "type": "string",
+      "description": "Unique identifier for the support ticket."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the ticket after the update.",
+      "enum": ["open", "in_progress", "waiting", "escalated", "resolved", "closed"]
+    },
+    "previousStatus": {
+      "type": "string",
+      "description": "Status of the ticket before the update."
+    },
+    "assigneeId": {
+      "type": "string",
+      "description": "Identifier of the agent or team assigned to the ticket."
+    }
+  },
+  "required": ["ticketId"],
+  "additionalProperties": false
+}

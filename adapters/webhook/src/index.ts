@@ -82,9 +82,10 @@ async function sendEvents(
   > &
     Pick<WebhookAdapterOptions, 'transformPayload' | 'onError'>,
 ): Promise<void> {
+  const first = events[0];
   const body =
-    events.length === 1
-      ? buildPayload(events[0]!, options.includeContext, options.transformPayload)
+    events.length === 1 && first
+      ? buildPayload(first, options.includeContext, options.transformPayload)
       : events.map((e) => buildPayload(e, options.includeContext, options.transformPayload));
 
   const controller = new AbortController();

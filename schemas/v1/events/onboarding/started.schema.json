@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/onboarding/started.schema.json",
+  "title": "Onboarding Started",
+  "description": "Fires when a user begins an onboarding flow",
+  "type": "object",
+  "properties": {
+    "flowId": {
+      "type": "string"
+    },
+    "flowName": {
+      "type": "string"
+    },
+    "totalSteps": {
+      "type": "integer"
+    }
+  },
+  "required": ["flowId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/social/comment-posted.schema.json",
+  "title": "Social Comment Posted",
+  "description": "Fires when a user posts a comment on a piece of content.",
+  "type": "object",
+  "properties": {
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content being commented on."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The type of content being commented on."
+    },
+    "commentId": {
+      "type": "string",
+      "description": "The unique identifier of the newly created comment."
+    },
+    "parentCommentId": {
+      "type": "string",
+      "description": "The unique identifier of the parent comment if this is a reply."
+    },
+    "isReply": {
+      "type": "boolean",
+      "description": "Whether this comment is a reply to another comment."
+    }
+  },
+  "required": ["contentId"],
+  "additionalProperties": false
+}

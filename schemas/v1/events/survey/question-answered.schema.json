@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/survey/question_answered.schema.json",
+  "title": "Survey Question Answered",
+  "description": "Fires when a user answers a question in a survey.",
+  "type": "object",
+  "properties": {
+    "surveyId": {
+      "type": "string",
+      "description": "The unique identifier of the survey."
+    },
+    "questionIndex": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The index of the question answered."
+    },
+    "questionId": {
+      "type": "string",
+      "description": "The unique identifier of the question."
+    },
+    "questionType": {
+      "type": "string",
+      "enum": ["multiple_choice", "single_choice", "text", "rating", "scale", "matrix", "ranking", "other"],
+      "description": "The type of question answered."
+    },
+    "questionText": {
+      "type": "string",
+      "description": "The text of the question."
+    }
+  },
+  "required": ["surveyId", "questionIndex"],
+  "additionalProperties": false
+}

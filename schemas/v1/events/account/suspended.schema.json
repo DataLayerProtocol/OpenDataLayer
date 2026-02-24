@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/account/suspended.schema.json",
+  "title": "Account Suspended",
+  "description": "Fired when an account is suspended.",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "Unique identifier for the account."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["billing_failure", "terms_violation", "inactivity", "security", "manual"],
+      "description": "The reason for suspending the account."
+    },
+    "suspendedBy": {
+      "type": "string",
+      "enum": ["system", "admin"],
+      "description": "The party that initiated the suspension."
+    }
+  },
+  "required": ["accountId"],
+  "additionalProperties": false
+}

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/order/confirmed.schema.json",
+  "title": "Order Confirmed",
+  "description": "Fired when an order is confirmed.",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "Unique identifier for the order."
+    },
+    "total": {
+      "type": "number",
+      "description": "The total monetary value of the order."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "estimatedDelivery": {
+      "type": "string",
+      "description": "ISO 8601 date or datetime for the estimated delivery."
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the product."
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of the product."
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "The quantity of this product in the order."
+          },
+          "price": {
+            "type": "number",
+            "description": "The unit price of the product."
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "The list of products included in the order."
+    },
+    "shippingMethod": {
+      "type": "string",
+      "description": "The shipping method selected for the order."
+    },
+    "shippingAddress": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string",
+          "description": "The city of the shipping address."
+        },
+        "region": {
+          "type": "string",
+          "description": "The state, province, or region of the shipping address."
+        },
+        "country": {
+          "type": "string",
+          "description": "The country of the shipping address."
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "The postal or ZIP code of the shipping address."
+        }
+      },
+      "additionalProperties": false,
+      "description": "The shipping address for the order (excludes street for privacy)."
+    }
+  },
+  "required": ["orderId"],
+  "additionalProperties": false
+}

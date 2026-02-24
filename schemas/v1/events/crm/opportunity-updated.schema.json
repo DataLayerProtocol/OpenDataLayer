@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/crm/opportunity-updated.schema.json",
+  "title": "CRM Opportunity Updated",
+  "description": "Fires when an existing sales opportunity is updated.",
+  "type": "object",
+  "properties": {
+    "opportunityId": {
+      "type": "string",
+      "description": "Unique identifier for the opportunity."
+    },
+    "previousStage": {
+      "type": "string",
+      "description": "Pipeline stage before the update."
+    },
+    "newStage": {
+      "type": "string",
+      "description": "Pipeline stage after the update."
+    },
+    "previousValue": {
+      "type": "number",
+      "description": "Deal value before the update."
+    },
+    "newValue": {
+      "type": "number",
+      "description": "Deal value after the update."
+    },
+    "updatedFields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of field names that were updated."
+    }
+  },
+  "required": ["opportunityId"],
+  "additionalProperties": false
+}

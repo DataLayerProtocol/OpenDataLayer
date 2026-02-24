@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/app/updated.schema.json",
+  "title": "App Updated",
+  "description": "Fired when the application is updated to a new version.",
+  "type": "object",
+  "properties": {
+    "previousVersion": {
+      "type": "string",
+      "description": "The version the app was updated from."
+    },
+    "newVersion": {
+      "type": "string",
+      "description": "The version the app was updated to."
+    },
+    "updateMethod": {
+      "type": "string",
+      "enum": ["auto", "manual", "forced"],
+      "description": "How the update was applied."
+    }
+  },
+  "required": ["previousVersion", "newVersion"],
+  "additionalProperties": false
+}

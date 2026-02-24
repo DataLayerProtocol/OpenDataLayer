@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/social/reaction-added.schema.json",
+  "title": "Social Reaction Added",
+  "description": "Fires when a user adds a reaction to a piece of content.",
+  "type": "object",
+  "properties": {
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content being reacted to."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The type of content being reacted to."
+    },
+    "reactionType": {
+      "type": "string",
+      "enum": ["like", "love", "haha", "wow", "sad", "angry"],
+      "description": "The type of reaction added."
+    }
+  },
+  "required": ["contentId", "reactionType"],
+  "additionalProperties": false
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/payment/invoice-created.schema.json",
+  "title": "Invoice Created",
+  "description": "Fired when a new invoice is created.",
+  "type": "object",
+  "properties": {
+    "invoiceId": {
+      "type": "string",
+      "description": "Unique identifier for the invoice."
+    },
+    "amount": {
+      "type": "number",
+      "description": "The total monetary amount of the invoice."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "dueDate": {
+      "type": "string",
+      "description": "ISO 8601 date or datetime when the invoice is due."
+    },
+    "lineItems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Description of the line item."
+          },
+          "amount": {
+            "type": "number",
+            "description": "The monetary amount for this line item."
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "The quantity of this line item."
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "List of individual line items on the invoice."
+    }
+  },
+  "required": ["invoiceId", "amount"],
+  "additionalProperties": false
+}

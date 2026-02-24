@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/experiment/conversion.schema.json",
+  "title": "Experiment Conversion",
+  "description": "Fired when a user converts within an experiment.",
+  "type": "object",
+  "properties": {
+    "experimentId": {
+      "type": "string",
+      "description": "Unique identifier for the experiment."
+    },
+    "experimentName": {
+      "type": "string",
+      "description": "Human-readable name of the experiment."
+    },
+    "variantId": {
+      "type": "string",
+      "description": "Unique identifier for the variant the user was in when they converted."
+    },
+    "variantName": {
+      "type": "string",
+      "description": "Human-readable name of the variant."
+    },
+    "goalId": {
+      "type": "string",
+      "description": "Unique identifier for the conversion goal."
+    },
+    "goalName": {
+      "type": "string",
+      "description": "Human-readable name of the conversion goal."
+    },
+    "value": {
+      "type": "number",
+      "description": "The monetary or numeric value associated with the conversion."
+    }
+  },
+  "required": ["experimentId", "variantId"],
+  "additionalProperties": false
+}

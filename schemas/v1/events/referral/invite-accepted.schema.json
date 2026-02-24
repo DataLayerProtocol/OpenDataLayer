@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/referral/invite-accepted.schema.json",
+  "title": "Referral Invite Accepted",
+  "description": "Fires when a referred user accepts a referral invite.",
+  "type": "object",
+  "properties": {
+    "referralId": {
+      "type": "string",
+      "description": "The unique identifier of the referral."
+    },
+    "referrerId": {
+      "type": "string",
+      "description": "The unique identifier of the user who made the referral."
+    },
+    "programId": {
+      "type": "string",
+      "description": "The unique identifier of the referral program."
+    }
+  },
+  "required": ["referralId"],
+  "additionalProperties": false
+}

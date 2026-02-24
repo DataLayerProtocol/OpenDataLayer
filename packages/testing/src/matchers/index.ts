@@ -4,10 +4,11 @@
 
 import type { CapturedEvent } from '../spy.js';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// biome-ignore lint/suspicious/noExplicitAny: Vitest/Jest matcher signatures require `any` for compatibility
+type MatcherFn = (...args: any[]) => any;
 declare const expect:
   | {
-      extend: (matchers: Record<string, (...args: any[]) => any>) => void;
+      extend: (matchers: Record<string, MatcherFn>) => void;
     }
   | undefined;
 
@@ -178,7 +179,7 @@ function toHaveData(
   }
 
   // If no value specified, just check key existence
-  if (arguments.length < 3) {
+  if (value === undefined) {
     return {
       pass: true,
       message: () => `Expected event data not to have key "${key}", but it did`,

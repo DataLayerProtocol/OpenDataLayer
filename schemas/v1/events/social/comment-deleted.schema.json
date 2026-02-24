@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/social/comment-deleted.schema.json",
+  "title": "Social Comment Deleted",
+  "description": "Fires when a comment is deleted from a piece of content.",
+  "type": "object",
+  "properties": {
+    "commentId": {
+      "type": "string",
+      "description": "The unique identifier of the deleted comment."
+    },
+    "contentId": {
+      "type": "string",
+      "description": "The unique identifier of the content the comment was on."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["user", "moderation", "policy"],
+      "description": "The reason the comment was deleted."
+    }
+  },
+  "required": ["commentId"],
+  "additionalProperties": false
+}

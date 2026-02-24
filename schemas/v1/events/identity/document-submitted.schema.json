@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/identity/document_submitted.schema.json",
+  "title": "Identity Document Submitted",
+  "description": "Fired when a user submits a document for identity verification.",
+  "type": "object",
+  "properties": {
+    "verificationId": {
+      "type": "string",
+      "description": "Unique identifier for the verification request."
+    },
+    "documentType": {
+      "type": "string",
+      "enum": ["passport", "drivers_license", "national_id", "utility_bill", "bank_statement", "tax_return", "selfie", "other"],
+      "description": "The type of document submitted for verification."
+    },
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier for the user who submitted the document."
+    },
+    "documentCountry": {
+      "type": "string",
+      "description": "The country that issued the submitted document."
+    }
+  },
+  "required": ["verificationId"],
+  "additionalProperties": false
+}

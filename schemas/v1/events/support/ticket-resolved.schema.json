@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/support/ticket-resolved.schema.json",
+  "title": "Support Ticket Resolved",
+  "description": "Fires when a support ticket is resolved or closed with a resolution.",
+  "type": "object",
+  "properties": {
+    "ticketId": {
+      "type": "string",
+      "description": "Unique identifier for the support ticket."
+    },
+    "resolution": {
+      "type": "string",
+      "description": "Type of resolution applied to the ticket.",
+      "enum": ["solved", "closed", "duplicate", "wont_fix", "auto_resolved"]
+    },
+    "resolutionTime": {
+      "type": "number",
+      "description": "Time to resolution in seconds."
+    },
+    "responseCount": {
+      "type": "integer",
+      "description": "Total number of responses exchanged on the ticket."
+    }
+  },
+  "required": ["ticketId"],
+  "additionalProperties": false
+}

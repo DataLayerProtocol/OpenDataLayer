@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/payment/method-updated.schema.json",
+  "title": "Payment Method Updated",
+  "description": "Fired when a user updates an existing payment method.",
+  "type": "object",
+  "properties": {
+    "methodType": {
+      "type": "string",
+      "description": "The type of payment method updated."
+    },
+    "updatedFields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of field names that were updated on the payment method."
+    }
+  },
+  "required": ["methodType"],
+  "additionalProperties": false
+}
