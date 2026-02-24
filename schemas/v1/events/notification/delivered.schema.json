@@ -9,7 +9,8 @@
       "type": "string"
     },
     "channel": {
-      "type": "string"
+      "type": "string",
+      "enum": ["push", "in_app", "email", "sms", "webhook"]
     },
     "deliveredAt": {
       "type": "string"

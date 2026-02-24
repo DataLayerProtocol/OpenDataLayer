@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/marketplace/dispute_opened.schema.json",
+  "title": "Marketplace Dispute Opened",
+  "description": "Fired when a dispute is opened between buyer and seller on a marketplace.",
+  "type": "object",
+  "properties": {
+    "disputeId": {
+      "type": "string",
+      "description": "Unique identifier for the dispute."
+    },
+    "orderId": {
+      "type": "string",
+      "description": "The order identifier associated with the dispute."
+    },
+    "listingId": {
+      "type": "string",
+      "description": "The listing identifier associated with the dispute."
+    },
+    "reason": {
+      "type": "string",
+      "description": "The reason the dispute was opened.",
+      "enum": ["item_not_received", "item_not_as_described", "unauthorized_purchase", "billing_error", "quality_issue", "counterfeit", "other"]
+    },
+    "disputeType": {
+      "type": "string",
+      "description": "The type of resolution being requested.",
+      "enum": ["refund", "replacement", "mediation", "chargeback"]
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The monetary amount in dispute."
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "initiatedBy": {
+      "type": "string",
+      "description": "The party that initiated the dispute.",
+      "enum": ["buyer", "seller", "platform"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Free-text description provided by the dispute initiator."
+    }
+  },
+  "required": ["disputeId", "reason"],
+  "additionalProperties": false
+}

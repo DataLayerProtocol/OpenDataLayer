@@ -24,7 +24,8 @@
     },
     "currency": {
       "type": "string",
-      "description": "Currency code for monetary amounts."
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
     },
     "cancelledBy": {
       "type": "string",

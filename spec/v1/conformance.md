@@ -219,7 +219,7 @@ Full conformance includes all Standard requirements, plus the following:
 
 #### 5.1.1 All Context Objects
 
-All 8 context objects MUST be supported and populated when the relevant data is available:
+All 15 context objects MUST be supported and populated when the relevant data is available:
 
 | Context | Requirement |
 |---|---|
@@ -231,21 +231,32 @@ All 8 context objects MUST be supported and populated when the relevant data is 
 | `app` | MUST be populated on every event. |
 | `campaign` | MUST be populated when marketing attribution data is available (UTM parameters, click IDs). |
 | `location` | MUST be populated when location data is available (at minimum, `country` and `timezone`). |
+| `account` | MUST be populated when the user belongs to an organizational account. |
+| `cart` | MUST be populated when cart state is available (ecommerce). |
+| `experiment` | MUST be populated when the user is enrolled in an experiment. |
+| `loyalty` | MUST be populated when loyalty program membership is active. |
+| `order` | MUST be populated when an active order or recent order is available. |
+| `organization` | MUST be populated when B2B organization data is available. |
+| `subscription` | MUST be populated when an active subscription exists. |
 
 #### 5.1.2 Complete Event Taxonomy
 
 Implementations MUST use the standard event names for ALL events in the ODL taxonomy when those actions are tracked. This includes all events across all categories:
 
 - Page events (3)
-- Ecommerce events (17)
-- Media events (11)
+- Ecommerce events (21)
+- Media events (12)
 - Consent events (3)
 - User events (5)
 - Form events (6)
-- Search events (3)
+- Search events (4)
 - Error events (2)
 - Performance events (4)
 - Interaction events (6)
+- Subscription events (11)
+- Payment events (9)
+- Auth events (9)
+- And all remaining categories as defined in [events.md](events.md)
 
 The `custom.*` namespace remains available for organization-specific events.
 
@@ -307,6 +318,13 @@ See the complete event example in [data-model.md](data-model.md), Section 8, whi
 | App context | Optional | Optional | Required |
 | Campaign context | Optional | Optional | Required |
 | Location context | Optional | Optional | Required |
+| Account context | Optional | Optional | Required |
+| Cart context | Optional | Optional | Required |
+| Experiment context | Optional | Optional | Required |
+| Loyalty context | Optional | Optional | Required |
+| Order context | Optional | Optional | Required |
+| Organization context | Optional | Optional | Required |
+| Subscription context | Optional | Optional | Required |
 | Core event taxonomy | Optional | Required (subset) | Required (complete) |
 | Data payload schemas | Optional | Required (core events) | Required (all events) |
 | Schema validation | Optional | Optional | Required |
@@ -426,7 +444,7 @@ ODL is designed for progressive adoption. Organizations do not need to implement
 
 ### Phase 3: Full
 
-8. Add `device`, `app`, `campaign`, and `location` contexts.
+8. Add all remaining contexts (`device`, `app`, `campaign`, `location`, `account`, `cart`, `experiment`, `loyalty`, `order`, `organization`, `subscription`).
 9. Adopt the complete event taxonomy.
 10. Enable schema validation.
 11. Build out the middleware pipeline (enrichment, transformation, routing).

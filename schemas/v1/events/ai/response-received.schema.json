@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ai/response_received.schema.json",
+  "title": "AI Response Received",
+  "description": "Fired when the AI generates and returns a response.",
+  "type": "object",
+  "properties": {
+    "conversationId": {
+      "type": "string",
+      "description": "Unique identifier for the conversation session."
+    },
+    "messageId": {
+      "type": "string",
+      "description": "Unique identifier for the response message."
+    },
+    "model": {
+      "type": "string",
+      "description": "The AI model that generated the response."
+    },
+    "provider": {
+      "type": "string",
+      "description": "The AI provider or vendor that generated the response."
+    },
+    "latencyMs": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Time in milliseconds from request to first or complete response."
+    },
+    "promptTokens": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of tokens in the input prompt."
+    },
+    "completionTokens": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of tokens in the generated response."
+    },
+    "totalTokens": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total tokens consumed (prompt + completion)."
+    },
+    "finishReason": {
+      "type": "string",
+      "enum": ["stop", "length", "tool_call", "content_filter", "error", "other"],
+      "description": "The reason the AI stopped generating the response."
+    },
+    "isStreaming": {
+      "type": "boolean",
+      "description": "Whether the response was delivered via streaming."
+    },
+    "toolsUsed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tools or functions the AI invoked while generating the response."
+    },
+    "contentLength": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The length of the response content in characters."
+    }
+  },
+  "required": ["conversationId", "messageId"],
+  "additionalProperties": false
+}

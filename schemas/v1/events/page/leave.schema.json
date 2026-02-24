@@ -17,6 +17,6 @@
       "description": "The maximum percentage of the page the user scrolled through (0–100)."
     }
   },
-  "required": [],
+  "required": ["dwellTime"],
   "additionalProperties": false
 }

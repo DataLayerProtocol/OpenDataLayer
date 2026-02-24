@@ -30,6 +30,18 @@
     "namespace": {
       "type": "string",
       "description": "The reverse-domain namespace of the application (e.g. com.example.app)."
+    },
+    "sdkName": {
+      "type": "string",
+      "description": "Name of the analytics SDK (e.g. '@opendatalayer/sdk')."
+    },
+    "sdkVersion": {
+      "type": "string",
+      "description": "Version of the analytics SDK."
+    },
+    "deployId": {
+      "type": "string",
+      "description": "Identifier for the current deployment or release."
     }
   },
   "required": ["name", "version"],

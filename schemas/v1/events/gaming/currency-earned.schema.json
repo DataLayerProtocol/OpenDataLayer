@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/gaming/currency_earned.schema.json",
+  "title": "Virtual Currency Earned",
+  "description": "Fired when a player earns virtual currency in a game.",
+  "type": "object",
+  "properties": {
+    "currencyName": {
+      "type": "string",
+      "description": "Name of the virtual currency, e.g. 'coins', 'gems', 'gold'."
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Amount of virtual currency earned."
+    },
+    "source": {
+      "type": "string",
+      "enum": ["purchase", "reward", "quest", "daily_login", "achievement", "referral", "promotion", "other"],
+      "description": "How the virtual currency was earned."
+    },
+    "balance": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Player's total balance of this currency after earning."
+    },
+    "level": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Player's current level when the currency was earned."
+    },
+    "gameMode": {
+      "type": "string",
+      "description": "The game mode in which the currency was earned."
+    }
+  },
+  "required": ["currencyName", "amount"],
+  "additionalProperties": false
+}

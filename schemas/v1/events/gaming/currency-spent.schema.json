@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/gaming/currency_spent.schema.json",
+  "title": "Virtual Currency Spent",
+  "description": "Fired when a player spends virtual currency in a game.",
+  "type": "object",
+  "properties": {
+    "currencyName": {
+      "type": "string",
+      "description": "Name of the virtual currency, e.g. 'coins', 'gems', 'gold'."
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Amount of virtual currency spent."
+    },
+    "itemName": {
+      "type": "string",
+      "description": "The item or service purchased."
+    },
+    "itemCategory": {
+      "type": "string",
+      "description": "Category of the item or service purchased."
+    },
+    "balance": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Player's total balance of this currency after spending."
+    },
+    "level": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Player's current level when the currency was spent."
+    },
+    "gameMode": {
+      "type": "string",
+      "description": "The game mode in which the currency was spent."
+    }
+  },
+  "required": ["currencyName", "amount"],
+  "additionalProperties": false
+}

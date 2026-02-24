@@ -40,7 +40,7 @@ Both category and action MUST use `snake_case`:
 
 The following categories are reserved by the ODL specification and MUST NOT be used for custom events outside the defined taxonomy:
 
-`page`, `ecommerce`, `media`, `consent`, `user`, `form`, `search`, `error`, `performance`, `interaction`, `subscription`, `payment`, `experiment`, `auth`, `onboarding`, `notification`, `social`, `content`, `review`, `referral`, `support`, `communication`, `scheduling`, `marketplace`, `education`, `gaming`, `crm`, `app`, `order`, `account`, `privacy`, `feature`, `loyalty`, `survey`, `collaboration`, `video_call`, `booking`, `file`, `integration`, `automation`, `ad`, `identity`, `document`, `finance`
+`page`, `ecommerce`, `media`, `consent`, `user`, `form`, `search`, `error`, `performance`, `interaction`, `subscription`, `payment`, `experiment`, `auth`, `onboarding`, `notification`, `social`, `content`, `review`, `referral`, `support`, `communication`, `scheduling`, `marketplace`, `education`, `gaming`, `crm`, `app`, `order`, `account`, `privacy`, `feature`, `loyalty`, `survey`, `collaboration`, `video_call`, `booking`, `file`, `integration`, `automation`, `ad`, `identity`, `document`, `finance`, `ai`
 
 The `custom` category is reserved for user-defined extension events (see [Section 14](#14-custom-events)).
 
@@ -56,31 +56,31 @@ Wildcard subscriptions are described in detail in [transport.md](transport.md).
 
 ## 3. Event Taxonomy Overview
 
-The complete ODL event taxonomy is organized into 45 categories:
+The complete ODL event taxonomy is organized into 46 categories:
 
 | Category | Events | Purpose |
 |---|---|---|
 | `page` | 3 | Page and screen lifecycle |
-| `ecommerce` | 17 | Shopping and transaction tracking |
+| `ecommerce` | 19 | Shopping and transaction tracking |
 | `media` | 11 | Audio, video, and streaming media |
 | `consent` | 3 | Privacy consent management |
 | `user` | 5 | Authentication and identity |
 | `form` | 6 | Form interaction lifecycle |
-| `search` | 3 | Search behavior |
+| `search` | 4 | Search behavior |
 | `error` | 2 | Error tracking |
 | `performance` | 4 | Performance measurement |
 | `interaction` | 6 | General UI interactions |
 | `subscription` | 11 | Subscription lifecycle management |
-| `payment` | 8 | Payment methods, invoices, and payouts |
+| `payment` | 9 | Payment methods, invoices, and payouts |
 | `experiment` | 4 | A/B testing and feature flags |
-| `auth` | 8 | Authentication and security |
+| `auth` | 9 | Authentication and security |
 | `onboarding` | 8 | User onboarding flows |
 | `notification` | 8 | Notification delivery and engagement |
 | `social` | 10 | Social interactions and community |
-| `content` | 9 | Content lifecycle management |
+| `content` | 10 | Content lifecycle management |
 | `review` | 5 | Reviews and ratings |
 | `referral` | 5 | Referral programs and invites |
-| `support` | 9 | Customer support and help center |
+| `support` | 10 | Customer support and help center |
 | `communication` | 8 | Messaging and email communication |
 | `scheduling` | 6 | Appointments and scheduling |
 | `marketplace` | 8 | Marketplace listings and offers |
@@ -92,18 +92,19 @@ The complete ODL event taxonomy is organized into 45 categories:
 | `account` | 6 | Account management and team operations |
 | `privacy` | 5 | Data privacy and compliance |
 | `feature` | 5 | Feature usage and adoption |
-| `loyalty` | 6 | Loyalty programs and rewards |
+| `loyalty` | 7 | Loyalty programs and rewards |
 | `survey` | 5 | Surveys and feedback collection |
-| `collaboration` | 7 | Workspace collaboration and sharing |
-| `video_call` | 6 | Video conferencing and calls |
+| `collaboration` | 9 | Workspace collaboration and sharing |
+| `video_call` | 7 | Video conferencing and calls |
 | `booking` | 7 | Reservations and booking management |
-| `file` | 5 | File management and versioning |
+| `file` | 6 | File management and versioning |
 | `integration` | 5 | Third-party integration lifecycle |
 | `automation` | 5 | Workflow automation and rules |
 | `ad` | 5 | Advertising and ad monetization |
 | `identity` | 5 | Identity verification and KYC |
 | `document` | 5 | Document signing and management |
 | `finance` | 7 | Financial transactions and banking |
+| `ai` | 6 | AI and chatbot interaction tracking |
 | `custom` | Unlimited | Extension events |
 
 ---
@@ -383,7 +384,44 @@ Fired when a user removes a product from their wishlist.
 | `wishlistId` | `string` | No | The wishlist identifier. |
 | `wishlistName` | `string` | No | The wishlist name. |
 
-### 5.17 `ecommerce.promotion_viewed`
+### 5.17 `ecommerce.cart_abandoned`
+
+Fired when a user abandons their shopping cart without completing a purchase. Typically triggered after a period of inactivity or when the session ends with items still in cart.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `cartId` | `string` | No | The unique identifier of the shopping cart. |
+| `products` | `Product[]` | Yes | The list of products in the abandoned cart. |
+| `total` | `number` | No | The total monetary value of the abandoned cart. |
+| `currency` | `string` | No | ISO 4217 3-letter currency code. |
+| `itemCount` | `integer` | No | The number of distinct items in the cart. |
+| `cartAge` | `number` | No | Time since the cart was created, in seconds. |
+| `lastActivityAt` | `string` | No | ISO 8601 timestamp of the last cart interaction. |
+| `abandonmentPage` | `string` | No | The page or checkout step where the user abandoned. |
+| `coupon` | `string` | No | The coupon code applied to the cart, if any. |
+
+### 5.18 `ecommerce.shipping_info_entered`
+
+Fired when a user submits shipping information during checkout. Recommended by GA4 and common across analytics platforms.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `orderId` | `string` | No | The order or transaction identifier. |
+| `shippingMethod` | `string` | Yes | The shipping method selected (e.g. "ground", "two_day"). |
+| `shippingTier` | `string` | No | Shipping speed tier: `"standard"`, `"express"`, `"overnight"`, `"same_day"`, `"pickup"`, `"free"`. |
+| `total` | `number` | No | The total monetary value of the order. |
+| `shippingCost` | `number` | No | The shipping cost for the order. |
+| `currency` | `string` | No | ISO 4217 3-letter currency code. |
+| `products` | `Product[]` | No | The list of products included in the order. |
+| `estimatedDelivery` | `string` | No | The estimated delivery date in ISO 8601 format. |
+| `country` | `string` | No | The destination country code. |
+| `postalCode` | `string` | No | The destination postal or ZIP code. |
+
+### 5.19 `ecommerce.promotion_viewed`
 
 Fired when a promotional banner, widget, or placement is displayed to the user.
 
@@ -396,7 +434,7 @@ Fired when a promotional banner, widget, or placement is displayed to the user.
 | `creative` | `string` | No | Creative variant name or ID. |
 | `position` | `string` | No | Position or slot where the promotion was displayed. |
 
-### 5.18 `ecommerce.promotion_clicked`
+### 5.20 `ecommerce.promotion_clicked`
 
 Fired when a user clicks on a promotional element.
 
@@ -767,6 +805,23 @@ Fired when a user applies or changes a search filter.
 | `filterName` | `string` | Yes | Name of the filter (e.g., `"brand"`, `"price_range"`, `"color"`). |
 | `filterValue` | `string` | Yes | The selected filter value. |
 | `resultCount` | `number` | No | Number of results after the filter is applied. |
+
+### 10.4 `search.autocomplete_selected`
+
+Fired when a user selects a suggestion from the search autocomplete dropdown.
+
+**When to fire:** When the user clicks or keyboard-selects an autocomplete suggestion.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `query` | `string` | Yes | The search query at the time of selection. |
+| `selectedText` | `string` | Yes | The text of the selected autocomplete suggestion. |
+| `selectedIndex` | `integer` | No | The zero-based index of the selected suggestion in the list. |
+| `totalSuggestions` | `integer` | No | The total number of suggestions shown. |
+| `suggestionType` | `string` | No | The type of suggestion: `"query"`, `"product"`, `"category"`, `"brand"`, `"recent"`, `"other"`. |
+| `source` | `string` | No | The source of the autocomplete suggestions. |
 
 ---
 
@@ -1286,6 +1341,25 @@ Fired when a payout is successfully completed.
 | `destination` | `string` | No | The destination account or identifier for the payout. |
 | `completedAt` | `string` | No | ISO 8601 datetime when the payout was completed. |
 
+### 16.9 `payment.payment_failed`
+
+Fired when a payment attempt fails.
+
+**When to fire:** When a payment transaction is declined or fails for any reason.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `paymentId` | `string` | Yes | Unique identifier for the payment attempt. |
+| `amount` | `number` | Yes | The monetary amount of the failed payment. |
+| `currency` | `string` | Yes | ISO 4217 3-letter currency code (e.g. `"USD"`, `"EUR"`, `"GBP"`). |
+| `paymentMethod` | `string` | No | The payment method used: `"credit_card"`, `"debit_card"`, `"bank_transfer"`, `"paypal"`, `"apple_pay"`, `"google_pay"`, `"crypto"`, `"other"`. |
+| `failureReason` | `string` | No | The reason for failure: `"insufficient_funds"`, `"card_declined"`, `"expired_card"`, `"fraud_suspected"`, `"network_error"`, `"invalid_details"`, `"other"`. |
+| `orderId` | `string` | No | The order associated with the payment. |
+| `invoiceId` | `string` | No | The invoice associated with the payment. |
+| `retryCount` | `integer` | No | The number of payment retry attempts. |
+
 ---
 
 ## 17. Experiment Events
@@ -1465,6 +1539,23 @@ Fired when an authentication token is refreshed.
 |---|---|---|---|
 | `tokenType` | `string` | No | The type of token refreshed: `"access"`, `"refresh"`, `"id"`. |
 | `expiresIn` | `integer` | No | Time until expiration in seconds. |
+
+### 18.9 `auth.login_failed`
+
+Fired when a user login attempt fails.
+
+**When to fire:** When an authentication attempt is rejected due to invalid credentials, account lockout, or other failure conditions.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `method` | `string` | Yes | The authentication method attempted: `"password"`, `"sso"`, `"oauth"`, `"magic_link"`, `"passkey"`, `"biometric"`, `"other"`. |
+| `failureReason` | `string` | Yes | The reason for failure: `"invalid_credentials"`, `"account_locked"`, `"account_disabled"`, `"account_not_found"`, `"mfa_required"`, `"expired_password"`, `"rate_limited"`, `"network_error"`, `"other"`. |
+| `userId` | `string` | No | The user ID if identifiable despite the failed attempt. |
+| `email` | `string` | No | The email address used in the login attempt. |
+| `attemptCount` | `integer` | No | The number of consecutive failed attempts. |
+| `ipAddress` | `string` | No | The IP address of the login attempt. |
 
 ---
 
@@ -2011,6 +2102,23 @@ Fired when a user shares a piece of content.
 | `method` | `string` | No | The method used to share the content: `"email"`, `"social"`, `"copy_link"`, `"embed"`, `"messaging"`. |
 | `destination` | `string` | No | The destination where the content was shared. |
 
+### 22.10 `content.drafted`
+
+Fired when a user creates or saves a draft of content.
+
+**When to fire:** When a user saves a content item as a draft, either manually or via auto-save.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `contentId` | `string` | Yes | The unique identifier of the drafted content. |
+| `contentType` | `string` | No | The type of content: `"article"`, `"blog_post"`, `"page"`, `"email"`, `"social_post"`, `"document"`, `"other"`. |
+| `title` | `string` | No | The title of the draft. |
+| `authorId` | `string` | No | The unique identifier of the author. |
+| `wordCount` | `integer` | No | The word count of the draft content. |
+| `isAutoSaved` | `boolean` | No | Whether the draft was saved automatically. |
+
 ---
 
 ## 23. Review Events
@@ -2315,6 +2423,23 @@ Fired when a user indicates whether a help center article was helpful or not.
 | `isHelpful` | `boolean` | Yes | Whether the user found the article helpful. |
 | `feedbackText` | `string` | No | Optional text feedback provided by the user. |
 
+### 25.10 `support.ticket_escalated`
+
+Fired when a support ticket is escalated to a higher tier or team.
+
+**When to fire:** When a support ticket is moved to a higher support tier, specialist team, or supervisor.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `ticketId` | `string` | Yes | Unique identifier for the support ticket. |
+| `previousTier` | `string` | No | The previous support tier. |
+| `newTier` | `string` | Yes | The new support tier after escalation. |
+| `escalatedBy` | `string` | No | Who initiated the escalation: `"agent"`, `"system"`, `"customer"`. |
+| `reason` | `string` | No | The reason for escalation. |
+| `priority` | `string` | No | The priority of the escalated ticket: `"critical"`, `"high"`, `"medium"`, `"low"`, `"none"`. |
+
 ---
 
 ## 26. Communication Events
@@ -2498,6 +2623,7 @@ Fired when a scheduled appointment is moved to a different time.
 | `appointmentId` | `string` | Yes | Unique identifier for the appointment. |
 | `previousStartTime` | `string` | No | Original start time before rescheduling. |
 | `newStartTime` | `string` | Yes | New start time after rescheduling. |
+| `newEndTime` | `string` | No | New end time for the rescheduled appointment in ISO 8601 format. |
 | `rescheduledBy` | `string` | No | Who initiated the reschedule: `"user"`, `"provider"`, `"system"`. |
 
 ### 27.4 `scheduling.appointment_completed`
@@ -2675,6 +2801,44 @@ Fired when a buyer contacts a seller about a marketplace listing.
 | `sellerId` | `string` | No | Unique identifier for the seller. |
 | `method` | `string` | No | Contact method used: `"message"`, `"email"`, `"phone"`, `"chat"`. |
 | `subject` | `string` | No | Subject or topic of the contact. |
+
+### 28.9 `marketplace.dispute_opened`
+
+Fired when a dispute is opened between buyer and seller on a marketplace.
+
+**When to fire:** When a buyer, seller, or the platform initiates a formal dispute over an order.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `disputeId` | `string` | Yes | Unique identifier for the dispute. |
+| `orderId` | `string` | No | The order or transaction identifier related to the dispute. |
+| `listingId` | `string` | No | The listing identifier related to the dispute. |
+| `reason` | `string` | Yes | The reason for the dispute: `"item_not_received"`, `"item_not_as_described"`, `"unauthorized_purchase"`, `"billing_error"`, `"quality_issue"`, `"counterfeit"`, `"other"`. |
+| `disputeType` | `string` | No | The type of dispute resolution requested: `"refund"`, `"replacement"`, `"mediation"`, `"chargeback"`. |
+| `amount` | `number` | No | The monetary amount in dispute. |
+| `currency` | `string` | No | ISO 4217 3-letter currency code (e.g. USD, EUR, GBP). |
+| `initiatedBy` | `string` | No | The party that opened the dispute: `"buyer"`, `"seller"`, `"platform"`. |
+| `description` | `string` | No | Free-text description of the dispute. |
+
+### 28.10 `marketplace.dispute_resolved`
+
+Fired when a marketplace dispute is resolved.
+
+**When to fire:** When a dispute reaches a final resolution, whether by agreement, mediation, or platform decision.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `disputeId` | `string` | Yes | Unique identifier for the dispute. |
+| `orderId` | `string` | No | The order or transaction identifier related to the dispute. |
+| `resolution` | `string` | Yes | The resolution outcome: `"refunded"`, `"replaced"`, `"dismissed"`, `"escalated"`, `"partial_refund"`, `"mediated"`. |
+| `resolvedBy` | `string` | No | The party that resolved the dispute: `"buyer"`, `"seller"`, `"platform"`, `"automatic"`. |
+| `resolutionAmount` | `number` | No | The monetary amount of the resolution (e.g. refund amount). |
+| `currency` | `string` | No | ISO 4217 3-letter currency code (e.g. USD, EUR, GBP). |
+| `durationSeconds` | `number` | No | Time from dispute opened to resolution in seconds. |
 
 ---
 
@@ -2963,6 +3127,41 @@ Fired when a player completes a challenge.
 | `reward` | `string` | No | Reward earned for completing the challenge. |
 | `duration` | `number` | No | Time to complete in seconds. |
 | `isFirstCompletion` | `boolean` | No | Whether this is the first time the player completed this challenge. |
+
+### 30.9 `gaming.currency_earned`
+
+Fired when a player earns virtual currency in a game.
+
+**When to fire:** When virtual currency is added to the player's balance through any in-game mechanism.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `currencyName` | `string` | Yes | Name of the virtual currency (e.g. 'coins', 'gems', 'gold'). |
+| `amount` | `number` | Yes | Amount of currency earned. |
+| `source` | `string` | No | How the currency was earned: `"purchase"`, `"reward"`, `"quest"`, `"daily_login"`, `"achievement"`, `"referral"`, `"promotion"`, `"other"`. |
+| `balance` | `number` | No | Balance after earning. |
+| `level` | `integer` | No | Player's current level. |
+| `gameMode` | `string` | No | Current game mode. |
+
+### 30.10 `gaming.currency_spent`
+
+Fired when a player spends virtual currency in a game.
+
+**When to fire:** When virtual currency is deducted from the player's balance for an in-game purchase or action.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `currencyName` | `string` | Yes | Name of the virtual currency (e.g. 'coins', 'gems', 'gold'). |
+| `amount` | `number` | Yes | Amount of currency spent. |
+| `itemName` | `string` | No | The item or service purchased with the currency. |
+| `itemCategory` | `string` | No | Category of the item purchased. |
+| `balance` | `number` | No | Balance after spending. |
+| `level` | `integer` | No | Player's current level. |
+| `gameMode` | `string` | No | Current game mode. |
 
 ---
 
@@ -3293,6 +3492,60 @@ Fired when a user views a screen in the application.
 | `previousScreenName` | `string` | No | The name of the previous screen. |
 | `previousScreenClass` | `string` | No | The class or component name of the previous screen. |
 
+### 32.9 `app.device_connected`
+
+Fired when a physical device (IoT, wearable, peripheral) is paired or connected.
+
+**When to fire:** When a device successfully establishes a connection with the app via Bluetooth, WiFi, or other protocols.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `deviceId` | `string` | Yes | Unique identifier for the connected device. |
+| `deviceName` | `string` | No | Human-readable name of the device. |
+| `deviceType` | `string` | No | Type of device: `"wearable"`, `"smart_home"`, `"sensor"`, `"peripheral"`, `"vehicle"`, `"appliance"`, `"other"`. |
+| `connectionType` | `string` | No | Connection protocol used: `"bluetooth"`, `"wifi"`, `"usb"`, `"zigbee"`, `"zwave"`, `"thread"`, `"matter"`, `"cellular"`, `"other"`. |
+| `firmwareVersion` | `string` | No | Current firmware version of the device. |
+| `manufacturer` | `string` | No | Device manufacturer. |
+| `model` | `string` | No | Device model name or number. |
+| `batteryLevel` | `number` | No | Battery level (0-100). |
+| `signalStrength` | `integer` | No | Signal strength in dBm. |
+
+### 32.10 `app.device_disconnected`
+
+Fired when a physical device is unpaired or disconnected.
+
+**When to fire:** When a connected device loses connection or is manually disconnected.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `deviceId` | `string` | Yes | Unique identifier for the disconnected device. |
+| `deviceName` | `string` | No | Human-readable name of the device. |
+| `deviceType` | `string` | No | Type of device: `"wearable"`, `"smart_home"`, `"sensor"`, `"peripheral"`, `"vehicle"`, `"appliance"`, `"other"`. |
+| `reason` | `string` | No | Reason for disconnection: `"user_initiated"`, `"timeout"`, `"out_of_range"`, `"low_battery"`, `"error"`, `"firmware_update"`, `"other"`. |
+| `sessionDurationSeconds` | `number` | No | Duration the device was connected in seconds. |
+
+### 32.11 `app.device_firmware_updated`
+
+Fired when a connected device completes a firmware or software update.
+
+**When to fire:** When an OTA or manual firmware update finishes on a connected device.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `deviceId` | `string` | Yes | Unique identifier for the device. |
+| `deviceName` | `string` | No | Human-readable name of the device. |
+| `previousVersion` | `string` | No | Firmware version before the update. |
+| `newVersion` | `string` | Yes | Firmware version after the update. |
+| `updateMethod` | `string` | No | How the update was applied: `"ota"`, `"usb"`, `"manual"`, `"automatic"`. |
+| `durationSeconds` | `number` | No | Update duration in seconds. |
+| `status` | `string` | No | Update outcome: `"success"`, `"failed"`, `"partial"`. |
+
 ---
 
 ## 33. Order Events
@@ -3506,6 +3759,43 @@ Fired when a new team member is added to an account.
 | `memberId` | `string` | No | Unique identifier for the new team member. |
 | `role` | `string` | No | The role assigned to the new team member: `"owner"`, `"admin"`, `"member"`, `"viewer"`, `"billing"`. |
 | `inviteMethod` | `string` | No | The method used to invite the team member: `"email"`, `"link"`, `"sso"`, `"api"`. |
+
+### 34.7 `account.seat_added`
+
+Fired when a seat or license is provisioned for a user in a B2B account.
+
+**When to fire:** When a new seat is allocated from the account's license pool, granting a user access.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `accountId` | `string` | Yes | Unique identifier for the account. |
+| `seatId` | `string` | No | Unique identifier for the seat or license. |
+| `userId` | `string` | No | Unique identifier of the user assigned the seat. |
+| `role` | `string` | No | Role assigned to the seat. |
+| `licenseType` | `string` | No | Type of license (e.g. 'standard', 'admin', 'viewer'). |
+| `totalSeats` | `integer` | No | Total seats available on the account. |
+| `usedSeats` | `integer` | No | Number of seats currently in use. |
+| `plan` | `string` | No | The account plan. |
+
+### 34.8 `account.seat_removed`
+
+Fired when a seat or license is deprovisioned from a user in a B2B account.
+
+**When to fire:** When a seat is released back to the account's license pool, revoking a user's access.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `accountId` | `string` | Yes | Unique identifier for the account. |
+| `seatId` | `string` | No | Unique identifier for the seat or license. |
+| `userId` | `string` | No | Unique identifier of the user whose seat was removed. |
+| `reason` | `string` | No | Reason for removal: `"offboarding"`, `"downgrade"`, `"cost_reduction"`, `"inactivity"`, `"other"`. |
+| `totalSeats` | `integer` | No | Total seats available on the account. |
+| `usedSeats` | `integer` | No | Number of seats currently in use. |
+| `plan` | `string` | No | The account plan. |
 
 ---
 
@@ -3790,6 +4080,22 @@ Fired when a user claims a loyalty reward.
 | `rewardValue` | `number` | No | The monetary value of the reward. |
 | `pointsCost` | `integer` | No | The number of points required to claim the reward. |
 
+### 37.7 `loyalty.points_expired`
+
+Fired when loyalty points expire.
+
+**When to fire:** When loyalty points reach their expiration date and are removed from the member's balance.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `programId` | `string` | Yes | The unique identifier of the loyalty program. |
+| `memberId` | `string` | No | The unique identifier of the loyalty member. |
+| `points` | `integer` | Yes | The number of points that expired. |
+| `expiredAt` | `string` | No | ISO 8601 datetime when the points expired. |
+| `reason` | `string` | No | The reason for expiration: `"time_limit"`, `"inactivity"`, `"program_change"`, `"other"`. |
+
 ---
 
 ## 38. Survey Events
@@ -3861,6 +4167,8 @@ Fired when a user answers a question in a survey.
 | `questionId` | `string` | No | The unique identifier of the question. |
 | `questionType` | `string` | No | The type of question answered: `"multiple_choice"`, `"single_choice"`, `"text"`, `"rating"`, `"scale"`, `"matrix"`, `"ranking"`, `"other"`. |
 | `questionText` | `string` | No | The text of the question. |
+| `answerValue` | `string` | No | The answer value or selected option. |
+| `answerNumeric` | `number` | No | Numeric answer value for rating or scale questions. |
 
 ### 38.5 `survey.nps_submitted`
 
@@ -3994,6 +4302,42 @@ Fired when a comment is added to an item.
 | `isReply` | `boolean` | No | Whether this comment is a reply to another comment. |
 | `parentCommentId` | `string` | No | The unique identifier of the parent comment if this is a reply. |
 
+### 39.8 `collaboration.task_created`
+
+Fired when a task is created within a workspace or project.
+
+**When to fire:** When a user creates a new task or to-do item in a collaborative workspace.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `taskId` | `string` | Yes | Unique identifier for the task. |
+| `workspaceId` | `string` | No | The unique identifier of the workspace. |
+| `projectId` | `string` | No | The unique identifier of the project. |
+| `title` | `string` | No | The title of the task. |
+| `assigneeId` | `string` | No | The unique identifier of the assigned user. |
+| `priority` | `string` | No | The priority of the task: `"critical"`, `"high"`, `"medium"`, `"low"`, `"none"`. |
+| `dueDate` | `string` | No | ISO 8601 date or datetime for the task due date. |
+| `labels` | `string[]` | No | Labels or tags applied to the task. |
+
+### 39.9 `collaboration.task_completed`
+
+Fired when a task is marked as completed.
+
+**When to fire:** When a user marks a task as done or completed in a collaborative workspace.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `taskId` | `string` | Yes | Unique identifier for the task. |
+| `workspaceId` | `string` | No | The unique identifier of the workspace. |
+| `projectId` | `string` | No | The unique identifier of the project. |
+| `completedBy` | `string` | No | The unique identifier of the user who completed the task. |
+| `duration` | `number` | No | Time from task creation to completion in milliseconds. |
+| `wasOverdue` | `boolean` | No | Whether the task was completed after its due date. |
+
 ---
 
 ## 40. Video Call Events
@@ -4093,6 +4437,22 @@ Fired when a participant shares their screen during a video call.
 | `participantId` | `string` | No | The unique identifier of the participant sharing their screen. |
 | `shareType` | `string` | No | The type of screen sharing being used: `"screen"`, `"window"`, `"tab"`, `"application"`. |
 | `duration` | `number` | No | Duration of screen share in seconds. |
+
+### 40.7 `video_call.recording_stopped`
+
+Fired when a video call recording is stopped.
+
+**When to fire:** When the recording of a video call is stopped, either manually or automatically.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `callId` | `string` | Yes | The unique identifier of the video call. |
+| `recordingId` | `string` | Yes | The unique identifier of the recording. |
+| `duration` | `number` | No | Duration of the recording in seconds. |
+| `stoppedBy` | `string` | No | Who stopped the recording: `"host"`, `"system"`, `"participant"`. |
+| `fileSize` | `number` | No | File size of the recording in bytes. |
 
 ---
 
@@ -4310,6 +4670,23 @@ Fired when a new version of a file is created.
 | `changeDescription` | `string` | No | Description of the changes made in this version. |
 | `fileSize` | `number` | No | File size in bytes. |
 
+### 42.6 `file.downloaded`
+
+Fired when a user downloads a file.
+
+**When to fire:** When a user initiates and completes a file download.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `fileId` | `string` | Yes | Unique identifier for the file. |
+| `fileName` | `string` | No | Name of the file. |
+| `fileType` | `string` | No | The MIME type or extension of the file. |
+| `fileSize` | `number` | No | File size in bytes. |
+| `source` | `string` | No | The source or location from which the file was downloaded. |
+| `downloadMethod` | `string` | No | How the download was initiated: `"direct"`, `"bulk"`, `"api"`, `"share_link"`, `"other"`. |
+
 ---
 
 ## 43. Integration Events
@@ -4403,6 +4780,46 @@ Fired when an integration data sync fails.
 | `recordsProcessed` | `integer` | No | The total number of records processed before the failure. |
 | `recordsFailed` | `integer` | No | The number of records that failed to sync. |
 | `isRetryable` | `boolean` | No | Whether the failed sync can be retried. |
+
+### 43.6 `integration.deployment_started`
+
+Fired when a code deployment is initiated.
+
+**When to fire:** When a deployment pipeline begins executing, whether triggered by a user, CI system, or rollback.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `deploymentId` | `string` | Yes | Unique identifier for the deployment. |
+| `environment` | `string` | Yes | Target environment: `"production"`, `"staging"`, `"preview"`, `"development"`, `"test"`. |
+| `commitSha` | `string` | No | The commit SHA being deployed. |
+| `branch` | `string` | No | The source branch for the deployment. |
+| `version` | `string` | No | The version or release tag being deployed. |
+| `initiatedBy` | `string` | No | How the deployment was triggered: `"user"`, `"ci"`, `"rollback"`, `"schedule"`. |
+| `provider` | `string` | No | Deployment provider (e.g. 'vercel', 'netlify', 'aws', 'heroku'). |
+| `projectId` | `string` | No | Identifier of the project being deployed. |
+
+### 43.7 `integration.deployment_completed`
+
+Fired when a code deployment finishes.
+
+**When to fire:** When the deployment pipeline finishes execution, whether it succeeded, failed, or was cancelled.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `deploymentId` | `string` | Yes | Unique identifier for the deployment. |
+| `environment` | `string` | Yes | Target environment: `"production"`, `"staging"`, `"preview"`, `"development"`, `"test"`. |
+| `status` | `string` | Yes | The deployment outcome: `"success"`, `"failure"`, `"cancelled"`, `"rolled_back"`. |
+| `commitSha` | `string` | No | The commit SHA that was deployed. |
+| `branch` | `string` | No | The source branch for the deployment. |
+| `version` | `string` | No | The version or release tag that was deployed. |
+| `durationSeconds` | `number` | No | Build and deployment duration in seconds. |
+| `provider` | `string` | No | Deployment provider. |
+| `projectId` | `string` | No | Identifier of the project. |
+| `url` | `string` | No | The deployed URL. |
 
 ---
 
@@ -4872,6 +5289,8 @@ Fired when a user checks their account balance.
 |---|---|---|---|
 | `accountId` | `string` | No | Identifier of the account whose balance was checked. |
 | `accountType` | `string` | No | The type of account: `"checking"`, `"savings"`, `"wallet"`, `"credit"`, `"investment"`, `"crypto"`, `"other"`. |
+| `balance` | `number` | No | Current account balance. |
+| `currency` | `string` | No | ISO 4217 currency code. |
 
 ### 48.7 `finance.statement_generated`
 
@@ -4890,9 +5309,149 @@ Fired when an account statement is generated.
 | `format` | `string` | No | The format of the generated statement: `"pdf"`, `"csv"`, `"html"`, `"json"`. |
 | `transactionCount` | `integer` | No | Number of transactions included in the statement. |
 
+### 48.8 `finance.trade_executed`
+
+Fired when a financial trade or investment order is executed.
+
+**When to fire:** When a buy or sell order for a financial instrument is filled and settled.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `tradeId` | `string` | Yes | Unique identifier for the trade. |
+| `instrument` | `string` | Yes | Ticker symbol or asset identifier. |
+| `instrumentType` | `string` | No | Type of financial instrument: `"stock"`, `"bond"`, `"etf"`, `"mutual_fund"`, `"option"`, `"future"`, `"crypto"`, `"forex"`, `"commodity"`, `"other"`. |
+| `side` | `string` | No | Trade direction: `"buy"`, `"sell"`. |
+| `quantity` | `number` | No | Number of units traded. |
+| `price` | `number` | No | Price per unit. |
+| `total` | `number` | No | Total trade value. |
+| `currency` | `string` | No | ISO 4217 3-letter currency code (e.g. USD, EUR, GBP). |
+| `orderType` | `string` | No | Type of order: `"market"`, `"limit"`, `"stop"`, `"stop_limit"`, `"trailing_stop"`. |
+| `executionVenue` | `string` | No | The exchange or venue where the trade was executed. |
+| `accountId` | `string` | No | The trading account identifier. |
+
 ---
 
-## 49. Event Taxonomy Quick Reference
+## 49. AI Events
+
+AI events track interactions with AI assistants, chatbots, language models, and AI-powered features. These events support analytics for AI engagement, quality, and adoption.
+
+### 49.1 `ai.conversation_started`
+
+Fired when a user opens or initiates a conversation with an AI assistant.
+
+**When to fire:** When the AI chat interface is opened or the first message is sent.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `conversationId` | `string` | Yes | Unique identifier for the conversation. |
+| `assistantId` | `string` | No | Identifier for the AI assistant or bot. |
+| `assistantName` | `string` | No | Display name of the assistant. |
+| `model` | `string` | No | The AI model used (e.g. "gpt-4", "claude-3"). |
+| `provider` | `string` | No | AI provider: `"openai"`, `"anthropic"`, `"google"`, `"meta"`, `"cohere"`, `"mistral"`, `"custom"`, `"other"`. |
+| `interface` | `string` | No | Interface type: `"chat"`, `"voice"`, `"embedded"`, `"api"`, `"other"`. |
+| `context` | `string` | No | What the user was doing when they started the conversation. |
+
+### 49.2 `ai.message_sent`
+
+Fired when a user sends a message or prompt to the AI.
+
+**When to fire:** When the user submits a message to the AI assistant.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `conversationId` | `string` | Yes | The conversation this message belongs to. |
+| `messageId` | `string` | Yes | Unique identifier for the message. |
+| `role` | `string` | No | Message role: `"user"`, `"system"`. |
+| `contentLength` | `integer` | No | Length of the message content in characters. |
+| `hasAttachments` | `boolean` | No | Whether the message includes attachments. |
+| `attachmentTypes` | `string[]` | No | Types of attachments included. |
+| `model` | `string` | No | The AI model targeted. |
+| `toolsRequested` | `string[]` | No | Tools or functions requested in the message. |
+
+### 49.3 `ai.response_received`
+
+Fired when the AI generates and returns a response.
+
+**When to fire:** When the AI response is fully received (or streaming completes).
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `conversationId` | `string` | Yes | The conversation this response belongs to. |
+| `messageId` | `string` | Yes | Unique identifier for the response message. |
+| `model` | `string` | No | The AI model that generated the response. |
+| `provider` | `string` | No | The AI provider. |
+| `latencyMs` | `number` | No | Time to generate the response in milliseconds. |
+| `promptTokens` | `integer` | No | Number of input tokens. |
+| `completionTokens` | `integer` | No | Number of output tokens. |
+| `totalTokens` | `integer` | No | Total tokens used. |
+| `finishReason` | `string` | No | Why generation stopped: `"stop"`, `"length"`, `"tool_call"`, `"content_filter"`, `"error"`, `"other"`. |
+| `isStreaming` | `boolean` | No | Whether the response was streamed. |
+| `toolsUsed` | `string[]` | No | Tools or functions invoked during generation. |
+| `contentLength` | `integer` | No | Length of the response content in characters. |
+
+### 49.4 `ai.feedback_given`
+
+Fired when a user provides feedback on an AI response.
+
+**When to fire:** When the user rates, flags, or comments on an AI response.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `conversationId` | `string` | Yes | The conversation containing the rated response. |
+| `messageId` | `string` | Yes | The response message being rated. |
+| `feedbackType` | `string` | Yes | Feedback type: `"positive"`, `"negative"`, `"rating"`, `"correction"`, `"flag"`. |
+| `rating` | `number` | No | Numeric rating (0-5). |
+| `comment` | `string` | No | Free-text feedback. |
+| `reason` | `string` | No | Reason: `"helpful"`, `"accurate"`, `"fast"`, `"unhelpful"`, `"inaccurate"`, `"slow"`, `"harmful"`, `"irrelevant"`, `"other"`. |
+
+### 49.5 `ai.suggestion_accepted`
+
+Fired when a user accepts an AI-generated recommendation or suggestion.
+
+**When to fire:** When the user explicitly accepts, applies, or uses an AI suggestion.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `conversationId` | `string` | No | The conversation, if applicable. |
+| `suggestionId` | `string` | Yes | Unique identifier for the suggestion. |
+| `suggestionType` | `string` | No | Type: `"text"`, `"code"`, `"product"`, `"action"`, `"link"`, `"other"`. |
+| `source` | `string` | No | Where shown: `"inline"`, `"sidebar"`, `"modal"`, `"autocomplete"`, `"copilot"`, `"other"`. |
+| `acceptMethod` | `string` | No | How accepted: `"click"`, `"keyboard_shortcut"`, `"auto"`, `"other"`. |
+| `model` | `string` | No | The AI model that generated the suggestion. |
+
+### 49.6 `ai.suggestion_dismissed`
+
+Fired when a user dismisses an AI-generated recommendation.
+
+**When to fire:** When the user explicitly dismisses, closes, or ignores an AI suggestion.
+
+**Data payload:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `conversationId` | `string` | No | The conversation, if applicable. |
+| `suggestionId` | `string` | Yes | Unique identifier for the suggestion. |
+| `suggestionType` | `string` | No | Type: `"text"`, `"code"`, `"product"`, `"action"`, `"link"`, `"other"`. |
+| `source` | `string` | No | Where shown: `"inline"`, `"sidebar"`, `"modal"`, `"autocomplete"`, `"copilot"`, `"other"`. |
+| `dismissMethod` | `string` | No | How dismissed: `"click"`, `"keyboard_shortcut"`, `"escape"`, `"ignore"`, `"other"`. |
+| `reason` | `string` | No | Reason: `"not_relevant"`, `"incorrect"`, `"too_slow"`, `"already_done"`, `"other"`. |
+| `model` | `string` | No | The AI model that generated the suggestion. |
+
+---
+
+## 50. Event Taxonomy Quick Reference
 
 | Event Name | Category | Description |
 |---|---|---|
@@ -4914,6 +5473,8 @@ Fired when an account statement is generated.
 | `ecommerce.coupon_removed` | Ecommerce | Coupon removed |
 | `ecommerce.wishlist_product_added` | Ecommerce | Product added to wishlist |
 | `ecommerce.wishlist_product_removed` | Ecommerce | Product removed from wishlist |
+| `ecommerce.cart_abandoned` | Ecommerce | Shopping cart abandoned |
+| `ecommerce.shipping_info_entered` | Ecommerce | Shipping information submitted |
 | `ecommerce.promotion_viewed` | Ecommerce | Promotion displayed |
 | `ecommerce.promotion_clicked` | Ecommerce | Promotion clicked |
 | `media.play` | Media | Playback started/resumed |
@@ -4944,6 +5505,7 @@ Fired when an account statement is generated.
 | `search.performed` | Search | Search query executed |
 | `search.result_clicked` | Search | Search result clicked |
 | `search.filter_applied` | Search | Search filter applied |
+| `search.autocomplete_selected` | Search | Autocomplete suggestion selected |
 | `error.occurred` | Error | Application error |
 | `error.boundary_triggered` | Error | Error boundary caught error |
 | `performance.page_load` | Performance | Page load timing |
@@ -4975,6 +5537,7 @@ Fired when an account statement is generated.
 | `payment.invoice_overdue` | Payment | Invoice overdue |
 | `payment.payout_initiated` | Payment | Payout initiated |
 | `payment.payout_completed` | Payment | Payout completed |
+| `payment.payment_failed` | Payment | Payment failed |
 | `experiment.exposure` | Experiment | User exposed to experiment |
 | `experiment.variant_assigned` | Experiment | Variant assigned to user |
 | `experiment.conversion` | Experiment | Experiment conversion |
@@ -4987,6 +5550,7 @@ Fired when an account statement is generated.
 | `auth.mfa_completed` | Auth | MFA challenge completed |
 | `auth.session_expired` | Auth | Session expired |
 | `auth.token_refreshed` | Auth | Token refreshed |
+| `auth.login_failed` | Auth | Login attempt failed |
 | `onboarding.started` | Onboarding | Onboarding flow started |
 | `onboarding.step_completed` | Onboarding | Onboarding step completed |
 | `onboarding.step_skipped` | Onboarding | Onboarding step skipped |
@@ -5022,6 +5586,7 @@ Fired when an account statement is generated.
 | `content.rated` | Content | Content rated |
 | `content.bookmarked` | Content | Content bookmarked |
 | `content.shared` | Content | Content shared |
+| `content.drafted` | Content | Content drafted |
 | `review.submitted` | Review | Review submitted |
 | `review.updated` | Review | Review updated |
 | `review.deleted` | Review | Review deleted |
@@ -5041,6 +5606,7 @@ Fired when an account statement is generated.
 | `support.rating_given` | Support | Rating given |
 | `support.article_viewed` | Support | Support article viewed |
 | `support.article_helpful` | Support | Article helpfulness rated |
+| `support.ticket_escalated` | Support | Ticket escalated |
 | `communication.message_sent` | Communication | Message sent |
 | `communication.message_received` | Communication | Message received |
 | `communication.message_read` | Communication | Message read |
@@ -5063,6 +5629,8 @@ Fired when an account statement is generated.
 | `marketplace.offer_accepted` | Marketplace | Offer accepted |
 | `marketplace.offer_rejected` | Marketplace | Offer rejected |
 | `marketplace.seller_contacted` | Marketplace | Seller contacted |
+| `marketplace.dispute_opened` | Marketplace | Dispute opened |
+| `marketplace.dispute_resolved` | Marketplace | Dispute resolved |
 | `education.course_enrolled` | Education | Course enrolled |
 | `education.course_started` | Education | Course started |
 | `education.course_completed` | Education | Course completed |
@@ -5079,6 +5647,8 @@ Fired when an account statement is generated.
 | `gaming.score_posted` | Gaming | Score posted |
 | `gaming.challenge_started` | Gaming | Challenge started |
 | `gaming.challenge_completed` | Gaming | Challenge completed |
+| `gaming.currency_earned` | Gaming | Virtual currency earned |
+| `gaming.currency_spent` | Gaming | Virtual currency spent |
 | `crm.lead_created` | CRM | Lead created |
 | `crm.lead_qualified` | CRM | Lead qualified |
 | `crm.lead_converted` | CRM | Lead converted |
@@ -5099,6 +5669,9 @@ Fired when an account statement is generated.
 | `app.crashed` | App | App crashed |
 | `app.deep_link_opened` | App | Deep link opened |
 | `app.screen_viewed` | App | Screen viewed |
+| `app.device_connected` | App | Physical device connected |
+| `app.device_disconnected` | App | Physical device disconnected |
+| `app.device_firmware_updated` | App | Device firmware updated |
 | `order.confirmed` | Order | Order confirmed |
 | `order.processing` | Order | Order processing |
 | `order.shipped` | Order | Order shipped |
@@ -5112,6 +5685,8 @@ Fired when an account statement is generated.
 | `account.deleted` | Account | Account deleted |
 | `account.settings_updated` | Account | Account settings updated |
 | `account.team_member_added` | Account | Team member added |
+| `account.seat_added` | Account | Seat provisioned |
+| `account.seat_removed` | Account | Seat deprovisioned |
 | `privacy.data_export_requested` | Privacy | Data export requested |
 | `privacy.data_export_completed` | Privacy | Data export completed |
 | `privacy.data_deletion_requested` | Privacy | Data deletion requested |
@@ -5128,6 +5703,7 @@ Fired when an account statement is generated.
 | `loyalty.tier_upgraded` | Loyalty | Loyalty tier upgraded |
 | `loyalty.tier_downgraded` | Loyalty | Loyalty tier downgraded |
 | `loyalty.reward_claimed` | Loyalty | Loyalty reward claimed |
+| `loyalty.points_expired` | Loyalty | Loyalty points expired |
 | `survey.started` | Survey | Survey started |
 | `survey.completed` | Survey | Survey completed |
 | `survey.abandoned` | Survey | Survey abandoned |
@@ -5140,12 +5716,15 @@ Fired when an account statement is generated.
 | `collaboration.role_changed` | Collaboration | Role changed |
 | `collaboration.item_shared` | Collaboration | Item shared |
 | `collaboration.item_commented` | Collaboration | Item commented |
+| `collaboration.task_created` | Collaboration | Task created |
+| `collaboration.task_completed` | Collaboration | Task completed |
 | `video_call.started` | Video Call | Call started |
 | `video_call.joined` | Video Call | Participant joined |
 | `video_call.left` | Video Call | Participant left |
 | `video_call.ended` | Video Call | Call ended |
 | `video_call.recording_started` | Video Call | Recording started |
 | `video_call.screen_shared` | Video Call | Screen shared |
+| `video_call.recording_stopped` | Video Call | Recording stopped |
 | `booking.search_initiated` | Booking | Booking search initiated |
 | `booking.reservation_created` | Booking | Reservation created |
 | `booking.reservation_confirmed` | Booking | Reservation confirmed |
@@ -5158,11 +5737,14 @@ Fired when an account statement is generated.
 | `file.previewed` | File | File previewed |
 | `file.converted` | File | File converted |
 | `file.version_created` | File | File version created |
+| `file.downloaded` | File | File downloaded |
 | `integration.connected` | Integration | Integration connected |
 | `integration.disconnected` | Integration | Integration disconnected |
 | `integration.sync_started` | Integration | Sync started |
 | `integration.sync_completed` | Integration | Sync completed |
 | `integration.sync_failed` | Integration | Sync failed |
+| `integration.deployment_started` | Integration | Deployment started |
+| `integration.deployment_completed` | Integration | Deployment completed |
 | `automation.workflow_triggered` | Automation | Workflow triggered |
 | `automation.workflow_completed` | Automation | Workflow completed |
 | `automation.workflow_failed` | Automation | Workflow failed |
@@ -5190,4 +5772,11 @@ Fired when an account statement is generated.
 | `finance.wallet_topped_up` | Finance | Wallet topped up |
 | `finance.balance_checked` | Finance | Balance checked |
 | `finance.statement_generated` | Finance | Statement generated |
+| `finance.trade_executed` | Finance | Trade executed |
+| `ai.conversation_started` | AI | AI conversation started |
+| `ai.message_sent` | AI | Message sent to AI |
+| `ai.response_received` | AI | AI response received |
+| `ai.feedback_given` | AI | AI feedback given |
+| `ai.suggestion_accepted` | AI | AI suggestion accepted |
+| `ai.suggestion_dismissed` | AI | AI suggestion dismissed |
 | `custom.*` | Custom | Extension events |

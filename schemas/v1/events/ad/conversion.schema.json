@@ -20,7 +20,8 @@
     },
     "currency": {
       "type": "string",
-      "description": "ISO 4217 3-letter currency code for the conversion value (e.g. USD, EUR, GBP)."
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
     },
     "campaignId": {
       "type": "string",

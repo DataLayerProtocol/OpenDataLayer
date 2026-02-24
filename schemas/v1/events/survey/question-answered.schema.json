@@ -26,6 +26,14 @@
     "questionText": {
       "type": "string",
       "description": "The text of the question."
+    },
+    "answerValue": {
+      "type": "string",
+      "description": "The answer value or selected option"
+    },
+    "answerNumeric": {
+      "type": "number",
+      "description": "Numeric answer value for rating or scale questions"
     }
   },
   "required": ["surveyId", "questionIndex"],

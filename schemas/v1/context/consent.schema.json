@@ -37,6 +37,10 @@
     "doNotTrack": {
       "type": "boolean",
       "description": "Whether the Do Not Track (DNT) header is set in the browser."
+    },
+    "region": {
+      "type": "string",
+      "description": "Applicable regulatory jurisdiction (e.g. 'GDPR', 'CCPA', 'LGPD', 'PIPL')."
     }
   },
   "additionalProperties": false

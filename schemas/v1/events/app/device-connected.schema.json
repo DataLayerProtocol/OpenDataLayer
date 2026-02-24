@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/app/device_connected.schema.json",
+  "title": "Device Connected",
+  "description": "Fired when a physical device (IoT, wearable, peripheral) is paired or connected.",
+  "type": "object",
+  "properties": {
+    "deviceId": {
+      "type": "string",
+      "description": "The unique identifier of the connected device."
+    },
+    "deviceName": {
+      "type": "string",
+      "description": "The human-readable name of the device."
+    },
+    "deviceType": {
+      "type": "string",
+      "enum": ["wearable", "smart_home", "sensor", "peripheral", "vehicle", "appliance", "other"],
+      "description": "The category of the connected device."
+    },
+    "connectionType": {
+      "type": "string",
+      "enum": ["bluetooth", "wifi", "usb", "zigbee", "zwave", "thread", "matter", "cellular", "other"],
+      "description": "The protocol or method used to connect the device."
+    },
+    "firmwareVersion": {
+      "type": "string",
+      "description": "The firmware version currently running on the device."
+    },
+    "manufacturer": {
+      "type": "string",
+      "description": "The manufacturer of the device."
+    },
+    "model": {
+      "type": "string",
+      "description": "The model name or number of the device."
+    },
+    "batteryLevel": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The battery level of the device as a percentage."
+    },
+    "signalStrength": {
+      "type": "integer",
+      "description": "The signal strength of the device connection."
+    }
+  },
+  "required": ["deviceId"],
+  "additionalProperties": false
+}

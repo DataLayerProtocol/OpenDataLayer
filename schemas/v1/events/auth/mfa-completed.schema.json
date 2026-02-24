@@ -12,7 +12,8 @@
       "type": "boolean"
     },
     "challengeType": {
-      "type": "string"
+      "type": "string",
+      "enum": ["login", "sensitive_action", "step_up"]
     }
   },
   "required": ["method", "success"],

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/app/device_disconnected.schema.json",
+  "title": "Device Disconnected",
+  "description": "Fired when a physical device is unpaired or disconnected.",
+  "type": "object",
+  "properties": {
+    "deviceId": {
+      "type": "string",
+      "description": "The unique identifier of the disconnected device."
+    },
+    "deviceName": {
+      "type": "string",
+      "description": "The human-readable name of the device."
+    },
+    "deviceType": {
+      "type": "string",
+      "enum": ["wearable", "smart_home", "sensor", "peripheral", "vehicle", "appliance", "other"],
+      "description": "The category of the disconnected device."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["user_initiated", "timeout", "out_of_range", "low_battery", "error", "firmware_update", "other"],
+      "description": "The reason the device was disconnected."
+    },
+    "sessionDurationSeconds": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The duration in seconds the device was connected before disconnecting."
+    }
+  },
+  "required": ["deviceId"],
+  "additionalProperties": false
+}

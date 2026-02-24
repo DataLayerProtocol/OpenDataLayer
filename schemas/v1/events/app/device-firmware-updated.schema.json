@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/app/device_firmware_updated.schema.json",
+  "title": "Device Firmware Updated",
+  "description": "Fired when a connected device completes a firmware or software update.",
+  "type": "object",
+  "properties": {
+    "deviceId": {
+      "type": "string",
+      "description": "The unique identifier of the device that was updated."
+    },
+    "deviceName": {
+      "type": "string",
+      "description": "The human-readable name of the device."
+    },
+    "previousVersion": {
+      "type": "string",
+      "description": "The firmware version before the update."
+    },
+    "newVersion": {
+      "type": "string",
+      "description": "The firmware version after the update."
+    },
+    "updateMethod": {
+      "type": "string",
+      "enum": ["ota", "usb", "manual", "automatic"],
+      "description": "The method used to deliver the firmware update."
+    },
+    "durationSeconds": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The duration in seconds the firmware update took to complete."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["success", "failed", "partial"],
+      "description": "The outcome status of the firmware update."
+    }
+  },
+  "required": ["deviceId", "newVersion"],
+  "additionalProperties": false
+}

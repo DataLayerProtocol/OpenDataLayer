@@ -17,6 +17,10 @@
       "type": "string",
       "description": "New start time after rescheduling."
     },
+    "newEndTime": {
+      "type": "string",
+      "description": "New end time for the rescheduled appointment in ISO 8601 format"
+    },
     "rescheduledBy": {
       "type": "string",
       "description": "Who initiated the reschedule.",

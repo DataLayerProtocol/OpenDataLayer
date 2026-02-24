@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/finance/trade_executed.schema.json",
+  "title": "Trade Executed",
+  "description": "Fired when a financial trade or investment order is executed.",
+  "type": "object",
+  "properties": {
+    "tradeId": {
+      "type": "string",
+      "description": "Unique identifier for the trade."
+    },
+    "instrument": {
+      "type": "string",
+      "description": "The ticker symbol or asset identifier."
+    },
+    "instrumentType": {
+      "type": "string",
+      "description": "The type of financial instrument traded.",
+      "enum": ["stock", "bond", "etf", "mutual_fund", "option", "future", "crypto", "forex", "commodity", "other"]
+    },
+    "side": {
+      "type": "string",
+      "description": "Whether the trade is a buy or sell.",
+      "enum": ["buy", "sell"]
+    },
+    "quantity": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The number of units traded."
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The price per unit at execution."
+    },
+    "total": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The total monetary value of the trade."
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "orderType": {
+      "type": "string",
+      "description": "The type of order that was executed.",
+      "enum": ["market", "limit", "stop", "stop_limit", "trailing_stop"]
+    },
+    "executionVenue": {
+      "type": "string",
+      "description": "The exchange or venue where the trade was executed."
+    },
+    "accountId": {
+      "type": "string",
+      "description": "The trading or brokerage account identifier."
+    }
+  },
+  "required": ["tradeId", "instrument"],
+  "additionalProperties": false
+}

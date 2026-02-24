@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/collaboration/task_completed.schema.json",
+  "title": "Collaboration Task Completed",
+  "description": "Fired when a task is marked as completed.",
+  "type": "object",
+  "properties": {
+    "taskId": {
+      "type": "string",
+      "description": "Unique identifier for the task."
+    },
+    "workspaceId": {
+      "type": "string",
+      "description": "The unique identifier of the workspace the task belongs to."
+    },
+    "projectId": {
+      "type": "string",
+      "description": "The unique identifier of the project the task belongs to."
+    },
+    "completedBy": {
+      "type": "string",
+      "description": "The unique identifier of the user who completed the task."
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Time from creation to completion in seconds."
+    },
+    "wasOverdue": {
+      "type": "boolean",
+      "description": "Whether the task was overdue at the time of completion."
+    }
+  },
+  "required": ["taskId"],
+  "additionalProperties": false
+}

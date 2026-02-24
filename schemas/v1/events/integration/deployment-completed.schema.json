@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/integration/deployment_completed.schema.json",
+  "title": "Deployment Completed",
+  "description": "Fired when a code deployment finishes.",
+  "type": "object",
+  "properties": {
+    "deploymentId": {
+      "type": "string",
+      "description": "Unique identifier for the deployment."
+    },
+    "environment": {
+      "type": "string",
+      "enum": ["production", "staging", "preview", "development", "test"],
+      "description": "The target deployment environment."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["success", "failure", "cancelled", "rolled_back"],
+      "description": "The final status of the deployment."
+    },
+    "commitSha": {
+      "type": "string",
+      "description": "The Git commit SHA that was deployed."
+    },
+    "branch": {
+      "type": "string",
+      "description": "The Git branch that was deployed."
+    },
+    "version": {
+      "type": "string",
+      "description": "The version identifier for the deployment."
+    },
+    "durationSeconds": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Build and deployment duration in seconds."
+    },
+    "provider": {
+      "type": "string",
+      "description": "The deployment provider (e.g. 'vercel', 'netlify', 'aws', 'heroku')."
+    },
+    "projectId": {
+      "type": "string",
+      "description": "The project identifier associated with the deployment."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The deployed URL."
+    }
+  },
+  "required": ["deploymentId", "environment", "status"],
+  "additionalProperties": false
+}

@@ -61,19 +61,17 @@ describe('createTestEvent()', () => {
 });
 
 describe('createPageContext()', () => {
-  it('returns a page context with url, path, title, referrer, hostname', () => {
+  it('returns a page context with url, path, title, referrer', () => {
     const ctx = createPageContext();
 
     expect(ctx).toHaveProperty('url');
     expect(ctx).toHaveProperty('path');
     expect(ctx).toHaveProperty('title');
     expect(ctx).toHaveProperty('referrer');
-    expect(ctx).toHaveProperty('hostname');
     expect(typeof ctx.url).toBe('string');
     expect(typeof ctx.path).toBe('string');
     expect(typeof ctx.title).toBe('string');
     expect(typeof ctx.referrer).toBe('string');
-    expect(typeof ctx.hostname).toBe('string');
   });
 
   it('accepts overrides', () => {
@@ -83,19 +81,18 @@ describe('createPageContext()', () => {
     expect(ctx.path).toBe('/custom');
     // Non-overridden fields still present
     expect(ctx.url).toBeDefined();
-    expect(ctx.hostname).toBeDefined();
   });
 });
 
 describe('createUserContext()', () => {
-  it('returns a user context with userId, anonymousId, isAuthenticated, traits', () => {
+  it('returns a user context with id, anonymousId, isAuthenticated, traits', () => {
     const ctx = createUserContext();
 
-    expect(ctx).toHaveProperty('userId');
+    expect(ctx).toHaveProperty('id');
     expect(ctx).toHaveProperty('anonymousId');
     expect(ctx).toHaveProperty('isAuthenticated');
     expect(ctx).toHaveProperty('traits');
-    expect(typeof ctx.userId).toBe('string');
+    expect(typeof ctx.id).toBe('string');
     expect(typeof ctx.anonymousId).toBe('string');
     expect(ctx.isAuthenticated).toBe(true);
     expect(typeof ctx.traits).toBe('object');
@@ -103,27 +100,29 @@ describe('createUserContext()', () => {
 });
 
 describe('createConsentContext()', () => {
-  it('returns a consent context with purposes and lastUpdated', () => {
+  it('returns a consent context with status, purposes, and updatedAt', () => {
     const ctx = createConsentContext();
 
+    expect(ctx).toHaveProperty('status');
     expect(ctx).toHaveProperty('purposes');
-    expect(ctx).toHaveProperty('lastUpdated');
+    expect(ctx).toHaveProperty('updatedAt');
+    expect(ctx.status).toBe('granted');
     expect(typeof ctx.purposes).toBe('object');
-    expect(typeof ctx.lastUpdated).toBe('string');
+    expect(typeof ctx.updatedAt).toBe('string');
   });
 });
 
 describe('createSessionContext()', () => {
-  it('returns a session context with sessionId, isNewSession, sessionCount, startedAt', () => {
+  it('returns a session context with id, isNew, count, startedAt', () => {
     const ctx = createSessionContext();
 
-    expect(ctx).toHaveProperty('sessionId');
-    expect(ctx).toHaveProperty('isNewSession');
-    expect(ctx).toHaveProperty('sessionCount');
+    expect(ctx).toHaveProperty('id');
+    expect(ctx).toHaveProperty('isNew');
+    expect(ctx).toHaveProperty('count');
     expect(ctx).toHaveProperty('startedAt');
-    expect(typeof ctx.sessionId).toBe('string');
-    expect(typeof ctx.isNewSession).toBe('boolean');
-    expect(typeof ctx.sessionCount).toBe('number');
+    expect(typeof ctx.id).toBe('string');
+    expect(typeof ctx.isNew).toBe('boolean');
+    expect(typeof ctx.count).toBe('number');
     expect(typeof ctx.startedAt).toBe('string');
   });
 });
@@ -146,10 +145,10 @@ describe('createFullContext()', () => {
 });
 
 describe('createProduct()', () => {
-  it('returns a product with productId, name, brand, category, variant, price, currency, quantity, position', () => {
+  it('returns a product with id, name, brand, category, variant, price, currency, quantity, position', () => {
     const product = createProduct();
 
-    expect(product).toHaveProperty('productId');
+    expect(product).toHaveProperty('id');
     expect(product).toHaveProperty('name');
     expect(product).toHaveProperty('brand');
     expect(product).toHaveProperty('category');
@@ -158,7 +157,7 @@ describe('createProduct()', () => {
     expect(product).toHaveProperty('currency');
     expect(product).toHaveProperty('quantity');
     expect(product).toHaveProperty('position');
-    expect(typeof product.productId).toBe('string');
+    expect(typeof product.id).toBe('string');
     expect(typeof product.name).toBe('string');
     expect(typeof product.brand).toBe('string');
     expect(typeof product.category).toBe('string');

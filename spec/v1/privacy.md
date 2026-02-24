@@ -111,7 +111,7 @@ ODL follows the principle of **data minimization**: collect only the data that i
 Not all context objects need to be populated. Implementations SHOULD populate only the context objects required by their conformance level and their actual consumer needs:
 
 - A privacy-focused implementation might populate only `page` and `consent` contexts.
-- A full-featured ecommerce implementation might populate all 8 contexts.
+- A full-featured ecommerce implementation might populate all 15 contexts.
 
 The conformance levels (see [conformance.md](conformance.md)) provide a framework for choosing the appropriate scope.
 

@@ -28,6 +28,27 @@
     },
     "location": {
       "$ref": "../context/location.schema.json"
+    },
+    "account": {
+      "$ref": "../context/account.schema.json"
+    },
+    "cart": {
+      "$ref": "../context/cart.schema.json"
+    },
+    "experiment": {
+      "$ref": "../context/experiment.schema.json"
+    },
+    "loyalty": {
+      "$ref": "../context/loyalty.schema.json"
+    },
+    "order": {
+      "$ref": "../context/order.schema.json"
+    },
+    "organization": {
+      "$ref": "../context/organization.schema.json"
+    },
+    "subscription": {
+      "$ref": "../context/subscription.schema.json"
     }
   },
   "additionalProperties": false

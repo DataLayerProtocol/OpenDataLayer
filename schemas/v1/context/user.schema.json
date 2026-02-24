@@ -80,6 +80,14 @@
         "type": "string"
       },
       "description": "Audience segments the user belongs to."
+    },
+    "role": {
+      "type": "string",
+      "description": "User's role within the product (e.g. 'admin', 'member', 'viewer')."
+    },
+    "locale": {
+      "type": "string",
+      "description": "User's preferred locale in BCP 47 format (e.g. 'en-US')."
     }
   },
   "additionalProperties": false

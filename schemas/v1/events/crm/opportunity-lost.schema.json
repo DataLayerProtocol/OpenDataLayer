@@ -15,7 +15,8 @@
     },
     "currency": {
       "type": "string",
-      "description": "Currency code for the deal value."
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
     },
     "reason": {
       "type": "string",

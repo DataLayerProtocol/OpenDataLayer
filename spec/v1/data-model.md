@@ -93,7 +93,7 @@ Context objects represent **ambient state** — information that is true for the
 
 ### 3.1 Context Object Inventory
 
-The ODL protocol defines 8 context objects:
+The ODL protocol defines 15 context objects:
 
 | Context | Key | Description |
 |---|---|---|
@@ -105,12 +105,21 @@ The ODL protocol defines 8 context objects:
 | App | `app` | Application or site metadata. |
 | Campaign | `campaign` | Marketing attribution parameters. |
 | Location | `location` | Geographic location context. |
+| Account | `account` | Organizational account context for multi-tenant products. |
+| Cart | `cart` | Shopping cart state and contents. |
+| Experiment | `experiment` | A/B test and feature flag experiment state. |
+| Loyalty | `loyalty` | Loyalty program membership and points state. |
+| Order | `order` | Active order or most recent order context. |
+| Organization | `organization` | B2B organization context (industry, plan, ARR/MRR). |
+| Subscription | `subscription` | Active subscription plan and billing context. |
 
 Each context object is fully defined in [context-objects.md](context-objects.md).
 
 ### 3.2 Context in the Event Envelope
 
 The `context` field of the event envelope is an object whose keys correspond to the context object names above. Not all context objects are required — the required set depends on the conformance level (see [conformance.md](conformance.md)).
+
+> **Note:** Not all context objects need to be present on every event. Only include the contexts that are relevant to the current state. The required set depends on the conformance level (see [conformance.md](conformance.md)).
 
 ```json
 {
@@ -122,7 +131,14 @@ The `context` field of the event envelope is an object whose keys correspond to 
     "device": { ... },
     "app": { ... },
     "campaign": { ... },
-    "location": { ... }
+    "location": { ... },
+    "account": { ... },
+    "cart": { ... },
+    "experiment": { ... },
+    "loyalty": { ... },
+    "order": { ... },
+    "organization": { ... },
+    "subscription": { ... }
   }
 }
 ```

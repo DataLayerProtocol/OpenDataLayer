@@ -21,73 +21,15 @@ The analytics ecosystem is fragmented. Every platform -- GA4, Segment, Adobe, Am
 - **No validation**: Events are typically fire-and-forget with no schema enforcement
 - **Duplicated effort**: Every team builds their own data layer abstraction
 
-OpenDataLayer solves this with a **single, standardized protocol** that any analytics tool can consume through adapters.
+OpenDataLayer solves this with a **single, standardized protocol** that any analytics tool can consume.
 
-## Quick Start
+---
 
-```bash
-npm install @opendatalayer/sdk
-```
+## The Protocol
 
-```typescript
-import { OpenDataLayer } from '@opendatalayer/sdk';
-
-// Initialize
-const odl = new OpenDataLayer({
-  source: { name: 'my-app', version: '1.0.0' },
-});
-
-// Set context (persists across all events)
-odl.setContext('page', {
-  url: window.location.href,
-  path: window.location.pathname,
-  title: document.title,
-});
-
-odl.setContext('user', {
-  id: 'user-123',
-  isAuthenticated: true,
-  traits: { plan: 'premium' },
-});
-
-// Track events
-odl.track('page.view');
-
-odl.track('ecommerce.product_viewed', {
-  product: {
-    id: 'SKU-456',
-    name: 'Running Shoes',
-    price: 129.99,
-    currency: 'USD',
-    category: 'Footwear/Running',
-  },
-});
-
-odl.track('ecommerce.purchase', {
-  orderId: 'ORD-789',
-  total: 142.49,
-  currency: 'USD',
-  products: [
-    { id: 'SKU-456', name: 'Running Shoes', price: 129.99, currency: 'USD', quantity: 1 },
-  ],
-});
-
-// Subscribe to events
-const unsubscribe = odl.on('ecommerce.*', (event) => {
-  console.log('Ecommerce event:', event);
-});
-
-// Use with adapters
-import { gtmAdapter } from '@opendatalayer/adapter-gtm';
-
-odl.use(gtmAdapter());  // Auto-pushes to window.dataLayer in GA4 format
-```
-
-## Core Concepts
+The ODL protocol is the core standard -- the schemas, specification, and types that define how analytics events are structured. This is what organizations adopt.
 
 ### Event Model: `event + context + data`
-
-Every ODL event has three parts:
 
 ```json
 {
@@ -113,27 +55,39 @@ Every ODL event has three parts:
 ```
 
 - **`event`** -- Dot-namespaced name (`category.action`). Enables wildcard subscriptions.
-- **`context`** -- Ambient state that persists across events (page, user, consent, session, device, app, campaign, location).
+- **`context`** -- Ambient state that persists across events. 15 context domains: page, user, consent, session, device, app, campaign, location, account, cart, experiment, loyalty, order, organization, subscription.
 - **`data`** -- Event-specific payload. Each event type has its own schema.
 - **`customDimensions`** -- Escape hatch for implementation-specific key-value pairs.
 
 ### Event Taxonomy
 
-ODL defines a comprehensive event taxonomy organized by category:
+354 JSON schemas across 46 event categories covering every major business interaction:
 
-| Category | Events | Description |
-|----------|--------|-------------|
-| `page` | `view`, `leave`, `virtual_view` | Page lifecycle |
-| `ecommerce` | 17 events | Full purchase funnel |
-| `media` | 11 events | Video/audio playback |
-| `consent` | `given`, `revoked`, `preferences_updated` | Privacy consent |
-| `user` | `signed_up`, `signed_in`, `signed_out`, `profile_updated`, `identified` | User lifecycle |
-| `form` | `viewed`, `started`, `step_completed`, `submitted`, `error`, `abandoned` | Form interactions |
-| `search` | `performed`, `result_clicked`, `filter_applied` | Search behavior |
-| `error` | `occurred`, `boundary_triggered` | Error tracking |
-| `performance` | `page_load`, `web_vital`, `resource_timing`, `long_task` | Performance metrics |
-| `interaction` | `element_clicked`, `element_visible`, `scroll_depth`, `file_downloaded`, `share`, `print` | UI interactions |
-| `custom` | Wildcard | Escape hatch |
+| Category | Events | | Category | Events |
+|----------|--------|-|----------|--------|
+| `ecommerce` | 21 | | `subscription` | 11 |
+| `crm` | 12 | | `media` | 12 |
+| `marketplace` | 10 | | `gaming` | 10 |
+| `social` | 10 | | `content` | 10 |
+| `support` | 10 | | `app` | 11 |
+| `payment` | 9 | | `auth` | 9 |
+| `collaboration` | 9 | | `communication` | 8 |
+| `notification` | 8 | | `onboarding` | 8 |
+| `education` | 8 | | `finance` | 8 |
+| `account` | 8 | | `order` | 7 |
+| `booking` | 7 | | `video_call` | 7 |
+| `loyalty` | 7 | | `integration` | 7 |
+| `form` | 6 | | `interaction` | 6 |
+| `ai` | 6 | | `scheduling` | 6 |
+| `ad` | 5 | | `automation` | 5 |
+| `document` | 5 | | `feature` | 5 |
+| `identity` | 5 | | `privacy` | 5 |
+| `referral` | 5 | | `review` | 5 |
+| `survey` | 5 | | `user` | 5 |
+| `experiment` | 4 | | `search` | 4 |
+| `page` | 3 | | `consent` | 3 |
+| `performance` | 4 | | `file` | 6 |
+| `error` | 2 | | `custom` | 1 |
 
 ### Schema-First Design
 
@@ -142,38 +96,103 @@ JSON Schemas (Draft 2020-12) are the **single source of truth**:
 ```
 schemas/v1/
 ├── core/           # Event envelope, context wrapper, shared primitives
-├── context/        # All 8 context object schemas
-├── events/         # ~50 event schemas organized by category
+├── context/        # 15 context object schemas
+├── events/         # 335+ event schemas across 46 categories
 └── enums/          # Currency codes, consent purposes, device types, etc.
 ```
 
 Everything derives from schemas:
-- **TypeScript types**: `npm run generate:types`
-- **Validation**: `@opendatalayer/validator` uses schemas at runtime
-- **Documentation**: Event/context reference auto-generated from schemas
+- **TypeScript types**: `@opendatalayer/types`
+- **Validation**: Runtime and build-time schema enforcement
+- **Documentation**: Event/context reference generated from schemas
 - **Test fixtures**: Validated against schemas
 
-## Packages
+### Protocol Specification
 
-| Package | Description |
-|---------|-------------|
-| `@opendatalayer/sdk` | Reference implementation -- track events, manage context, plugin system |
-| `@opendatalayer/types` | TypeScript types generated from JSON schemas |
-| `@opendatalayer/validator` | Ajv-based validation engine + CLI (`odl validate`) |
-| `@opendatalayer/testing` | Test helpers, Vitest/Jest matchers, fixtures, event spy |
-| `@opendatalayer/adapter-gtm` | Google Tag Manager adapter (GA4 format) |
-| `@opendatalayer/adapter-segment` | Segment analytics.js adapter |
-| `@opendatalayer/adapter-webhook` | Generic webhook adapter (batch + real-time) |
-| `@opendatalayer/adapter-adobe` | Adobe Analytics / AEP adapter _(preview)_ |
-| `@opendatalayer/adapter-amplitude` | Amplitude adapter _(preview)_ |
-| `@opendatalayer/adapter-piwik` | Piwik PRO / Matomo adapter _(preview)_ |
-| `@opendatalayer/adapter-tealium` | Tealium iQ adapter _(preview)_ |
+The full formal specification is in [`spec/v1/`](./spec/v1/):
 
-> **Preview adapters** export the options interface and plugin skeleton but do not yet implement event mapping. They are ready for community contribution — see [CONTRIBUTING.md](CONTRIBUTING.md).
+| Document | Description |
+|----------|-------------|
+| [Overview](./spec/v1/overview.md) | Protocol overview and design rationale |
+| [Data Model](./spec/v1/data-model.md) | Core event+context model |
+| [Events](./spec/v1/events.md) | Event naming and full taxonomy (46 categories) |
+| [Context Objects](./spec/v1/context-objects.md) | All 15 context definitions |
+| [Transport](./spec/v1/transport.md) | Push model, subscriptions, middleware pipeline |
+| [Privacy](./spec/v1/privacy.md) | Privacy-by-design principles |
+| [Conformance](./spec/v1/conformance.md) | Three conformance levels (Minimal, Standard, Full) |
+| [Versioning](./spec/v1/versioning.md) | Versioning and backward compatibility |
+| [Extensions](./spec/v1/extensions.md) | Custom events and contexts |
 
-## Validation
+---
 
-Validate events at build time or runtime:
+## The Toolkit
+
+The ODL toolkit is a reference implementation that makes adoption effortless. You can adopt the protocol without the toolkit, or use the toolkit to get running in minutes.
+
+### SDK
+
+```bash
+npm install @opendatalayer/sdk
+```
+
+```typescript
+import { OpenDataLayer } from '@opendatalayer/sdk';
+
+const odl = new OpenDataLayer({
+  source: { name: 'my-app', version: '1.0.0' },
+});
+
+// Set context (persists across all events)
+odl.setContext('page', {
+  url: window.location.href,
+  title: document.title,
+});
+
+// Track events
+odl.track('page.view');
+
+odl.track('ecommerce.purchase', {
+  orderId: 'ORD-789',
+  total: 142.49,
+  currency: 'USD',
+  products: [
+    { id: 'SKU-456', name: 'Running Shoes', price: 129.99, currency: 'USD', quantity: 1 },
+  ],
+});
+
+// Subscribe to events
+odl.on('ecommerce.*', (event) => {
+  console.log('Ecommerce event:', event);
+});
+```
+
+### Adapters
+
+Adapters translate ODL events to platform-specific formats. Each adapter is ~200-300 lines and handles the full mapping from ODL's universal schema to the vendor's expected format.
+
+```typescript
+import { gtmAdapter } from '@opendatalayer/adapter-gtm';
+import { segmentAdapter } from '@opendatalayer/adapter-segment';
+
+// Events automatically translated and pushed to both platforms
+odl.use(gtmAdapter());
+odl.use(segmentAdapter());
+
+// ODL: ecommerce.purchase -> GTM: purchase (GA4 items format) + Segment: Order Completed
+odl.track('ecommerce.purchase', { ... });
+```
+
+| Adapter | Translates to | Status |
+|---------|---------------|--------|
+| `@opendatalayer/adapter-gtm` | Google Tag Manager / GA4 | Stable |
+| `@opendatalayer/adapter-segment` | Segment analytics.js | Stable |
+| `@opendatalayer/adapter-webhook` | Generic HTTP webhook (batch + real-time) | Stable |
+| `@opendatalayer/adapter-adobe` | Adobe Analytics (AppMeasurement + WebSDK) | Stable |
+| `@opendatalayer/adapter-amplitude` | Amplitude Analytics | Stable |
+| `@opendatalayer/adapter-piwik` | Piwik PRO / Matomo | Stable |
+| `@opendatalayer/adapter-tealium` | Tealium iQ / EventStream | Stable |
+
+### Validator
 
 ```bash
 # CLI
@@ -184,116 +203,70 @@ import { ODLValidator } from '@opendatalayer/validator';
 
 const validator = new ODLValidator();
 const result = validator.validate(myEvent);
-
-if (!result.valid) {
-  console.error('Validation errors:', result.errors);
-}
 ```
 
-The validator includes **semantic rules** beyond schema validation:
-- Consent must be granted before tracking events
-- Ecommerce events must have consistent currency
-- Required context objects must be present for their event categories
+Includes semantic rules beyond schema validation: consent-before-tracking, ecommerce currency consistency, required context presence.
 
-## Testing
-
-```bash
-npm install -D @opendatalayer/testing
-```
+### Testing
 
 ```typescript
-import { ODLSpy, createTestEvent, createPurchaseEvent, installMatchers } from '@opendatalayer/testing';
+import { ODLSpy, createPurchaseEvent, installMatchers } from '@opendatalayer/testing';
 
-// Install custom matchers
 installMatchers();
 
-// Use fixtures
 const event = createPurchaseEvent();
 expect(event).toBeValidODLEvent();
-
-// Spy on events
-const spy = new ODLSpy();
-odl.on('*', spy.handler());
-
-odl.track('page.view');
-expect(spy.hasEvent('page.view')).toBe(true);
+expect(event).toHaveEventName('ecommerce.purchase');
 ```
 
-## Adapters
+### All Packages
 
-Adapters translate ODL events to platform-specific formats:
+| Package | What it is |
+|---------|-----------|
+| **Protocol** | |
+| `@opendatalayer/types` | TypeScript types for all events, contexts, and the event envelope |
+| **Toolkit** | |
+| `@opendatalayer/sdk` | Reference SDK -- event tracking, context management, plugin system |
+| `@opendatalayer/validator` | JSON Schema validation engine + semantic rules + CLI |
+| `@opendatalayer/testing` | Test helpers, fixtures, Vitest/Jest matchers, event spy |
+| `@opendatalayer/adapter-*` | Platform adapters (GTM, Segment, Adobe, Amplitude, Piwik, Tealium, Webhook) |
 
-```typescript
-import { OpenDataLayer } from '@opendatalayer/sdk';
-import { gtmAdapter } from '@opendatalayer/adapter-gtm';
-import { segmentAdapter } from '@opendatalayer/adapter-segment';
-
-const odl = new OpenDataLayer();
-
-// Events automatically pushed to both platforms
-odl.use(gtmAdapter());
-odl.use(segmentAdapter());
-
-// ODL: ecommerce.purchase -> GTM: purchase (GA4 format) + Segment: Order Completed
-odl.track('ecommerce.purchase', { ... });
-```
-
-## Development
-
-```bash
-# Install dependencies
-npm install
-
-# Validate all JSON schemas
-npm run validate:schemas
-
-# Generate TypeScript types from schemas
-npm run generate:types
-
-# Build all packages
-npm run build
-
-# Run all tests
-npm test
-
-# Lint
-npm run lint
-```
+---
 
 ## Project Structure
 
 ```
 OpenDataLayer/
-├── spec/v1/           # Human-readable protocol specification
-├── schemas/v1/        # JSON Schemas (source of truth)
+├── spec/v1/           # Formal protocol specification (9 documents)
+├── schemas/v1/        # JSON Schemas — the source of truth (354 schemas)
+│   ├── core/          #   Event envelope, context wrapper, shared primitives
+│   ├── context/       #   15 context object schemas
+│   ├── events/        #   335+ event schemas across 46 categories
+│   └── enums/         #   Shared enum definitions
 ├── packages/
-│   ├── sdk/           # Reference implementation
-│   ├── types/         # Generated TypeScript types
-│   ├── validator/     # Schema validation + CLI
-│   └── testing/       # Test helpers + fixtures
-├── adapters/          # Platform adapters (GTM, Segment, etc.)
-├── scripts/           # Build tooling (type gen, schema validation)
-├── examples/          # Working examples
+│   ├── types/         # TypeScript types (protocol)
+│   ├── sdk/           # Reference SDK (toolkit)
+│   ├── validator/     # Schema validator + CLI (toolkit)
+│   └── testing/       # Test utilities (toolkit)
+├── adapters/          # 7 platform adapters (toolkit)
+├── scripts/           # Build tooling
+├── examples/          # Working examples (HTML, Node, React, Next.js)
 └── docs/              # VitePress documentation site
 ```
 
-## Protocol Specification
+## Development
 
-The full protocol specification is in [`spec/v1/`](./spec/v1/):
-
-- [Overview](./spec/v1/overview.md) -- Protocol overview and design rationale
-- [Data Model](./spec/v1/data-model.md) -- Core event+context model
-- [Events](./spec/v1/events.md) -- Event naming and full taxonomy
-- [Context Objects](./spec/v1/context-objects.md) -- All context definitions
-- [Transport](./spec/v1/transport.md) -- How events are pushed and consumed
-- [Privacy](./spec/v1/privacy.md) -- Privacy-by-design principles
-- [Conformance](./spec/v1/conformance.md) -- Conformance levels
-- [Versioning](./spec/v1/versioning.md) -- Versioning and compatibility
-- [Extensions](./spec/v1/extensions.md) -- Custom events and contexts
+```bash
+npm install                   # Install dependencies
+npm run validate:schemas      # Validate all 354 JSON schemas
+npm run build                 # Build all packages
+npm test                      # Run all tests
+npm run lint                  # Lint (Biome)
+```
 
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines. The project welcomes contributions to schemas, adapters, SDK features, and documentation.
 
 ## License
 

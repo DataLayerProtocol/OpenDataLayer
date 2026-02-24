@@ -117,7 +117,7 @@ Every trackable action is represented as an **event envelope** — a JSON object
 
 ### 4.2 Context Objects
 
-Context objects represent **ambient state** that persists across events. Rather than attaching page URL, user ID, and consent state to every individual event, ODL maintains context objects that are automatically merged into each event at emission time. Context objects include: `page`, `user`, `consent`, `session`, `device`, `app`, `campaign`, and `location`.
+Context objects represent **ambient state** that persists across events. Rather than attaching page URL, user ID, and consent state to every individual event, ODL maintains context objects that are automatically merged into each event at emission time. Context objects include: `page`, `user`, `consent`, `session`, `device`, `app`, `campaign`, `location`, `account`, `cart`, `experiment`, `loyalty`, `order`, `organization`, and `subscription`.
 
 ### 4.3 Data Payloads
 

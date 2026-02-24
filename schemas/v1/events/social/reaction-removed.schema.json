@@ -15,6 +15,7 @@
     },
     "reactionType": {
       "type": "string",
+      "enum": ["like", "love", "haha", "wow", "sad", "angry"],
       "description": "The type of reaction removed."
     }
   },

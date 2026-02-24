@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/auth/login_failed.schema.json",
+  "title": "Login Failed",
+  "description": "Fired when a user login attempt fails.",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string",
+      "enum": ["password", "sso", "social", "magic_link", "biometric", "passkey", "other"],
+      "description": "The authentication method used in the failed login attempt."
+    },
+    "failureReason": {
+      "type": "string",
+      "enum": ["invalid_credentials", "account_locked", "account_suspended", "mfa_required", "mfa_failed", "expired_password", "ip_blocked", "rate_limited", "other"],
+      "description": "The reason the login attempt failed."
+    },
+    "userId": {
+      "type": "string",
+      "description": "The unique identifier of the user attempting to log in."
+    },
+    "email": {
+      "type": "string",
+      "description": "The email address used in the login attempt."
+    },
+    "attemptCount": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The number of consecutive failed login attempts."
+    },
+    "ipAddress": {
+      "type": "string",
+      "description": "The IP address from which the login attempt originated."
+    }
+  },
+  "required": ["method", "failureReason"],
+  "additionalProperties": false
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/account/seat_added.schema.json",
+  "title": "Seat Added",
+  "description": "Fired when a seat or license is provisioned for a user in a B2B account.",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "Unique identifier for the account."
+    },
+    "seatId": {
+      "type": "string",
+      "description": "Unique identifier for the seat or license."
+    },
+    "userId": {
+      "type": "string",
+      "description": "Unique identifier for the user assigned the seat."
+    },
+    "role": {
+      "type": "string",
+      "description": "The role assigned to the user for this seat."
+    },
+    "licenseType": {
+      "type": "string",
+      "description": "The type of license provisioned, e.g. 'standard', 'admin', 'viewer'."
+    },
+    "totalSeats": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Total number of seats available on the account."
+    },
+    "usedSeats": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of seats currently in use on the account."
+    },
+    "plan": {
+      "type": "string",
+      "description": "The plan associated with the account."
+    }
+  },
+  "required": ["accountId"],
+  "additionalProperties": false
+}

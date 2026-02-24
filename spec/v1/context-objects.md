@@ -28,7 +28,7 @@ Not all context objects are required on every event. The required set depends on
 
 - **Minimal**: `page` context only.
 - **Standard**: `page`, `user`, `consent`, `session` contexts.
-- **Full**: All 8 context objects.
+- **Full**: All 10 context objects.
 
 ### 2.4 Context Merging Strategy
 
@@ -148,6 +148,12 @@ The `user` context describes the current user, whether authenticated or anonymou
 | `anonymousId` | `string` | No | An anonymous identifier for the user, typically a first-party cookie or device ID. Used for identity stitching before authentication. |
 | `isAuthenticated` | `boolean` | No | Whether the user is currently authenticated. Defaults to `false` if omitted. |
 | `traits` | `object` | No | A flexible object containing user attributes. See [Section 4.2](#42-user-traits). |
+| `email` | `string` | No | The user's email address (plain text). Subject to PII handling rules (see [privacy.md](privacy.md)). |
+| `hashedEmail` | `string` | No | A SHA-256 hex-encoded hash of the user's lowercase, trimmed email address. Useful for identity resolution without exposing PII. |
+| `isNewUser` | `boolean` | No | Whether the user is new (e.g., first visit or recently registered). |
+| `segments` | `string[]` | No | Audience segments the user belongs to. |
+| `role` | `string` | No | User's role within the product (e.g., `"admin"`, `"member"`, `"viewer"`). |
+| `locale` | `string` | No | User's preferred locale in BCP 47 format (e.g., `"en-US"`). |
 
 ### 4.2 User Traits
 
@@ -221,6 +227,11 @@ The `consent` context describes the user's current privacy consent state. It is 
 | `method` | `string` | No | How consent was obtained: `"explicit"` (active opt-in), `"implicit"` (continued use), `"default"` (pre-set values before user action). |
 | `updatedAt` | `string` | No | ISO 8601 timestamp of the last consent update. |
 | `gpcEnabled` | `boolean` | No | Whether the user's browser has Global Privacy Control (GPC) enabled. |
+| `doNotTrack` | `boolean` | No | Whether the Do Not Track (DNT) header is set in the browser. (Note: DNT is deprecated but still present in some browsers.) |
+| `version` | `string` | No | The version of the consent policy the user agreed to. |
+| `region` | `string` | No | Applicable regulatory jurisdiction (e.g., `"GDPR"`, `"CCPA"`, `"LGPD"`, `"PIPL"`). |
+| `status` | `string` | No | The overall consent status: `"granted"`, `"denied"`, `"pending"`. |
+| `purposes` | `object` | No | A map of consent purpose names to their granted/denied state (e.g., `{ "analytics": true, "marketing": false }`). |
 
 ### 5.2 Consent Categories
 
@@ -379,6 +390,9 @@ The `app` context describes the application or website that is producing events.
 | `environment` | `string` | No | The runtime environment: `"production"`, `"staging"`, `"development"`, `"testing"`. |
 | `platform` | `string` | No | The platform: `"web"`, `"ios"`, `"android"`, `"react_native"`, `"electron"`, `"server"`. |
 | `namespace` | `string` | No | A reverse-domain namespace for the app (e.g., `"com.example.store"`). |
+| `sdkName` | `string` | No | Name of the analytics SDK used (e.g., `"@opendatalayer/sdk"`). |
+| `sdkVersion` | `string` | No | Version of the analytics SDK. |
+| `deployId` | `string` | No | Identifier for the current deployment or release. |
 
 ### 8.2 When Populated
 
@@ -501,7 +515,107 @@ Location data is sensitive and subject to privacy regulations:
 
 ---
 
-## 11. Context Object Summary
+## 11. Organization Context
+
+The `organization` context describes the organization, company, or tenant associated with the current user or session. This is particularly useful for B2B SaaS products where users belong to organizations and analytics need to be segmented by account.
+
+### 11.1 Fields
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | `string` | Yes | A unique identifier for the organization. |
+| `name` | `string` | No | The display name of the organization. |
+| `plan` | `string` | No | The current subscription plan: `"free"`, `"starter"`, `"professional"`, `"enterprise"`, `"custom"`. |
+| `industry` | `string` | No | The industry classification of the organization. |
+| `size` | `string` | No | The organization size range: `"1-10"`, `"11-50"`, `"51-200"`, `"201-1000"`, `"1001-5000"`, `"5000+"`. |
+| `domain` | `string` | No | The primary domain of the organization (e.g., `"example.com"`). |
+| `country` | `string` | No | ISO 3166-1 alpha-2 country code of the organization's headquarters. |
+| `region` | `string` | No | Region or state of the organization's headquarters. |
+| `createdAt` | `string` | No | ISO 8601 timestamp of when the organization account was created. |
+| `mrr` | `number` | No | Monthly recurring revenue for this organization. |
+| `employeeCount` | `integer` | No | Number of employees in the organization. |
+| `isTrialing` | `boolean` | No | Whether the organization is currently on a trial. |
+| `traits` | `object` | No | A flexible object containing additional organization attributes. |
+| `parentId` | `string` | No | Identifier of the parent organization, if part of a hierarchy. |
+
+### 11.2 When Populated
+
+- **On authentication**: Set organization context when a user authenticates and their organization is known.
+- **On organization switch**: Update when the user switches between organizations in multi-tenant applications.
+- **On plan change**: Update `plan`, `mrr`, and `isTrialing` when the organization's subscription changes.
+
+### 11.3 Example
+
+```json
+{
+  "organization": {
+    "id": "org-456",
+    "name": "Acme Corp",
+    "plan": "enterprise",
+    "industry": "Technology",
+    "size": "201-1000",
+    "domain": "acme.com",
+    "country": "US",
+    "region": "CA",
+    "createdAt": "2024-03-10T00:00:00.000Z",
+    "mrr": 4999.00,
+    "employeeCount": 350,
+    "isTrialing": false
+  }
+}
+```
+
+---
+
+## 12. Account Context
+
+The `account` context represents the account or subscription context for B2B scenarios. While similar to the organization context, the account context focuses on the commercial relationship (subscription, billing, and lifecycle) rather than the organizational identity.
+
+### 12.1 Fields
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | `string` | Yes | The account identifier. |
+| `name` | `string` | No | The account or organization name. |
+| `plan` | `string` | No | The account's subscription plan or tier. |
+| `industry` | `string` | No | The account's industry vertical. |
+| `employeeCount` | `string` | No | Company size range: `"1-10"`, `"11-50"`, `"51-200"`, `"201-1000"`, `"1001-5000"`, `"5000+"`. |
+| `createdAt` | `string` | No | ISO 8601 timestamp of when the account was created. |
+| `mrr` | `number` | No | Monthly recurring revenue for this account. |
+| `domain` | `string` | No | The account's primary domain. |
+| `country` | `string` | No | ISO 3166-1 alpha-2 country code of the account. |
+| `status` | `string` | No | Current account lifecycle status: `"active"`, `"trialing"`, `"suspended"`, `"churned"`, `"cancelled"`. |
+| `seats` | `integer` | No | Number of licensed seats on the account. |
+
+### 12.2 When Populated
+
+- **On authentication**: Set account context when a user authenticates and their account is known.
+- **On account switch**: Update when the user switches between accounts.
+- **On subscription change**: Update `plan`, `mrr`, `status`, and `seats` when the account's subscription changes.
+
+### 12.3 Example
+
+```json
+{
+  "account": {
+    "id": "acct-789",
+    "name": "Acme Corp",
+    "plan": "enterprise",
+    "industry": "Technology",
+    "employeeCount": "201-1000",
+    "createdAt": "2024-03-10T00:00:00.000Z",
+    "mrr": 4999.00,
+    "domain": "acme.com",
+    "country": "US",
+    "status": "active",
+    "seats": 50
+  }
+}
+```
+
+---
+
+## 13. Context Object Summary
 
 | Context | Required (Minimal) | Required (Standard) | Required (Full) | Reset Trigger |
 |---|---|---|---|---|
@@ -513,5 +627,7 @@ Location data is sensitive and subject to privacy regulations:
 | `app` | No | No | Yes | Initialization |
 | `campaign` | No | No | Yes | Session start / UTM change |
 | `location` | No | No | Yes | Page load / geolocation change |
+| `organization` | No | No | Yes | Authentication / organization switch |
+| `account` | No | No | Yes | Authentication / account switch |
 
 See [conformance.md](conformance.md) for the complete conformance level definitions.

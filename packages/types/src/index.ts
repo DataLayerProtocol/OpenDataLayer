@@ -64,6 +64,7 @@ export interface ODLContext {
   account?: AccountContext;
   order?: OrderContext;
   loyalty?: LoyaltyContext;
+  organization?: OrganizationContext;
 }
 
 // ---- Context Types ----
@@ -90,6 +91,8 @@ export interface UserContext {
   isAuthenticated?: boolean;
   isNewUser?: boolean;
   segments?: string[];
+  role?: string;
+  locale?: string;
 }
 
 export interface UserTraits {
@@ -113,6 +116,7 @@ export interface ConsentContext {
   updatedAt?: string;
   gpcEnabled?: boolean;
   doNotTrack?: boolean;
+  region?: string;
 }
 
 export interface SessionContext {
@@ -152,6 +156,9 @@ export interface AppContext {
   environment?: 'production' | 'staging' | 'development' | 'testing';
   platform?: 'web' | 'ios' | 'android' | 'react-native' | 'flutter' | 'electron' | 'other';
   namespace?: string;
+  sdkName?: string;
+  sdkVersion?: string;
+  deployId?: string;
 }
 
 export interface CampaignContext {
@@ -225,6 +232,9 @@ export interface AccountContext {
   createdAt?: string;
   mrr?: number;
   domain?: string;
+  country?: string;
+  status?: 'active' | 'trialing' | 'suspended' | 'churned' | 'cancelled';
+  seats?: number;
 }
 
 export interface OrderContext {
@@ -255,6 +265,23 @@ export interface LoyaltyContext {
   lifetimePoints?: number;
   tierExpiresAt?: string;
   memberSince?: string;
+}
+
+export interface OrganizationContext {
+  id: string;
+  name?: string;
+  domain?: string;
+  industry?: string;
+  plan?: string;
+  employeeCount?: number;
+  country?: string;
+  region?: string;
+  createdAt?: string;
+  status?: 'active' | 'trialing' | 'suspended' | 'churned';
+  seats?: number;
+  arr?: number;
+  mrr?: number;
+  tags?: string[];
 }
 
 // ---- Common Data Types ----
@@ -407,6 +434,29 @@ export interface WishlistProductRemovedData {
   product: Product;
   wishlistId?: string;
 }
+export interface CartAbandonedData {
+  cartId?: string;
+  products: Product[];
+  total?: number;
+  currency?: CurrencyCode;
+  itemCount?: number;
+  cartAge?: number;
+  lastActivityAt?: Timestamp;
+  abandonmentPage?: string;
+  coupon?: string;
+}
+export interface ShippingInfoEnteredData {
+  orderId?: string;
+  shippingMethod: string;
+  shippingTier?: 'standard' | 'express' | 'overnight' | 'same_day' | 'pickup' | 'free';
+  total?: number;
+  shippingCost?: number;
+  currency?: CurrencyCode;
+  products?: Product[];
+  estimatedDelivery?: Timestamp;
+  country?: string;
+  postalCode?: string;
+}
 export interface PromotionViewedData {
   promotion: Promotion;
 }
@@ -517,6 +567,32 @@ export interface SubscriptionPaymentFailedData {
 
 // ---- Payment events ----
 
+export interface PaymentFailedData {
+  paymentId: string;
+  amount: number;
+  currency: string;
+  paymentMethod?:
+    | 'credit_card'
+    | 'debit_card'
+    | 'bank_transfer'
+    | 'paypal'
+    | 'apple_pay'
+    | 'google_pay'
+    | 'crypto'
+    | 'other';
+  failureReason?:
+    | 'insufficient_funds'
+    | 'card_declined'
+    | 'expired_card'
+    | 'fraud_detected'
+    | 'processing_error'
+    | 'authentication_failed'
+    | 'other';
+  orderId?: string;
+  invoiceId?: string;
+  retryCount?: number;
+}
+
 export interface PaymentMethodAddedData {
   methodType: 'credit_card' | 'bank_account' | 'paypal' | 'apple_pay' | 'google_pay';
   last4?: string;
@@ -609,6 +685,24 @@ export interface ExperimentFeatureFlagEvaluatedData {
 }
 
 // ---- Auth events ----
+
+export interface AuthLoginFailedData {
+  method: 'password' | 'sso' | 'social' | 'magic_link' | 'biometric' | 'passkey' | 'other';
+  failureReason:
+    | 'invalid_credentials'
+    | 'account_locked'
+    | 'account_suspended'
+    | 'mfa_required'
+    | 'mfa_failed'
+    | 'expired_password'
+    | 'ip_blocked'
+    | 'rate_limited'
+    | 'other';
+  userId?: string;
+  email?: string;
+  attemptCount?: number;
+  ipAddress?: string;
+}
 
 export interface AuthPasswordResetRequestedData {
   method?: 'email' | 'sms' | 'security_question';
@@ -858,6 +952,15 @@ export interface ContentDeletedData {
   reason?: string;
 }
 
+export interface ContentDraftedData {
+  contentId: string;
+  contentType?: 'article' | 'post' | 'page' | 'email' | 'document' | 'template' | 'other';
+  title?: string;
+  authorId?: string;
+  wordCount?: number;
+  isAutoSaved?: boolean;
+}
+
 export interface ContentPublishedData {
   contentId: string;
   contentType?: string;
@@ -985,6 +1088,15 @@ export interface SupportTicketUpdatedData {
   status?: 'open' | 'in_progress' | 'waiting' | 'escalated' | 'resolved' | 'closed';
   previousStatus?: string;
   assigneeId?: string;
+}
+
+export interface SupportTicketEscalatedData {
+  ticketId: string;
+  previousTier?: string;
+  newTier: string;
+  escalatedBy?: 'agent' | 'system' | 'customer';
+  reason?: string;
+  priority?: 'low' | 'medium' | 'high' | 'urgent' | 'critical';
 }
 
 export interface SupportTicketResolvedData {
@@ -1123,6 +1235,7 @@ export interface SchedulingAppointmentCancelledData {
 export interface SchedulingAppointmentRescheduledData {
   appointmentId: string;
   newStartTime: string;
+  newEndTime?: string;
   previousStartTime?: string;
   rescheduledBy?: 'user' | 'provider' | 'system';
 }
@@ -1148,6 +1261,17 @@ export interface SchedulingAvailabilityCheckedData {
   dateRange?: string;
   slotsAvailable?: number;
   slotsViewed?: number;
+}
+
+// ---- Search events ----
+
+export interface SearchAutocompleteSelectedData {
+  query: string;
+  selectedText: string;
+  selectedIndex?: number;
+  totalSuggestions?: number;
+  suggestionType?: 'recent' | 'popular' | 'product' | 'category' | 'keyword' | 'other';
+  source?: string;
 }
 
 // ---- Marketplace events ----
@@ -1209,6 +1333,35 @@ export interface MarketplaceSellerContactedData {
   sellerId?: string;
   method?: 'message' | 'email' | 'phone' | 'chat';
   subject?: string;
+}
+
+export interface MarketplaceDisputeOpenedData {
+  disputeId: string;
+  orderId?: string;
+  listingId?: string;
+  reason:
+    | 'item_not_received'
+    | 'item_not_as_described'
+    | 'unauthorized_purchase'
+    | 'billing_error'
+    | 'quality_issue'
+    | 'counterfeit'
+    | 'other';
+  disputeType?: 'refund' | 'replacement' | 'mediation' | 'chargeback';
+  amount?: number;
+  currency?: string;
+  initiatedBy?: 'buyer' | 'seller' | 'platform';
+  description?: string;
+}
+
+export interface MarketplaceDisputeResolvedData {
+  disputeId: string;
+  orderId?: string;
+  resolution: 'refunded' | 'replaced' | 'dismissed' | 'escalated' | 'partial_refund' | 'mediated';
+  resolvedBy?: 'buyer' | 'seller' | 'platform' | 'automatic';
+  resolutionAmount?: number;
+  currency?: string;
+  durationSeconds?: number;
 }
 
 // ---- Education events ----
@@ -1335,6 +1488,33 @@ export interface GamingItemUsedData {
   itemType?: string;
   context?: string;
   quantity?: number;
+}
+
+export interface GamingCurrencyEarnedData {
+  currencyName: string;
+  amount: number;
+  source?:
+    | 'purchase'
+    | 'reward'
+    | 'quest'
+    | 'daily_login'
+    | 'achievement'
+    | 'referral'
+    | 'promotion'
+    | 'other';
+  balance?: number;
+  level?: number;
+  gameMode?: string;
+}
+
+export interface GamingCurrencySpentData {
+  currencyName: string;
+  amount: number;
+  itemName?: string;
+  itemCategory?: string;
+  balance?: number;
+  level?: number;
+  gameMode?: string;
 }
 
 export interface GamingScorePostedData {
@@ -1524,6 +1704,66 @@ export interface AppScreenViewedData {
   previousScreenClass?: string;
 }
 
+export interface AppDeviceConnectedData {
+  deviceId: string;
+  deviceName?: string;
+  deviceType?:
+    | 'wearable'
+    | 'smart_home'
+    | 'sensor'
+    | 'peripheral'
+    | 'vehicle'
+    | 'appliance'
+    | 'other';
+  connectionType?:
+    | 'bluetooth'
+    | 'wifi'
+    | 'usb'
+    | 'zigbee'
+    | 'zwave'
+    | 'thread'
+    | 'matter'
+    | 'cellular'
+    | 'other';
+  firmwareVersion?: string;
+  manufacturer?: string;
+  model?: string;
+  batteryLevel?: number;
+  signalStrength?: number;
+}
+
+export interface AppDeviceDisconnectedData {
+  deviceId: string;
+  deviceName?: string;
+  deviceType?:
+    | 'wearable'
+    | 'smart_home'
+    | 'sensor'
+    | 'peripheral'
+    | 'vehicle'
+    | 'appliance'
+    | 'other';
+  reason?:
+    | 'user_initiated'
+    | 'timeout'
+    | 'out_of_range'
+    | 'low_battery'
+    | 'error'
+    | 'firmware_update'
+    | 'other';
+  sessionDurationSeconds?: number;
+}
+
+export interface AppDeviceFirmwareUpdatedData {
+  deviceId: string;
+  deviceName?: string;
+  previousVersion?: string;
+  newVersion: string;
+  updateMethod?: 'ota' | 'usb' | 'manual' | 'automatic';
+  durationSeconds?: number;
+  status?: 'success' | 'failed' | 'partial';
+}
+
 // ---- Order events ----
 
 export interface OrderConfirmedData {
@@ -1644,6 +1884,27 @@ export interface AccountTeamMemberAddedData {
   inviteMethod?: 'email' | 'link' | 'sso' | 'api';
 }
 
+export interface AccountSeatAddedData {
+  accountId: string;
+  seatId?: string;
+  userId?: string;
+  role?: string;
+  licenseType?: string;
+  totalSeats?: number;
+  usedSeats?: number;
+  plan?: string;
+}
+
+export interface AccountSeatRemovedData {
+  accountId: string;
+  seatId?: string;
+  userId?: string;
+  reason?: 'offboarding' | 'downgrade' | 'cost_reduction' | 'inactivity' | 'other';
+  totalSeats?: number;
+  usedSeats?: number;
+  plan?: string;
+}
+
 // ---- Privacy events ----
 
 export interface PrivacyDataExportRequestedData {
@@ -1759,6 +2020,14 @@ export interface LoyaltyPointsEarnedData {
   balance?: number;
 }
 
+export interface LoyaltyPointsExpiredData {
+  programId: string;
+  memberId?: string;
+  points: number;
+  expiredAt?: string;
+  reason?: 'inactivity' | 'time_limit' | 'program_change' | 'other';
+}
+
 export interface LoyaltyPointsRedeemedData {
   points: number;
   programId?: string;
@@ -1837,6 +2106,8 @@ export interface SurveyQuestionAnsweredData {
     | 'ranking'
     | 'other';
   questionText?: string;
+  answerValue?: string;
+  answerNumeric?: number;
 }
 
 export interface SurveyNpsSubmittedData {
@@ -1903,6 +2174,26 @@ export interface CollaborationItemCommentedData {
   parentCommentId?: string;
 }
 
+export interface CollaborationTaskCreatedData {
+  taskId: string;
+  workspaceId?: string;
+  projectId?: string;
+  title?: string;
+  assigneeId?: string;
+  priority?: 'low' | 'medium' | 'high' | 'urgent' | 'critical';
+  dueDate?: string;
+  labels?: string[];
+}
+
+export interface CollaborationTaskCompletedData {
+  taskId: string;
+  workspaceId?: string;
+  projectId?: string;
+  completedBy?: string;
+  duration?: number;
+  wasOverdue?: boolean;
+}
+
 // ---- Video call events ----
 
 export interface VideoCallStartedData {
@@ -1942,6 +2233,14 @@ export interface VideoCallRecordingStartedData {
   recordingId?: string;
   initiatedBy?: string;
   recordingType?: 'cloud' | 'local' | 'transcript';
+}
+
+export interface VideoCallRecordingStoppedData {
+  callId: string;
+  recordingId: string;
+  duration?: number;
+  stoppedBy?: 'host' | 'system' | 'participant';
+  fileSize?: number;
 }
 
 export interface VideoCallScreenSharedData {
@@ -2036,6 +2335,15 @@ export interface FileDeletedData {
   permanent?: boolean;
 }
 
+export interface FileDownloadedData {
+  fileId: string;
+  fileName?: string;
+  fileType?: string;
+  fileSize?: number;
+  source?: string;
+  downloadMethod?: 'direct' | 'api' | 'bulk' | 'export' | 'other';
+}
+
 export interface FilePreviewedData {
   fileId: string;
   fileName?: string;
@@ -2125,6 +2433,30 @@ export interface IntegrationSyncFailedData {
   recordsProcessed?: number;
   recordsFailed?: number;
   isRetryable?: boolean;
+}
+
+export interface IntegrationDeploymentStartedData {
+  deploymentId: string;
+  environment: 'production' | 'staging' | 'preview' | 'development' | 'test';
+  commitSha?: string;
+  branch?: string;
+  version?: string;
+  initiatedBy?: 'user' | 'ci' | 'rollback' | 'schedule';
+  provider?: string;
+  projectId?: string;
+}
+
+export interface IntegrationDeploymentCompletedData {
+  deploymentId: string;
+  environment: 'production' | 'staging' | 'preview' | 'development' | 'test';
+  status: 'success' | 'failure' | 'cancelled' | 'rolled_back';
+  commitSha?: string;
+  branch?: string;
+  version?: string;
+  durationSeconds?: number;
+  provider?: string;
+  projectId?: string;
+  url?: string;
 }
 
 // ---- Automation events ----
@@ -2447,6 +2779,8 @@ export interface FinanceWalletToppedUpData {
 export interface FinanceBalanceCheckedData {
   accountId?: string;
   accountType?: 'checking' | 'savings' | 'wallet' | 'credit' | 'investment' | 'crypto' | 'other';
+  balance?: number;
+  currency?: CurrencyCode;
 }
 
 export interface FinanceStatementGeneratedData {
@@ -2456,6 +2790,105 @@ export interface FinanceStatementGeneratedData {
   periodEnd?: string;
   format?: 'pdf' | 'csv' | 'html' | 'json';
   transactionCount?: number;
+}
+
+export interface FinanceTradeExecutedData {
+  tradeId: string;
+  instrument: string;
+  instrumentType?:
+    | 'stock'
+    | 'bond'
+    | 'etf'
+    | 'mutual_fund'
+    | 'option'
+    | 'future'
+    | 'crypto'
+    | 'forex'
+    | 'commodity'
+    | 'other';
+  side?: 'buy' | 'sell';
+  quantity?: number;
+  price?: number;
+  total?: number;
+  currency?: string;
+  orderType?: 'market' | 'limit' | 'stop' | 'stop_limit' | 'trailing_stop';
+  executionVenue?: string;
+  accountId?: string;
+}
+
+// ---- AI events ----
+
+export interface AiConversationStartedData {
+  conversationId: string;
+  assistantId?: string;
+  assistantName?: string;
+  model?: string;
+  provider?: 'openai' | 'anthropic' | 'google' | 'meta' | 'cohere' | 'mistral' | 'custom' | 'other';
+  interface?: 'chat' | 'voice' | 'embedded' | 'api' | 'other';
+  context?: string;
+}
+
+export interface AiMessageSentData {
+  conversationId: string;
+  messageId: string;
+  role?: 'user' | 'system';
+  contentLength?: number;
+  hasAttachments?: boolean;
+  attachmentTypes?: string[];
+  model?: string;
+  toolsRequested?: string[];
+}
+
+export interface AiResponseReceivedData {
+  conversationId: string;
+  messageId: string;
+  model?: string;
+  provider?: string;
+  latencyMs?: number;
+  promptTokens?: number;
+  completionTokens?: number;
+  totalTokens?: number;
+  finishReason?: 'stop' | 'length' | 'tool_call' | 'content_filter' | 'error' | 'other';
+  isStreaming?: boolean;
+  toolsUsed?: string[];
+  contentLength?: number;
+}
+
+export interface AiFeedbackGivenData {
+  conversationId: string;
+  messageId: string;
+  feedbackType: 'positive' | 'negative' | 'rating' | 'correction' | 'flag';
+  rating?: number;
+  comment?: string;
+  reason?:
+    | 'helpful'
+    | 'accurate'
+    | 'fast'
+    | 'unhelpful'
+    | 'inaccurate'
+    | 'slow'
+    | 'harmful'
+    | 'irrelevant'
+    | 'other';
+}
+
+export interface AiSuggestionAcceptedData {
+  conversationId?: string;
+  suggestionId: string;
+  suggestionType?: 'text' | 'code' | 'product' | 'action' | 'link' | 'other';
+  source?: 'inline' | 'sidebar' | 'modal' | 'autocomplete' | 'copilot' | 'other';
+  acceptMethod?: 'click' | 'keyboard_shortcut' | 'auto' | 'other';
+  model?: string;
+}
+
+export interface AiSuggestionDismissedData {
+  conversationId?: string;
+  suggestionId: string;
+  suggestionType?: 'text' | 'code' | 'product' | 'action' | 'link' | 'other';
+  source?: 'inline' | 'sidebar' | 'modal' | 'autocomplete' | 'copilot' | 'other';
+  dismissMethod?: 'click' | 'keyboard_shortcut' | 'escape' | 'ignore' | 'other';
+  reason?: 'not_relevant' | 'incorrect' | 'too_slow' | 'already_done' | 'other';
+  model?: string;
 }
 
 // Re-export generated types when available

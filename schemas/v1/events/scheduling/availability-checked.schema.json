@@ -26,6 +26,6 @@
       "description": "Number of available time slots the user viewed."
     }
   },
-  "required": [],
+  "required": ["providerId"],
   "additionalProperties": false
 }

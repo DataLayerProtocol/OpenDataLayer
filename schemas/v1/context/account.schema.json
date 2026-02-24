@@ -37,6 +37,20 @@
     "domain": {
       "type": "string",
       "description": "The account's primary domain."
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code of the account."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "trialing", "suspended", "churned", "cancelled"],
+      "description": "Current account lifecycle status."
+    },
+    "seats": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of licensed seats on the account."
     }
   },
   "additionalProperties": false

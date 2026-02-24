@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/collaboration/task_created.schema.json",
+  "title": "Collaboration Task Created",
+  "description": "Fired when a task is created in a collaborative workspace.",
+  "type": "object",
+  "properties": {
+    "taskId": {
+      "type": "string",
+      "description": "Unique identifier for the task."
+    },
+    "workspaceId": {
+      "type": "string",
+      "description": "The unique identifier of the workspace the task belongs to."
+    },
+    "projectId": {
+      "type": "string",
+      "description": "The unique identifier of the project the task belongs to."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title or name of the task."
+    },
+    "assigneeId": {
+      "type": "string",
+      "description": "The unique identifier of the user assigned to the task."
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "urgent", "critical"],
+      "description": "The priority level of the task."
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The due date and time for the task in ISO 8601 format."
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Labels or tags applied to the task."
+    }
+  },
+  "required": ["taskId"],
+  "additionalProperties": false
+}

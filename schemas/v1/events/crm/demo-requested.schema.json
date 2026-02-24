@@ -27,6 +27,6 @@
       "description": "Size of the requesting company."
     }
   },
-  "required": [],
+  "required": ["demoId"],
   "additionalProperties": false
 }

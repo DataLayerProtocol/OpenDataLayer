@@ -7,6 +7,7 @@
   "properties": {
     "methodType": {
       "type": "string",
+      "enum": ["credit_card", "bank_account", "paypal", "apple_pay", "google_pay"],
       "description": "The type of payment method removed."
     },
     "last4": {

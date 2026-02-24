@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ai/conversation_started.schema.json",
+  "title": "AI Conversation Started",
+  "description": "Fired when a user opens an AI chat or assistant session.",
+  "type": "object",
+  "properties": {
+    "conversationId": {
+      "type": "string",
+      "description": "Unique identifier for the conversation session."
+    },
+    "assistantId": {
+      "type": "string",
+      "description": "Unique identifier for the AI assistant or bot."
+    },
+    "assistantName": {
+      "type": "string",
+      "description": "Human-readable name of the AI assistant."
+    },
+    "model": {
+      "type": "string",
+      "description": "The AI model used for the conversation (e.g. gpt-4, claude-3)."
+    },
+    "provider": {
+      "type": "string",
+      "enum": ["openai", "anthropic", "google", "meta", "cohere", "mistral", "custom", "other"],
+      "description": "The AI provider or vendor powering the assistant."
+    },
+    "interface": {
+      "type": "string",
+      "enum": ["chat", "voice", "embedded", "api", "other"],
+      "description": "The interface through which the conversation was initiated."
+    },
+    "context": {
+      "type": "string",
+      "description": "What the user was doing when they started the conversation."
+    }
+  },
+  "required": ["conversationId"],
+  "additionalProperties": false
+}

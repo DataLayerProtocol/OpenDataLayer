@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/payment/payment_failed.schema.json",
+  "title": "Payment Failed",
+  "description": "Fired when a one-time or standalone payment attempt fails.",
+  "type": "object",
+  "properties": {
+    "paymentId": {
+      "type": "string",
+      "description": "Unique identifier for the payment attempt."
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The monetary amount of the failed payment."
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code."
+    },
+    "paymentMethod": {
+      "type": "string",
+      "enum": ["credit_card", "debit_card", "bank_transfer", "paypal", "apple_pay", "google_pay", "crypto", "other"],
+      "description": "The payment method used in the failed attempt."
+    },
+    "failureReason": {
+      "type": "string",
+      "enum": ["insufficient_funds", "card_declined", "expired_card", "fraud_detected", "processing_error", "authentication_failed", "other"],
+      "description": "The reason the payment failed."
+    },
+    "orderId": {
+      "type": "string",
+      "description": "The unique identifier of the associated order."
+    },
+    "invoiceId": {
+      "type": "string",
+      "description": "The unique identifier of the associated invoice."
+    },
+    "retryCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of payment retry attempts made."
+    }
+  },
+  "required": ["paymentId", "amount", "currency"],
+  "additionalProperties": false
+}

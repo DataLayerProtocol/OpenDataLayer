@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ai/message_sent.schema.json",
+  "title": "AI Message Sent",
+  "description": "Fired when a user sends a message or prompt to the AI.",
+  "type": "object",
+  "properties": {
+    "conversationId": {
+      "type": "string",
+      "description": "Unique identifier for the conversation session."
+    },
+    "messageId": {
+      "type": "string",
+      "description": "Unique identifier for the individual message."
+    },
+    "role": {
+      "type": "string",
+      "enum": ["user", "system"],
+      "description": "The role of the message sender."
+    },
+    "contentLength": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The length of the message content in characters."
+    },
+    "hasAttachments": {
+      "type": "boolean",
+      "description": "Whether the message includes attachments such as files or images."
+    },
+    "attachmentTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The types of attachments included with the message (e.g. image, pdf, code)."
+    },
+    "model": {
+      "type": "string",
+      "description": "The AI model targeted by the message."
+    },
+    "toolsRequested": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tools or functions the user explicitly requested the AI to use."
+    }
+  },
+  "required": ["conversationId", "messageId"],
+  "additionalProperties": false
+}

@@ -30,6 +30,6 @@
       "description": "Number of recipients the email was sent to."
     }
   },
-  "required": [],
+  "required": ["emailId"],
   "additionalProperties": false
 }

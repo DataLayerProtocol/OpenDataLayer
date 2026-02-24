@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/context/organization.schema.json",
+  "title": "Organization Context",
+  "description": "Ambient organizational (company/team) data for B2B analytics. Attached to events via context.organization.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the organization."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the organization."
+    },
+    "domain": {
+      "type": "string",
+      "description": "Primary domain of the organization."
+    },
+    "industry": {
+      "type": "string",
+      "description": "Industry vertical."
+    },
+    "plan": {
+      "type": "string",
+      "description": "Current subscription plan or tier."
+    },
+    "employeeCount": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of employees in the organization."
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code of headquarters."
+    },
+    "region": {
+      "type": "string",
+      "description": "Geographic region or state."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the organization was created in ISO 8601 format."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "trialing", "suspended", "churned"],
+      "description": "Current account status."
+    },
+    "seats": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of licensed seats."
+    },
+    "arr": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Annual recurring revenue."
+    },
+    "mrr": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Monthly recurring revenue."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Custom segmentation tags."
+    }
+  },
+  "required": ["id"],
+  "additionalProperties": false
+}

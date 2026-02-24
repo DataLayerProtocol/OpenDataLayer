@@ -36,5 +36,6 @@
       "description": "The total number of results returned for the search."
     }
   },
+  "required": ["bookingType"],
   "additionalProperties": false
 }

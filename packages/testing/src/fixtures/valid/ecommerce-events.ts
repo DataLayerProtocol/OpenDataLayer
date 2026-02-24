@@ -24,7 +24,7 @@ export const ecommerceEvents: CapturedEvent[] = [
     context: createFullContext(),
     data: {
       product: createProduct({
-        productId: 'SKU-003',
+        id: 'SKU-003',
         name: 'Premium Widget',
         price: 49.99,
       }),
@@ -48,14 +48,14 @@ export const ecommerceEvents: CapturedEvent[] = [
       products: [
         createProduct(),
         createProduct({
-          productId: 'SKU-003',
+          id: 'SKU-003',
           name: 'Premium Widget',
           price: 49.99,
           quantity: 1,
           position: 2,
         }),
         createProduct({
-          productId: 'SKU-004',
+          id: 'SKU-004',
           name: 'Widget Accessory',
           price: 9.99,
           quantity: 1,
@@ -75,7 +75,7 @@ export const ecommerceEvents: CapturedEvent[] = [
       products: [
         createProduct(),
         createProduct({
-          productId: 'SKU-003',
+          id: 'SKU-003',
           name: 'Premium Widget',
           price: 49.99,
           quantity: 1,

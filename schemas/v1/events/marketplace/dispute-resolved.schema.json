@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/marketplace/dispute_resolved.schema.json",
+  "title": "Marketplace Dispute Resolved",
+  "description": "Fired when a marketplace dispute is resolved.",
+  "type": "object",
+  "properties": {
+    "disputeId": {
+      "type": "string",
+      "description": "Unique identifier for the dispute."
+    },
+    "orderId": {
+      "type": "string",
+      "description": "The order identifier associated with the dispute."
+    },
+    "resolution": {
+      "type": "string",
+      "description": "The outcome of the dispute resolution.",
+      "enum": ["refunded", "replaced", "dismissed", "escalated", "partial_refund", "mediated"]
+    },
+    "resolvedBy": {
+      "type": "string",
+      "description": "The party that resolved the dispute.",
+      "enum": ["buyer", "seller", "platform", "automatic"]
+    },
+    "resolutionAmount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The monetary amount of the resolution."
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "durationSeconds": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Time from dispute opened to resolution in seconds."
+    }
+  },
+  "required": ["disputeId", "resolution"],
+  "additionalProperties": false
+}

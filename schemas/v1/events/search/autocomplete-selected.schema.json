@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/search/autocomplete_selected.schema.json",
+  "title": "Search Autocomplete Selected",
+  "description": "Fired when a user selects a suggestion from autocomplete/typeahead.",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The search query text at time of selection."
+    },
+    "selectedText": {
+      "type": "string",
+      "description": "The autocomplete suggestion that was selected."
+    },
+    "selectedIndex": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Position of the selected suggestion in the list."
+    },
+    "totalSuggestions": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of suggestions shown."
+    },
+    "suggestionType": {
+      "type": "string",
+      "enum": ["recent", "popular", "product", "category", "keyword", "other"],
+      "description": "The type of autocomplete suggestion selected."
+    },
+    "source": {
+      "type": "string",
+      "description": "The search component or location."
+    }
+  },
+  "required": ["query", "selectedText"],
+  "additionalProperties": false
+}

@@ -15,6 +15,7 @@
     },
     "currency": {
       "type": "string",
+      "pattern": "^[A-Z]{3}$",
       "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
     },
     "topUpMethod": {

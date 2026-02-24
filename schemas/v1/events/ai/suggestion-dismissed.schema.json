@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ai/suggestion_dismissed.schema.json",
+  "title": "AI Suggestion Dismissed",
+  "description": "Fired when a user dismisses an AI-generated recommendation or suggestion.",
+  "type": "object",
+  "properties": {
+    "conversationId": {
+      "type": "string",
+      "description": "Unique identifier for the conversation session, if applicable."
+    },
+    "suggestionId": {
+      "type": "string",
+      "description": "Unique identifier for the suggestion."
+    },
+    "suggestionType": {
+      "type": "string",
+      "enum": ["text", "code", "product", "action", "link", "other"],
+      "description": "The type of content suggested by the AI."
+    },
+    "source": {
+      "type": "string",
+      "enum": ["inline", "sidebar", "modal", "autocomplete", "copilot", "other"],
+      "description": "The UI surface where the suggestion was presented."
+    },
+    "dismissMethod": {
+      "type": "string",
+      "enum": ["click", "keyboard_shortcut", "escape", "ignore", "other"],
+      "description": "How the user dismissed the suggestion."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["not_relevant", "incorrect", "too_slow", "already_done", "other"],
+      "description": "The reason the user dismissed the suggestion."
+    },
+    "model": {
+      "type": "string",
+      "description": "The AI model that generated the suggestion."
+    }
+  },
+  "required": ["suggestionId"],
+  "additionalProperties": false
+}

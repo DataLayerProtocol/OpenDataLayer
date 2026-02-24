@@ -15,5 +15,6 @@
       "description": "The title of the page being printed."
     }
   },
+  "required": ["url"],
   "additionalProperties": false
 }

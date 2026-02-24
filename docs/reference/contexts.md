@@ -21,7 +21,7 @@ This page documents all 8 standard context objects, their fields, and examples. 
 
 - **Minimal**: Only `page` context is required.
 - **Standard**: `page`, `user`, `consent`, and `session` are required.
-- **Full**: All 8 context objects are required.
+- **Full**: All 15 context objects are required.
 
 ### Setting context
 

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/ecommerce/shipping_info_entered.schema.json",
+  "title": "Shipping Info Entered Event Data",
+  "description": "Data payload for the ecommerce.shipping_info_entered event. Fired when a user submits shipping information during checkout.",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "The order or transaction identifier, if available."
+    },
+    "shippingMethod": {
+      "type": "string",
+      "description": "The shipping method selected by the user (e.g. 'ground', 'two_day', 'overnight')."
+    },
+    "shippingTier": {
+      "type": "string",
+      "enum": ["standard", "express", "overnight", "same_day", "pickup", "free"],
+      "description": "The shipping speed tier."
+    },
+    "total": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The total monetary value of the order."
+    },
+    "shippingCost": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The shipping cost for the order."
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "product.schema.json#/$defs/product"
+      },
+      "description": "The list of products included in the order."
+    },
+    "estimatedDelivery": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The estimated delivery date in ISO 8601 format."
+    },
+    "country": {
+      "type": "string",
+      "description": "The destination country code (e.g. 'US', 'GB', 'DE')."
+    },
+    "postalCode": {
+      "type": "string",
+      "description": "The destination postal or ZIP code."
+    }
+  },
+  "required": ["shippingMethod"],
+  "additionalProperties": false
+}

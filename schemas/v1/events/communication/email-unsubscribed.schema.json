@@ -26,6 +26,6 @@
       "description": "Identifier of the associated email campaign."
     }
   },
-  "required": [],
+  "required": ["emailId"],
   "additionalProperties": false
 }

@@ -47,7 +47,6 @@ export function createPageContext(overrides?: Record<string, unknown>): Record<s
     path: '/products/widget',
     title: 'Widget - Example Store',
     referrer: 'https://example.com/',
-    hostname: 'example.com',
     ...overrides,
   };
 }
@@ -55,7 +54,7 @@ export function createPageContext(overrides?: Record<string, unknown>): Record<s
 /** Create a valid user context */
 export function createUserContext(overrides?: Record<string, unknown>): Record<string, unknown> {
   return {
-    userId: 'user-12345',
+    id: 'user-12345',
     anonymousId: testUUID(10),
     isAuthenticated: true,
     traits: {
@@ -70,13 +69,14 @@ export function createUserContext(overrides?: Record<string, unknown>): Record<s
 /** Create a valid consent context (granted) */
 export function createConsentContext(overrides?: Record<string, unknown>): Record<string, unknown> {
   return {
+    status: 'granted',
     purposes: {
       analytics: true,
       marketing: true,
       functional: true,
       personalization: false,
     },
-    lastUpdated: '2024-01-15T10:00:00.000Z',
+    updatedAt: '2024-01-15T10:00:00.000Z',
     ...overrides,
   };
 }
@@ -84,9 +84,9 @@ export function createConsentContext(overrides?: Record<string, unknown>): Recor
 /** Create a valid session context */
 export function createSessionContext(overrides?: Record<string, unknown>): Record<string, unknown> {
   return {
-    sessionId: testUUID(20),
-    isNewSession: false,
-    sessionCount: 5,
+    id: testUUID(20),
+    isNew: false,
+    count: 5,
     startedAt: '2024-01-15T10:00:00.000Z',
     ...overrides,
   };
@@ -106,7 +106,7 @@ export function createFullContext(overrides?: Record<string, unknown>): Record<s
 /** Create a valid ecommerce product */
 export function createProduct(overrides?: Record<string, unknown>): Record<string, unknown> {
   return {
-    productId: 'SKU-001',
+    id: 'SKU-001',
     name: 'Test Widget',
     brand: 'WidgetCo',
     category: 'Electronics/Gadgets',
@@ -134,7 +134,7 @@ export function createPurchaseEvent(overrides?: Partial<CapturedEvent>): Capture
       products: [
         createProduct(),
         createProduct({
-          productId: 'SKU-002',
+          id: 'SKU-002',
           name: 'Test Gadget',
           brand: 'GadgetCo',
           category: 'Electronics/Gadgets',
@@ -144,7 +144,7 @@ export function createPurchaseEvent(overrides?: Partial<CapturedEvent>): Capture
           position: 2,
         }),
         createProduct({
-          productId: 'SKU-001',
+          id: 'SKU-001',
           name: 'Test Widget',
           quantity: 1,
           position: 3,

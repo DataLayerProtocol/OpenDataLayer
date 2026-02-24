@@ -31,6 +31,11 @@
         "type": "string"
       },
       "description": "List of field names that were updated."
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 3-letter currency code (e.g. USD, EUR, GBP)."
     }
   },
   "required": ["opportunityId"],

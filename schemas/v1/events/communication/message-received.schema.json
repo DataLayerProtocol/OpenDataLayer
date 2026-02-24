@@ -11,7 +11,8 @@
     },
     "channel": {
       "type": "string",
-      "description": "Communication channel through which the message was received."
+      "description": "Communication channel through which the message was received.",
+      "enum": ["chat", "messaging", "in_app"]
     },
     "conversationId": {
       "type": "string",

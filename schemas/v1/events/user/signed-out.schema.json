@@ -10,6 +10,6 @@
       "description": "Unique identifier of the user who signed out."
     }
   },
-  "required": [],
+  "required": ["userId"],
   "additionalProperties": false
 }

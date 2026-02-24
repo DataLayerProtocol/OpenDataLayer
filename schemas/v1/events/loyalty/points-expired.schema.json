@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opendatalayer.org/schemas/v1/events/loyalty/points_expired.schema.json",
+  "title": "Loyalty Points Expired",
+  "description": "Fired when loyalty points expire without being redeemed.",
+  "type": "object",
+  "properties": {
+    "programId": {
+      "type": "string",
+      "description": "The unique identifier of the loyalty program."
+    },
+    "memberId": {
+      "type": "string",
+      "description": "The unique identifier of the loyalty program member."
+    },
+    "points": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The number of points that expired."
+    },
+    "expiredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the points expired in ISO 8601 format."
+    },
+    "reason": {
+      "type": "string",
+      "enum": ["inactivity", "time_limit", "program_change", "other"],
+      "description": "The reason the points expired."
+    }
+  },
+  "required": ["programId", "points"],
+  "additionalProperties": false
+}
